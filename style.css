@@ -29,3 +29,12 @@
       text-shadow: 2px 0.5px 2px #ea36af, -0/5px -0.5px 2px #75fa69;
     }
   }
+
+
+  /* Bootstrap Styles */
+
+  .row {
+
+    border:1px solid red;
+
+  }
