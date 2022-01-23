@@ -63,9 +63,9 @@
 /*codepen.io teletext styles https://codepen.io/jsanderson/pen/yoLLjv */
 
 body {
-  background-color:#000000;
+  background-color:#000000 !important;
   color:#ffffff;
-  font-family: 'Press Start 2P', monospace;
+  font-family: 'Press Start 2P', monospace !important;
 }
 
 #main, #header, #footer {
