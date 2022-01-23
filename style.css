@@ -1,5 +1,5 @@
 /*Glitchy Text Effects from Nintendoid font from https://www.splintered.co.uk/experiments/132/ */
-
+/*
 @font-face {
     font-family: 'Nintendoid1';
     font-style: normal;
@@ -17,9 +17,9 @@
          /*animation-duration: 0.01s;
          animation-name: textflicker;
          animation-iteration-count: infinite;
-         animation-direction: alternate;*/
+         animation-direction: alternate;
   }
-  
+  */
   
   h1 {
      font-size: 5em; 
@@ -42,7 +42,7 @@ background-color: pink;
 
 
 
-  
+  /*
   @keyframes textflicker {
     from {
       text-shadow: 1px 0 0 #ea36af, -2px 0 0 #75fa69;
@@ -52,8 +52,12 @@ background-color: pink;
     }
   }
 
+*/
+  
 
-  /* Bootstrap Styles */
+
+
+/* Bootstrap Styles */
 
   .row {
 
@@ -64,7 +68,99 @@ background-color: pink;
   /*General styles*/
 
 
-body {
 
-    background-color:#000000;
+
+
+
+
+
+
+
+
+/*codepen.io teletext styles https://codepen.io/jsanderson/pen/yoLLjv */
+
+body {
+  background-color:black;
+  color:#ffffff;
+  font-family: 'Press Start 2P', monospace;
+}
+
+#main, #header, #footer {
+  width:850px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#header {
+  text-align:right;
+}
+
+#main {
+  min-height:730px;
+}
+
+.listleft, .listright {
+  float:left;
+  margin:5px 0px;
+}
+
+.listleft {
+  width:90%;
+  color:#00ffff;
+}
+
+.listright {
+  width:10%;
+  text-align:right;
+}
+
+h1 {
+  text-align:center;
+  background-color:#0000ff;
+  color:#ffff00;
+  margin:0px;
+  padding:20px 0px;
+}
+
+h3 {
+  color:#ffff00;
+}
+
+hr {
+  height:6px;
+  width:100%;
+  color:#0000ff;
+  background-color:#0000ff;
+  border:1px solid #0000ff;
+  margin:20px 0px;
+}
+
+#red, #green, #yellow, #blue {
+  width:25%;
+  display:inline;
+  border:0px;
+  float:left;
+  text-align:center;
+}
+
+#red {
+  color:#ff0000;
+}
+
+#green {
+  color:#00ff00;
+}
+
+#yellow {
+  color:#ffff00;
+}
+
+#blue {
+  color:#00ffff;
+}
+
+@media screen and (max-width: 850px) {
+  #header, #main, #footer {
+    width:100%;
+  }
 }
