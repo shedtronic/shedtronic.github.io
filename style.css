@@ -53,13 +53,23 @@
   /*General styles*/
 
 .sidebarlogo {
+float:right;
 
   width:200px;
 }
 
-.sidemenu a {
 
-list-style-type:none;
+.sidemenu {
+  display:block;
+  clear:both;
+
+}
+
+.sidemenu a {
+  
+  
+  text-align:right;
+list-style-type:none !important;
 
 }
 
