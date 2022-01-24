@@ -72,6 +72,15 @@ ul {
 
 }
 
+figure {
+  margin: 0;
+}
+
+audio {
+
+  border-radius: 1px;
+  background:blue;
+}
 
 
 
