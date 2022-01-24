@@ -53,15 +53,14 @@
   /*General styles*/
 
 .sidebarlogo {
-float:right;
 
-  width:200px;
+width:200px;
 }
 
 
 .sidemenu {
-  display:block;
-  clear:both;
+  
+ 
 
 }
 
