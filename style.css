@@ -58,9 +58,9 @@ width:200px;
 }
 
 
-.sidemenu {
+.sidemenu ul li{
   
- 
+  list-style-type:none !important;
 
 }
 
@@ -68,7 +68,7 @@ width:200px;
   
   
   text-align:right;
-list-style-type:none !important;
+
 
 }
 
