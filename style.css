@@ -59,7 +59,7 @@ width:200px;
 
 
 ul {
-  
+  margin: 0 0 0 20px; 
   list-style-type: none !important;
 
 }
