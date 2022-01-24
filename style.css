@@ -58,7 +58,7 @@ width:200px;
 }
 
 
-.sidemenu ul {
+ul.sidemenu {
   
   list-style-type: none !important;
 
