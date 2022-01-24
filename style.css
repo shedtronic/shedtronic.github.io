@@ -45,7 +45,7 @@
   .row {
 
    /* border:1px solid red;*/
-
+    color: white;
   }
 
   /*General styles*/
@@ -69,7 +69,7 @@ body {
 }
 
 #main, #header, #footer {
-  /*width:850px;*/
+  width:auto;
   margin-left:auto;
   margin-right:auto;
  
@@ -81,6 +81,8 @@ body {
 
 #main {
   /*min-height:730px;*/
+
+  color: white;
 }
 
 .listleft, .listright {
