@@ -132,7 +132,7 @@ hr {
 }
 
 #green {
-  color:#00ff00;
+  color:hsl(120, 100%, 50%);
 }
 
 #yellow {
