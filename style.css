@@ -59,7 +59,7 @@ border-width: 25px 15px 0px 15px;
 
 }
 
-.highlight:first-letter {
+.highlight :first-letter {
 
   border:#000000 5px solid !important;
 }
