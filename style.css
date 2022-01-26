@@ -61,7 +61,7 @@ border-width: 25px 15px 0px 15px;
 
 .highlight :first-letter {
 
-  border:#000000 5px solid !important;
+  color:red !important;
 }
 .sidebarlogo {
   margin: 0 0 0 20px;
