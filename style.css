@@ -52,11 +52,16 @@
 
   /*General styles*/
 
+body {
+border: solid #0000ff;
+border-width: 25px 15px 0px 15px;
 
 
-.highlight {
+}
 
-  border 5px solid #000;
+.highlight:first-letter {
+
+  border:#000000 5px solid !important;
 }
 .sidebarlogo {
   margin: 0 0 0 20px;
