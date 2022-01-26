@@ -11,21 +11,7 @@
 </head>
 <body>
     <script>
-      var s = function( sketch ) {
-  sketch.setup = function() {
-    sketch.createCanvas(700, 410);
-    //...
-  };
-};    
-var myp5 = new p5(s);
-var foo = new p5.SpeechRec(); // speech recognition object (will prompt for mic access)
-foo.onResult = showResult; // bind callback function to trigger when speech is recognized
-foo.start(); // start listening
-
-function showResult()
-{
-  console.log(foo.resultString); // log the result
-}
+      
         </script>
 
 
