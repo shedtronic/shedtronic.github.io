@@ -1,11 +1,10 @@
 
 /*    https://p5js.org/reference/#/libraries/p5.sound     */
 
+let osc, playing, freq, amp;
+
 function setup() {
-  // put setup code here
-  let osc, playing, freq, amp;
-frameRate(30);
-let cnv = createCanvas(400, 400);
+  let cnv = createCanvas(100, 100);
   cnv.mousePressed(playOscillator);
   osc = new p5.Oscillator('sine');
 }
@@ -39,7 +38,3 @@ function mouseReleased() {
   osc.amp(0, 0.5);
   playing = false;
 }
-
-}
-
-
