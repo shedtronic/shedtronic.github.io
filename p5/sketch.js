@@ -1,40 +1,37 @@
-
-/*    https://p5js.org/reference/#/libraries/p5.sound     */
-
-let osc, playing, freq, amp;
+let noise, env, analyzer;
 
 function setup() {
-  let cnv = createCanvas(100, 100);
-  cnv.mousePressed(playOscillator);
-  osc = new p5.Oscillator('sine');
+  createCanvas(710, 200);
+  noise = new p5.Noise(); // other types include 'brown' and 'pink'
+  noise.start();
+
+  // multiply noise volume by 0
+  // (keep it quiet until we're ready to make noise!)
+  noise.amp(0);
+
+  env = new p5.Env();
+  // set attackTime, decayTime, sustainRatio, releaseTime
+  env.setADSR(0.001, 0.1, 0.2, 0.1);
+  // set attackLevel, releaseLevel
+  env.setRange(1, 0);
+
+  // p5.Amplitude will analyze all sound in the sketch
+  // unless the setInput() method is used to specify an input.
+  analyzer = new p5.Amplitude();
 }
 
 function draw() {
-  background(220)
-  freq = constrain(map(mouseX, 0, width, 100, 500), 100, 500);
-  amp = constrain(map(mouseY, height, 0, 0, 1), 0, 1);
+  background(0);
 
-  text('tap to play', 20, 20);
-  text('freq: ' + freq, 20, 40);
-  text('amp: ' + amp, 20, 60);
+  // get volume reading from the p5.Amplitude analyzer
+  let level = analyzer.getLevel();
 
-  if (playing) {
-    // smooth the transitions by 0.1 seconds
-    osc.freq(freq, 0.1);
-    osc.amp(amp, 0.1);
-  }
+  // use level to draw a green rectangle
+  let levelHeight = map(level, 0, 0.4, 0, height);
+  fill(100, 250, 100);
+  rect(0, height, width, -levelHeight);
 }
 
-function playOscillator() {
-  // starting an oscillator on a user gesture will enable audio
-  // in browsers that have a strict autoplay policy.
-  // See also: userStartAudio();
-  osc.start();
-  playing = true;
-}
-
-function mouseReleased() {
-  // ramp amplitude to 0 over 0.5 seconds
-  osc.amp(0, 0.5);
-  playing = false;
+function mousePressed() {
+  env.play(noise);
 }
