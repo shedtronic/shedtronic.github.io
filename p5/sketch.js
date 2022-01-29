@@ -4,45 +4,42 @@
 function setup() {
   // put setup code here
 
-  createCanvas(720, 400);
-stroke(255); // Set line drawing color to white
+  
+
 frameRate(30);
+let cnv = createCanvas(400, 400);
+  cnv.mousePressed(playOscillator);
+  osc = new p5.Oscillator('sine');
 }
 
 function draw() {
-  // Set the background to black and turn off the fill color
-  background(0);
-  noFill();
+  background(220)
+  freq = constrain(map(mouseX, 0, width, 100, 500), 100, 500);
+  amp = constrain(map(mouseY, height, 0, 0, 1), 0, 1);
 
-  // The two parameters of the point() method each specify
-  // coordinates.
-  // The first parameter is the x-coordinate and the second is the Y
- /* stroke(255);
-  point(width * 0.5, height * 0.5);
-  point(width * 0.5, height * 0.25);
+  text('tap to play', 20, 20);
+  text('freq: ' + freq, 20, 40);
+  text('amp: ' + amp, 20, 60);
 
-  // Coordinates are used for drawing all shapes, not just points.
-  // Parameters for different functions are used for different
-  // purposes. For example, the first two parameters to line()
-  // specify the coordinates of the first endpoint and the second
-  // two parameters specify the second endpoint
-  stroke(0, 153, 255);
-  line(0, height * 0.33, width, height * 0.33);
-
-  // By default, the first two parameters to rect() are the
-  // coordinates of the upper-left corner and the second pair
-  // is the width and height
-  stroke(255, 153, 0);
-  rect(width * 0.25, height * 0.1, width * 0.5, height * 0.8);*/
-
-  background(127);
-  noStroke();
-  for (let i = 0; i < height; i += 20) {
-    fill(129, 206, 15);
-    rect(0, i, width, 10);
-    fill(255);
-    rect(i, 0, 10, height);
+  if (playing) {
+    // smooth the transitions by 0.1 seconds
+    osc.freq(freq, 0.1);
+    osc.amp(amp, 0.1);
   }
+}
+
+function playOscillator() {
+  // starting an oscillator on a user gesture will enable audio
+  // in browsers that have a strict autoplay policy.
+  // See also: userStartAudio();
+  osc.start();
+  playing = true;
+}
+
+function mouseReleased() {
+  // ramp amplitude to 0 over 0.5 seconds
+  osc.amp(0, 0.5);
+  playing = false;
 }
 
 
