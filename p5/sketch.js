@@ -3,9 +3,7 @@
 
 function setup() {
   // put setup code here
-
-  
-
+  let osc, playing, freq, amp;
 frameRate(30);
 let cnv = createCanvas(400, 400);
   cnv.mousePressed(playOscillator);
