@@ -1,37 +1,37 @@
-let noise, env, analyzer;
+let synth, soundLoop;
+ let notePattern = [60, 62, 64, 67, 69, 72];
 
-function setup() {
-  createCanvas(710, 200);
-  noise = new p5.Noise(); // other types include 'brown' and 'pink'
-  noise.start();
+ function setup() {
+   let cnv = createCanvas(100, 100);
+   cnv.mousePressed(canvasPressed);
+   colorMode(HSB);
+   background(0, 0, 86);
+   text('tap to start/stop', 10, 20);
 
-  // multiply noise volume by 0
-  // (keep it quiet until we're ready to make noise!)
-  noise.amp(0);
+   //the looper's callback is passed the timeFromNow
+   //this value should be used as a reference point from
+   //which to schedule sounds
+   let intervalInSeconds = 0.2;
+   soundLoop = new p5.SoundLoop(onSoundLoop, intervalInSeconds);
 
-  env = new p5.Env();
-  // set attackTime, decayTime, sustainRatio, releaseTime
-  env.setADSR(0.001, 0.1, 0.2, 0.1);
-  // set attackLevel, releaseLevel
-  env.setRange(1, 0);
-
-  // p5.Amplitude will analyze all sound in the sketch
-  // unless the setInput() method is used to specify an input.
-  analyzer = new p5.Amplitude();
+   synth = new p5.MonoSynth();
 }
 
-function draw() {
-  background(0);
+function canvasPressed() {
+  // ensure audio is enabled
+  userStartAudio();
 
-  // get volume reading from the p5.Amplitude analyzer
-  let level = analyzer.getLevel();
-
-  // use level to draw a green rectangle
-  let levelHeight = map(level, 0, 0.4, 0, height);
-  fill(100, 250, 100);
-  rect(0, height, width, -levelHeight);
+  if (soundLoop.isPlaying) {
+    soundLoop.stop();
+  } else {
+    // start the loop
+    soundLoop.start();
+  }
 }
 
-function mousePressed() {
-  env.play(noise);
+function onSoundLoop(timeFromNow) {
+  let noteIndex = (soundLoop.iterations - 1) % notePattern.length;
+  let note = midiToFreq(notePattern[noteIndex]);
+  synth.play(note, 0.5, timeFromNow);
+  background(noteIndex * 360 / notePattern.length, 50, 100);
 }
