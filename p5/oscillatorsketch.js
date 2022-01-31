@@ -1,39 +1,32 @@
-let synth, soundLoop;
- let notePattern = [60, 62, 64, 67, 69, 72];
+let osc, fft;
 
- function setup() {
-   let cnv = createCanvas(100, 100);
-  
-   cnv.mousePressed(canvasPressed);
-   cnv.position(50, 100);
-   colorMode(HSB);
-   background(0, 0, 86);
-   text('tap to start/stop', 10, 20);
+function setup() {
+  createCanvas(720, 256);
 
-   //the looper's callback is passed the timeFromNow
-   //this value should be used as a reference point from
-   //which to schedule sounds
-   let intervalInSeconds = 0.2;
-   soundLoop = new p5.SoundLoop(onSoundLoop, intervalInSeconds);
+  osc = new p5.TriOsc(); // set frequency and type
+  osc.amp(0.5);
 
-   synth = new p5.MonoSynth();
+  fft = new p5.FFT();
+  osc.start();
 }
 
-function canvasPressed() {
-  // ensure audio is enabled
-  userStartAudio();
+function draw() {
+  background(255);
 
-  if (soundLoop.isPlaying) {
-    soundLoop.stop();
-  } else {
-    // start the loop
-    soundLoop.start();
+  let waveform = fft.waveform(); // analyze the waveform
+  beginShape();
+  strokeWeight(5);
+  for (let i = 0; i < waveform.length; i++) {
+    let x = map(i, 0, waveform.length, 0, width);
+    let y = map(waveform[i], -1, 1, height, 0);
+    vertex(x, y);
   }
-}
+  endShape();
 
-function onSoundLoop(timeFromNow) {
-  let noteIndex = (soundLoop.iterations - 1) % notePattern.length;
-  let note = midiToFreq(notePattern[noteIndex]);
-  synth.play(note, 0.5, timeFromNow);
-  background(noteIndex * 360 / notePattern.length, 50, 100);
+  // change oscillator frequency based on mouseX
+  let freq = map(mouseX, 0, width, 40, 880);
+  osc.freq(freq);
+
+  let amp = map(mouseY, 0, height, 1, 0.01);
+  osc.amp(amp);
 }
