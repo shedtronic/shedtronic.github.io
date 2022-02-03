@@ -14,9 +14,11 @@ function setup() {
 function draw() {
   background(0);
 
+
   let waveform = fft.waveform(); // analyze the waveform
   beginShape();
-  strokeWeight(5);
+  noFill();
+  strokeWeight(2);
   for (let i = 0; i < waveform.length; i++) {
     let x = map(i, 0, waveform.length, 0, width);
     let y = map(waveform[i], -1, 1, height, 0);
