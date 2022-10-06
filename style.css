@@ -219,5 +219,10 @@ hr {
 @media screen and (max-width: 850px) {
   #header, #main, #footer {
     width:100%;
+    
+  }
+  audio {
+    width:100%;
+    max-width:600px;
   }
 }
