@@ -54,7 +54,7 @@ var months = [
 
 
   //New Audio Player
-
+/*
   new Vue({
     el: "#app",
     data() {
@@ -71,5 +71,5 @@ var months = [
         this.likedSong = !this.likedSong;
       }
     }
-  });
+  });*/
   
