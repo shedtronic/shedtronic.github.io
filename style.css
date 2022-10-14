@@ -155,9 +155,9 @@ audio {
   object-fit: cover;
   height: 110px;
   width: inherit;
-  /*position: absolute;*/
+  /*position: absolute;
   bottom: 0;
-  left: 0;
+  left: 0;*/
   animation: rotate 3s linear infinite;
   animation-play-state: paused;
   
