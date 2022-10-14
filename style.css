@@ -102,7 +102,7 @@ audio {
 /*  audio::-webkit-media-controls-panel       */
 /*  audio::-webkit-media-controls-mute-button   */
 /*  audio::-webkit-media-controls-play-button     */  
-  audio::-webkit-media-controls-timeline-container: border-radius:0px; 
+/*  audio::-webkit-media-controls-timeline-container: border-radius:0px; 
 /*  audio::-webkit-media-controls-current-time-display   */
 /*  audio::-webkit-media-controls-time-remaining-display    */
 /*  audio::-webkit-media-controls-timeline    */
