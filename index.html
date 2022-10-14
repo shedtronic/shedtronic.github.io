@@ -97,6 +97,42 @@
 
 
             </ul>
+
+            <!-- New Audio player Start-->
+
+            <div id="app">
+              <div>
+                <button class="button button--square" :class="likedSong ? 'button--true' : ''" @click="togleLikeSong">
+                  <ion-icon name="heart" class="button__icon"></ion-icon>
+                  <span class="sr-only">{{ likedSong ? 'Song liked' : 'Like song' }}</span>
+                </button>
+                <button class="button button--round">
+                  <ion-icon name="play-back-outline" class="button__icon"></ion-icon>
+                  <span class="sr-only">Previous track</span>
+                </button>
+                <button class="button button--round" @click="togglePauseTrack">
+                  <ion-icon :name="isPlaying ? 'pause-outline' : 'play-outline'" class="button__icon"></ion-icon>
+                  <span class="sr-only">{{ isPlaying ? 'Pause song' : 'Play song' }}</span>
+                </button>
+                <button class="button button--round">
+                  <ion-icon name="play-forward-outline" class="button__icon"></ion-icon>
+                  <span class="sr-only">Next track</span>
+                </button>
+              </div>
+              <div>
+                <div class="loader-5" :class="!isPlaying ? 'loader-5--paused' : ''"></div>
+              </div>
+              <!-- 	<audio autoplay>
+                <source src="https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/7.mp3" />
+              </audio> -->
+            </div>
+            
+            <p class="info emboss">Components from <a href="https://codepen.io/JackDomleo/pen/mdeowoz" rel="nofollow noopener" target="_blank">this pen</a></p>
+
+               <!-- New Audio player End-->
+
+
+
             </div>
               
             <div id='footer'>
