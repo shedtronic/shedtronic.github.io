@@ -51,25 +51,4 @@ var months = [
   });
   
 
-
-
-  //New Audio Player
-/*
-  new Vue({
-    el: "#app",
-    data() {
-      return {
-        isPlaying: true,
-        likedSong: false
-      };
-    },
-    methods: {
-      togglePauseTrack() {
-        this.isPlaying = !this.isPlaying;
-      },
-      togleLikeSong() {
-        this.likedSong = !this.likedSong;
-      }
-    }
-  });*/
   
