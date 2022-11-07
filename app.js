@@ -32,7 +32,7 @@ function createTrackItem(index,name,duration){
   var listAudio = [
     {
       name:"Shedtronic - audio 1",
-      file:"audio/shopping.mp3",
+      file:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
       duration:"08:47"
     },
     {
