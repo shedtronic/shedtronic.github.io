@@ -31,9 +31,9 @@ function createTrackItem(index,name,duration){
 
   var listAudio = [
     {
-      name:"Shedtronic - Shopping",
+      name:"Shedtronic - audio 1",
       file:"../audio/shopping.mp3",
-      duration:"02:27"
+      duration:"08:47"
     },
     {
       name:"Artist 2 - audio 2",
