@@ -2,249 +2,23 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<script language="javascript" type="text/javascript" src="p5/addons/p5.sound.js"></script> 
+
+
+
+
+
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a062562745.js" crossorigin="anonymous"></script>
-    <script>
-
-function createTrackItem(index,name,duration){
-    var trackItem = document.createElement('div');
-    trackItem.setAttribute("class", "playlist-track-ctn");
-    trackItem.setAttribute("id", "ptc-"+index);
-    trackItem.setAttribute("data-index", index);
-    document.querySelector(".playlist-ctn").appendChild(trackItem);
-
-    var playBtnItem = document.createElement('div');
-    playBtnItem.setAttribute("class", "playlist-btn-play");
-    playBtnItem.setAttribute("id", "pbp-"+index);
-    document.querySelector("#ptc-"+index).appendChild(playBtnItem);
-
-    var btnImg = document.createElement('i');
-    btnImg.setAttribute("class", "fas fa-play");
-    btnImg.setAttribute("height", "40");
-    btnImg.setAttribute("width", "40");
-    btnImg.setAttribute("id", "p-img-"+index);
-    document.querySelector("#pbp-"+index).appendChild(btnImg);
-
-    var trackInfoItem = document.createElement('div');
-    trackInfoItem.setAttribute("class", "playlist-info-track");
-    trackInfoItem.innerHTML = name
-    document.querySelector("#ptc-"+index).appendChild(trackInfoItem);
-
-    var trackDurationItem = document.createElement('div');
-    trackDurationItem.setAttribute("class", "playlist-duration");
-    trackDurationItem.innerHTML = duration
-    document.querySelector("#ptc-"+index).appendChild(trackDurationItem);
-  }
-
-  var listAudio = [
-    {
-      name:"Artist 1 - audio 1",
-      file:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
-      duration:"08:47"
-    },
-    {
-      name:"Artist 2 - audio 2",
-      file:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
-      duration:"05:53"
-    },
-    {
-      name:"Artist 3 - audio 3",
-      file:"https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_1MG.mp3",
-      duration:"00:27"
-    }
-  ]
-
-  for (var i = 0; i < listAudio.length; i++) {
-      createTrackItem(i,listAudio[i].name,listAudio[i].duration);
-  }
-  var indexAudio = 0;
-
-  function loadNewTrack(index){
-    var player = document.querySelector('#source-audio')
-    player.src = listAudio[index].file
-    document.querySelector('.title').innerHTML = listAudio[index].name
-    this.currentAudio = document.getElementById("myAudio");
-    this.currentAudio.load()
-    this.toggleAudio()
-    this.updateStylePlaylist(this.indexAudio,index)
-    this.indexAudio = index;
-  }
-
-  var playListItems = document.querySelectorAll(".playlist-track-ctn");
-
-  for (let i = 0; i < playListItems.length; i++){
-    playListItems[i].addEventListener("click", getClickedElement.bind(this));
-  }
-
-  function getClickedElement(event) {
-    for (let i = 0; i < playListItems.length; i++){
-      if(playListItems[i] == event.target){
-        var clickedIndex = event.target.getAttribute("data-index")
-        if (clickedIndex == this.indexAudio ) { // alert('Same audio');
-            this.toggleAudio()
-        }else{
-            loadNewTrack(clickedIndex);
-        }
-      }
-    }
-  }
-
-  document.querySelector('#source-audio').src = listAudio[indexAudio].file
-  document.querySelector('.title').innerHTML = listAudio[indexAudio].name
-
-
-  var currentAudio = document.getElementById("myAudio");
-
-  currentAudio.load()
-  
-  currentAudio.onloadedmetadata = function() {
-        document.getElementsByClassName('duration')[0].innerHTML = this.getMinutes(this.currentAudio.duration)
-  }.bind(this);
-
-  var interval1;
-
-  function toggleAudio() {
-
-    if (this.currentAudio.paused) {
-      document.querySelector('#icon-play').style.display = 'none';
-      document.querySelector('#icon-pause').style.display = 'block';
-      document.querySelector('#ptc-'+this.indexAudio).classList.add("active-track");
-      this.playToPause(this.indexAudio)
-      this.currentAudio.play();
-    }else{
-      document.querySelector('#icon-play').style.display = 'block';
-      document.querySelector('#icon-pause').style.display = 'none';
-      this.pauseToPlay(this.indexAudio)
-      this.currentAudio.pause();
-    }
-  }
-
-  function pauseAudio() {
-    this.currentAudio.pause();
-    clearInterval(interval1);
-  }
-
-  var timer = document.getElementsByClassName('timer')[0]
-
-  var barProgress = document.getElementById("myBar");
-
-
-  var width = 0;
-
-  function onTimeUpdate() {
-    var t = this.currentAudio.currentTime
-    timer.innerHTML = this.getMinutes(t);
-    this.setBarProgress();
-    if (this.currentAudio.ended) {
-      document.querySelector('#icon-play').style.display = 'block';
-      document.querySelector('#icon-pause').style.display = 'none';
-      this.pauseToPlay(this.indexAudio)
-      if (this.indexAudio < listAudio.length-1) {
-          var index = parseInt(this.indexAudio)+1
-          this.loadNewTrack(index)
-      }
-    }
-  }
-
-
-  function setBarProgress(){
-    var progress = (this.currentAudio.currentTime/this.currentAudio.duration)*100;
-    document.getElementById("myBar").style.width = progress + "%";
-  }
-
-
-  function getMinutes(t){
-    var min = parseInt(parseInt(t)/60);
-    var sec = parseInt(t%60);
-    if (sec < 10) {
-      sec = "0"+sec
-    }
-    if (min < 10) {
-      min = "0"+min
-    }
-    return min+":"+sec
-  }
-
-  var progressbar = document.querySelector('#myProgress')
-  progressbar.addEventListener("click", seek.bind(this));
-
-
-  function seek(event) {
-    var percent = event.offsetX / progressbar.offsetWidth;
-    this.currentAudio.currentTime = percent * this.currentAudio.duration;
-    barProgress.style.width = percent*100 + "%";
-  }
-
-  function forward(){
-    this.currentAudio.currentTime = this.currentAudio.currentTime + 5
-    this.setBarProgress();
-  }
-
-  function rewind(){
-    this.currentAudio.currentTime = this.currentAudio.currentTime - 5
-    this.setBarProgress();
-  }
-
-
-  function next(){
-    if (this.indexAudio <listAudio.length-1) {
-        var oldIndex = this.indexAudio
-        this.indexAudio++;
-        updateStylePlaylist(oldIndex,this.indexAudio)
-        this.loadNewTrack(this.indexAudio);
-    }
-  }
-
-  function previous(){
-    if (this.indexAudio>0) {
-        var oldIndex = this.indexAudio
-        this.indexAudio--;
-        updateStylePlaylist(oldIndex,this.indexAudio)
-        this.loadNewTrack(this.indexAudio);
-    }
-  }
-
-  function updateStylePlaylist(oldIndex,newIndex){
-    document.querySelector('#ptc-'+oldIndex).classList.remove("active-track");
-    this.pauseToPlay(oldIndex);
-    document.querySelector('#ptc-'+newIndex).classList.add("active-track");
-    this.playToPause(newIndex)
-  }
-
-  function playToPause(index){
-    var ele = document.querySelector('#p-img-'+index)
-    ele.classList.remove("fa-play");
-    ele.classList.add("fa-pause");
-  }
-
-  function pauseToPlay(index){
-    var ele = document.querySelector('#p-img-'+index)
-    ele.classList.remove("fa-pause");
-    ele.classList.add("fa-play");
-  }
-
-
-  function toggleMute(){
-    var btnMute = document.querySelector('#toggleMute');
-    var volUp = document.querySelector('#icon-vol-up');
-    var volMute = document.querySelector('#icon-vol-mute');
-    if (this.currentAudio.muted == false) {
-       this.currentAudio.muted = true
-       volUp.style.display = "none"
-       volMute.style.display = "block"
-    }else{
-      this.currentAudio.muted = false
-      volMute.style.display = "none"
-      volUp.style.display = "block"
-    }
-  }
-
-
-
-
-
-
-    </script>
+    
+    
     <style>
 
 body{
@@ -256,7 +30,7 @@ body{
   width: 420px;
    background-color: #d9d9f2; 
   cursor: pointer;
-  border-radius: 10px;
+  border-radius:    0px;
 }
 
 #myBar {
@@ -311,7 +85,7 @@ padding-top: 20px;
 }
 
 .player-ctn{
-  border-radius: 15px;
+  border-radius: 0px;
   width: 420px;
   padding: 10px;
   background-color: #373737;
@@ -373,6 +147,225 @@ padding-top: 20px;
   </head>
   <body>
 
+
+
+
+
+
+
+    <div class="container-fluid">
+
+        <div class="row">
+          
+              <div id='header'>
+                
+              <h1><span class="highlight">Shedfax </span>Home Page</h1>
+              
+              <p>A hub for Shedtronic ideas and experiments</p>
+            
+              </div><!--end header-->
+        </div><!-- row-->
+        
+        <div class="row">
+       
+                <div id='main'>
+                        <h2>3D Collaborative Game Design System</h2>
+                        <h2>SDR Sensing APC Device</h2>
+                        
+                          <div class='listleft'>
+                            3D Collaborative Game Design System
+                          </div>
+                          <div class='listright'>
+                            300
+                          </div>
+                          <div class='listleft'>
+                            SDR Sensing APC Device
+                          </div>
+                          <div class='listright'>
+                            301
+                          </div>
+                          <div class='listleft'>
+                            Dark Tales with Twine
+                          </div>
+                          <div class='listright'>
+                            302
+                          </div>
+                          <div class='listleft'>
+                            <a href="p5experiments.html">Experiments with p5.js</a>
+                          </div>
+                          <div class='listright'>
+                            303
+                          </div>
+                          <div class='listleft'>
+                            <!--<a href="pyscripttest.html">Experiments with pyscript</a>-->
+                          </div>
+                          <div class='listright'>
+                            304
+                          </div>
+                </div> 
+       </div>  
+              <div class="row">
+              
+                <div class="col-sm-8">
+                      
+                      <h3>Time to intervene in the machine</h3>
+                    <p>   "What if artists were were valued as part of the fourth industrial revolution? What kind of digital hybrid artworks would they create?"</p>
+                  
+                  <p>Are we going to let the machine dictate how things are going to play out? The work of artists blurs the lines between physical, digital and analog art pieces using augmented reality, generative art, artificial intelligence, virtual reality, motion tracking technology, and video projection with an aim to highlight the beauty of our ever-changing world. It takes the machine to create the structure but it takes artists to steer the conversation and make sense of it all.</p>
+                  <p>We are currently seeing the start of the 4th industrial revolution. We are watching the digital transformation of physical space and the emergence of digital architecture. Digital technologies have evolved so much that they can now be used to create physical structures and instantaneously change their form. But what if we go even further? what if they could automagically compose a song, compose a dance or compose a painting? Physical objects transformed into full creative entities in their own right. Would we then begin to see our future as a battle with the machine? Or will it enhance the creativity we already have within us all.</p>
+                
+                </div>
+                    
+                    
+                    
+                <div class="col-sm-4"><img class="sidebarlogo" src="images/SHedtronic-Teletext-Logo.png" alt="Shedtronic logo teletext version">
+                <ul class="sidemenu">
+    
+                    <li>Quick Navigation <br><a href="#">On</a> |  <a href="#">Off</a></li>
+                    <li><figure>
+                      <figcaption>Listen to the Breezy Flute:</figcaption>
+                      <audio controls autoplay src="#">
+                              Your browser does not support the
+                              <code>audio</code> element.
+                      </audio>
+    
+                    <!--Working on new audio player-->
+                    
+                    <!--
+                    
+                    <div class="audio-container" id="audio-container">
+    
+                      <div class="audio-info">
+    
+                      <audio src="audio/shopping.mp3" id="audio"></audio>
+                      
+                      <h4 id="title">Listen to the audio archive</h4>
+    
+                      <img src="https://64.media.tumblr.com/2b2b561fdea23af234d6aced8aa0bd28/tumblr_pu1ym7UT3Y1rmnq90o1_500.png" alt="music-cover" id="cover">
+    
+                      <div class="navigation">
+    
+                        <button id="prev" class="action-btn">
+                        
+                        <i class="fas fa-backward"></i>
+                        
+                        </button>
+                        
+                        <button id="play" class="action-btn action-btn-big">
+                        
+                        <i class="fas fa-play"></i>
+                        
+                        <button id="next" class="action-btn">
+                        
+                        <i class="fas fa-forward"></i>
+                        
+                        </button>
+    
+    
+    
+                      
+                      <div class="progress-container" id="progress-container">
+                      
+                      <div class="progress" id="progress"></div>
+                      
+                      </div>
+                      
+                      </div>
+                    
+                    
+                    
+                    End of Audio Player-->
+    
+                  -->
+    
+    
+    
+                  </figure></li>
+                    <li><a href="#">This is a test</a></li>
+                    <li><a href="#">This is a test</a></li>
+                    <li><a href="#">This is a test</a></li>
+    
+    
+                </ul>
+    
+                
+    
+    
+    
+                </div>
+                  
+                <div id='footer'>
+                
+                  <div class="row">
+                      <div class="col-sm">
+                        <div id='blue'>
+                        <a id="red" href="https://shedtronicworkshop.co.uk/">Website</a>
+                        </div>
+                      </div>
+                  
+                      <div class="col-sm">
+                        <div id='red'>
+                          <a id="blue" href="https://www.twitter.com/shedtronic">Twitter</a>
+                        </div>
+                      </div>
+                      
+                      <div class="col-sm">
+                        <div id='green'>
+                        <a id="green" href="https://www.instagram.com/shedtronic">Instagram</a>
+                        </div>
+                      </div>
+                      <div class="col-sm">
+                        <div id='yellow'>
+                          <a id="yellow" href="https://www.tiktok.com/@shedtronic">TikTok</a>
+                        </div>
+                      </div>
+                      
+                    
+                  </div>
+                </div>   
+                  
+              </div>     
+         
+          
+          
+          
+              
+            
+            
+      
+    
+    
+      
+      
+    
+    
+    
+    
+    
+    
+        </div> 
+        
+        
+    </div>
+    
+    
+    
+        <!-- Optional JavaScript; choose one of the two! -->
+    
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        -->
+      
+        <!--<script src="js/scripts.js"></script>-->
+        <script src="p5/p5.js"></script>
+      <script src="p5/addons/p5.sound.js"></script>
+      <script src="p5/addons/p5.sound.min.js"></script>
+      <!---<script src="p5/sketch.js"></script>-->
 
 <audio id="myAudio" ontimeupdate="onTimeUpdate()">
   <!-- <source src="audio.ogg" type="audio/ogg"> -->
