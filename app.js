@@ -1,4 +1,3 @@
-
 function createTrackItem(index,name,duration){
     var trackItem = document.createElement('div');
     trackItem.setAttribute("class", "playlist-track-ctn");
@@ -31,8 +30,8 @@ function createTrackItem(index,name,duration){
 
   var listAudio = [
     {
-      name:"Shedtronic - audio 1",
-      file:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+      name:"Artist 1 - audio 1",
+      file:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
       duration:"08:47"
     },
     {
@@ -231,9 +230,3 @@ function createTrackItem(index,name,duration){
       volUp.style.display = "block"
     }
   }
-
-
-
-
-
-
