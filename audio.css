@@ -64,7 +64,7 @@ body{
   
   .player-ctn{
     border-radius: 0px;
-    width: 420px;
+    width: 100%;
     padding: 10px;
     background-color: #373737;
     margin:auto;
