@@ -5,7 +5,7 @@ body{
     font-family: 'Roboto', sans-serif;
   }
   #myProgress {
-    width: 100%;
+    width: 100% !important;
      background-color: #d9d9f2; 
     cursor: pointer;
     border-radius:    0px;
