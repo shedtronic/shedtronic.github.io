@@ -31,7 +31,7 @@ function createTrackItem(index,name,duration){
   var listAudio = [
     {
       name:"Artist 1 - audio 1",
-      file:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+      file:"../audio/shopping.mp3",
       duration:"08:47"
     },
     {
@@ -60,6 +60,7 @@ function createTrackItem(index,name,duration){
     this.toggleAudio()
     this.updateStylePlaylist(this.indexAudio,index)
     this.indexAudio = index;
+    console.log(listAudio);
   }
 
   var playListItems = document.querySelectorAll(".playlist-track-ctn");
