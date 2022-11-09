@@ -93,7 +93,7 @@
     margin:10px;
   }
   .playlist-info-track{
-    width: inherit;
+    display:inline-block;
   }
   .playlist-info-track,.playlist-duration{
     padding-top: 7px;
