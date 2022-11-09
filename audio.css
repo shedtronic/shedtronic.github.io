@@ -6,15 +6,15 @@
   }*/
   @media (max-width: 800px) {
 
-   .playlist-track-ctn
-   {
+    .playlist-track-ctn
+    {
+      
+      display:block;
+      font-size:50%;
+      border:1px solid red;
+      
     
-    display:block;
-    font-size:50%;
-    border:1px solid red;
-    
-  
-  }
+    }
    
   }
   #myProgress {
@@ -89,7 +89,7 @@
   }
   
   .playlist-track-ctn{
-    display: flex;
+    display: block; /*display: flex;*/
     background-color: #464646;
     margin-top: 3px;
     border-radius: 5px;
