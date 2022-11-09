@@ -4,11 +4,8 @@
     color: #ffc266;
     font-family: 'Roboto', sans-serif;
   }*/
-  .player {
-
-    width:100%;
-    border:1px solid red;
-
+  @media (max-width: 600px) {
+   
   }
   #myProgress {
     width: 100%!important;
@@ -41,6 +38,7 @@
     justify-content: center;
   }
   .infos-ctn{
+    width:80%;
   padding-top: 20px;
   }
   
