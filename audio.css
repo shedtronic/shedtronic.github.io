@@ -5,7 +5,7 @@
     font-family: 'Roboto', sans-serif;
   }*/
   @media (max-width: 600px) {
-   
+   .infos-ctn:font-size:50%;
   }
   #myProgress {
     width: 100%!important;
