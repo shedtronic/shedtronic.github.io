@@ -6,7 +6,7 @@
   }*/
   @media (max-width: 800px) {
 
-   .playlist-track-ctn, .infos-ctn,
+   .playlist-track-ctn
    {
     
     display:block;
