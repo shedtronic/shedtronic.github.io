@@ -66,6 +66,7 @@
     margin-left: 10px;
     /*width: 210px;*/
     text-align: center;
+    border: 1px solid red;
   }
   
   .player-ctn{
