@@ -5,7 +5,7 @@
     font-family: 'Roboto', sans-serif;
   }*/
   @media (max-width: 600px) {
-   .infos-ctn:font-size:50%;
+   .infos-ctn: font-size:50%;
   }
   #myProgress {
     width: 100%!important;
@@ -38,7 +38,7 @@
     justify-content: center;
   }
   .infos-ctn{
-    width:80%;
+  width:80%;
   padding-top: 20px;
   }
   
@@ -49,6 +49,7 @@
   }
   
   .infos-ctn > div {
+    width:80%;
    margin-bottom: 8px;
    color: #ffc266;
   }
