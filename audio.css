@@ -6,12 +6,12 @@
   }*/
   @media (max-width: 600px) {
 
-   .infos-ctn
+   .player-ctn
    {
     
     
     font-size:50%;
-    width:80%;
+    
   
   }
    
@@ -20,7 +20,7 @@
     width: 100%!important;
      background-color: #d9d9f2; 
     cursor: pointer;
-    border-radius:    0px;
+    border-radius: 0px;
     margin-right:10px;
   }
   
@@ -58,7 +58,7 @@
   }
   
   .infos-ctn > div {
-    width:80%;
+    
    margin-bottom: 8px;
    color: #ffc266;
   }
@@ -73,7 +73,7 @@
   
   .title{
     margin-left: 10px;
-    /*width: 210px;*/
+    width:100%;
     text-align: center;
     border: 1px solid red;
   }
