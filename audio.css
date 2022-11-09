@@ -93,7 +93,7 @@
     margin:10px;
   }
   .playlist-info-track{
-    width: 80%;
+    width: inherit;
   }
   .playlist-info-track,.playlist-duration{
     padding-top: 7px;
