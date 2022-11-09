@@ -5,8 +5,16 @@
     font-family: 'Roboto', sans-serif;
   }*/
   @media (max-width: 600px) {
-   .infos-ctn: font-size:50%;
-   width:80%;
+
+   .infos-ctn
+   {
+    
+    
+    font-size:50%;
+    width:80%;
+  
+  }
+   
   }
   #myProgress {
     width: 100%!important;
