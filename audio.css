@@ -60,7 +60,7 @@
     justify-content: center;
   }
   .infos-ctn{
-  
+  display:flex;
   padding-top: 20px;
   }
   
@@ -71,7 +71,7 @@
   }
   
   .infos-ctn > div {
-    
+  
    margin-bottom: 8px;
    color: #ffc266;
   }
