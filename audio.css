@@ -55,12 +55,12 @@
   }
   
   .btn-ctn, .infos-ctn{
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
   }
   .infos-ctn{
-  display:flex;
+  
   padding-top: 20px;
   }
   
