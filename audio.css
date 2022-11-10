@@ -16,12 +16,7 @@
     
     }
 
-    .infos-ctn{
-  
-      display:block;
-      border:1px solid red;
-      }
-   
+    
   }
 
   @media (min-width: 801px) {
@@ -55,7 +50,7 @@
   }
   
   .btn-ctn, .infos-ctn{
-    display: block;
+    display: flex;
     align-items: center;
     justify-content: center;
   }
@@ -71,7 +66,7 @@
   }
   
   .infos-ctn > div {
-  
+    
    margin-bottom: 8px;
    color: #ffc266;
   }
