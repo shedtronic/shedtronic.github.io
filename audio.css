@@ -22,9 +22,16 @@
       display: flex;
     }
 
-    .infos-ctn {
+    .infos-ctn, .playlist-ctn {
       word-wrap: break-word;
       border: 1px solid blue;
+
+    }
+
+    .timer, .title, .duration 
+    {
+
+      display:block;
 
     }
 
