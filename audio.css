@@ -9,7 +9,7 @@
     .playlist-track-ctn, .player-ctn
     {
       
-      
+      display:flex;
       
       border:1px solid red;
       
