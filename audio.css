@@ -4,7 +4,7 @@
     color: #ffc266;
     font-family: 'Roboto', sans-serif;
   }*/
-  @media (max-width: 800px) {
+  @media (max-width: 1023px) {
 
 
    /* 
@@ -45,7 +45,7 @@
     
   }
 
-  @media (min-width: 801px) {
+  @media (min-width: 1024px) {
 
     
    
