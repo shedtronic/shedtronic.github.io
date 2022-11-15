@@ -22,9 +22,9 @@
       display: flex;
     }
 
-    .infos-ctn.title {
+    .infos-ctn.title, .playlist-info-track.title {
       word-wrap: break-word;
-      border: 1px solid blue;
+      
 
     }
 
