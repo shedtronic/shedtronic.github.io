@@ -6,6 +6,13 @@
   }*/
   @media (max-width: 800px) {
 
+
+    
+    #myProgress, .player-ctn {
+
+      width:80%;
+    }
+
     .playlist-track-ctn, .player-ctn
     {
       
