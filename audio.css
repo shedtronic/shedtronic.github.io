@@ -9,11 +9,17 @@
     .playlist-track-ctn, .player-ctn
     {
       
-      display:flex;
+      display:block;
       
       border:1px solid red;
       background:#0d6efd;
     
+    }
+
+    .infos-ctn {
+
+      border: 1px solid blue;
+
     }
 
     
