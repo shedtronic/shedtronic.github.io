@@ -22,7 +22,7 @@
       display: flex;
     }
 
-    .infos-ctn.title, .playlist-info-track.title {
+    .infos-ctn.title, .playlist-info-track {
       word-wrap: break-word;
       
 
