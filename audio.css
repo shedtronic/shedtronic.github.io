@@ -16,6 +16,12 @@
     
     }
 
+    
+    .btn-ctn {
+
+      display: flex;
+    }
+
     .infos-ctn {
 
       border: 1px solid blue;
