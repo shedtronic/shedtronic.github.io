@@ -11,9 +11,7 @@
     
   }
 
-  @media (min-width: 1024px) {
 
-    
    
   
     #myProgress {
@@ -132,4 +130,3 @@
       color: #ffc266;
       font-size: 20px;
     }
-}
