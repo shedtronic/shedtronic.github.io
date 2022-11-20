@@ -10,13 +10,13 @@
    
     #myProgress, .player-ctn {
 
-      width:80%;
+     
     }
 
     .playlist-track-ctn, .player-ctn
     {
       
-      display:block;
+      display:flexbox;
       
       border:1px solid red;
       background:#0d6efd;
