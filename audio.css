@@ -8,40 +8,6 @@
 
 
    
-    #myProgress, .player-ctn {
-
-     
-    }
-
-    .playlist-track-ctn, .player-ctn
-    {
-      
-      display:flex;
-      
-      border:1px solid red;
-      background:#0d6efd;
-    
-    }
- /*
-    
-    .btn-ctn {
-
-      display: flex;
-    }
-
-    .infos-ctn.title, .playlist-info-track {
-      
-      
-
-    }
-
-    .timer, .title, .duration 
-    {
-
-      display:block;
-
-    }
-*/
     
   }
 
