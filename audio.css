@@ -15,7 +15,7 @@
    
   
     #myProgress {
-      width: 420px;
+      width: 100%;
        background-color: #d9d9f2; 
       cursor: pointer;
       border-radius: 10px;
