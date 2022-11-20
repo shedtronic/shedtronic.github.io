@@ -16,7 +16,7 @@
     .playlist-track-ctn, .player-ctn
     {
       
-      display:flexbox;
+      display:flex;
       
       border:1px solid red;
       background:#0d6efd;
