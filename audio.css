@@ -51,7 +51,7 @@
    
   
     #myProgress {
-      width: 100%;
+      width: 420px;
        background-color: #d9d9f2; 
       cursor: pointer;
       border-radius: 10px;
@@ -110,7 +110,7 @@
     
     .player-ctn{
       border-radius: 0px;
-      width: 100%;
+      width: 420px;
       padding: 10px;
       background-color: #0d6efd;
       margin:auto;
