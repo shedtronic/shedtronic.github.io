@@ -226,6 +226,16 @@ hr {
 
 
 
+.col-sm-8 {
+  word-wrap: break-all;
+
+}
+
+.col-sm-4 {
+  word-wrap: break-all;
+  
+}
+
 
 
 ul.sidemenu {
