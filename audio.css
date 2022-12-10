@@ -7,6 +7,7 @@
   @media (max-width: 900px) {
 
     .player-ctn{
+      display:block;
       border-radius: 0px;
       width: 420px;
       padding: 10px;
