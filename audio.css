@@ -6,17 +6,7 @@
   }*/
   @media (max-width: 1000px) {
 
-    .player-ctn{
-      display:block;
-      border-radius: 0px;
-      width: 100%;
-      padding: 10px;
-      background-color: #0d6efd;
-      margin-left: auto;
-      margin-right: auto;
-     
-      border: 1px solid rgb(34, 255, 0);
-    }
+   
    
     
   }
