@@ -230,6 +230,15 @@ hr {
   color:#00ffff;
 }
 
+
+
+
+
+ul.sidemenu {
+
+  border: 3px solid blue;
+}
+
 @media screen and (max-width: 850px) {
   #header, #main, #footer {
     width:100%;
