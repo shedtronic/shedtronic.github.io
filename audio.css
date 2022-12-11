@@ -45,6 +45,7 @@
     }
     .infos-ctn{
     padding-top: 20px;
+    justify-content: left;
     }
     
     .btn-ctn > div {
