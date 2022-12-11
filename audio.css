@@ -40,7 +40,7 @@
     
     .btn-ctn, .infos-ctn{
       display: flex;
-      align-items: center;
+      align-items: left;
       justify-content: left;
     }
     .infos-ctn{
