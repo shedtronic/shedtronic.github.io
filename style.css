@@ -249,6 +249,13 @@ ul.sidemenu {
     word-wrap: break-word;
     
   }
+
+  #main h2 {
+
+    word-wrap: break-word;
+
+    border:1px solid red;
+  }
   /*audio {
     width:100%;
     max-width:600px;
