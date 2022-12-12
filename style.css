@@ -246,6 +246,7 @@ ul.sidemenu {
 @media screen and (max-width: 850px) {
   #header, #main, #footer {
     width:100%;
+    word-wrap: break-word;
     
   }
   /*audio {
