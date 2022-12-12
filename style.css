@@ -240,7 +240,7 @@ hr {
 
 ul.sidemenu {
 
-  border: 3px solid blue;
+  overflow-wrap:break-word;
 }
 
 @media screen and (max-width: 850px) {
