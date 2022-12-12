@@ -164,6 +164,11 @@ body {
   color: white;
 }
 
+#footer {
+
+  padding-top:20px;
+}
+
 .listleft, .listright {
   float:left;
   margin:5px 0px;
@@ -256,6 +261,7 @@ ul.sidemenu {
 
     
   }
+  
   /*audio {
     width:100%;
     max-width:600px;
