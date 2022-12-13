@@ -8,7 +8,12 @@
 
     .duration{
       word-wrap: break-word;
+      clear:both;
       
+    }
+    .title {
+
+      break-after: always;
     }
 
     .infos-ctn {
