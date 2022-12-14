@@ -24,6 +24,13 @@ function createTrackItem(index,name,duration){
 
     var trackDurationItem = document.createElement('div');
     trackDurationItem.setAttribute("class", "playlist-duration");
+
+          // Create a new <br/> element
+        var br = document.createElement('br');
+
+        // Append the <br/> element to the div
+        trackDurationItem.appendChild(br);
+
     trackDurationItem.innerHTML = duration
     document.querySelector("#ptc-"+index).appendChild(trackDurationItem);
   }
