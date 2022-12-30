@@ -28,7 +28,7 @@
 
     .infos-ctn {
 
-      width:100%;
+      width:100% !important;
       border: 1px solid red;
     }
    
