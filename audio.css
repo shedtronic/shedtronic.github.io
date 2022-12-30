@@ -6,19 +6,18 @@
   }*/
   @media (max-width: 800px) {
 
-    .duration::before {
-      content: "\A";
-    }
 
     .duration{
       word-wrap: break-word;
       display: block;
+      border: 1px solid red;
       
     }
     .title {
 
       
       display: block;
+      border: 1px solid red;
     }
 
     .infos-ctn {
