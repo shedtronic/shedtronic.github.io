@@ -17,7 +17,7 @@
       word-wrap: break-word;
       display: block;
       border: 1px solid rgb(221, 0, 255);
-      flex-shrink: 0;
+      flex-shrink: 1;
       
       
     }
