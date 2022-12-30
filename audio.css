@@ -28,7 +28,7 @@
     }
 
     .infos-ctn {
-      display: inline-flex;
+      display: inline-flex !important;
       width:100% !important;
       border: 1px solid red;
     }
