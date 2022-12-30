@@ -10,14 +10,15 @@
       word-wrap: break-word;
       display: block;
       border: 1px solid red;
-      
+      flex-shrink: 0;
     }
 
     .duration{
       word-wrap: break-word;
       display: block;
       border: 1px solid rgb(221, 0, 255);
-      flex-shrink: 1;
+      flex-shrink: 0;
+
       
       
     }
@@ -26,6 +27,7 @@
       word-wrap: break-word;
       display: block;
       border: 1px solid red;
+      flex-shrink: 0;
     }
 
     .infos-ctn {
