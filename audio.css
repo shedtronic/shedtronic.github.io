@@ -28,7 +28,7 @@
     }
 
     .infos-ctn {
-      align-items: stretch;
+      align-items:flex-end;
       width:100% !important;
       border: 1px solid red;
     }
