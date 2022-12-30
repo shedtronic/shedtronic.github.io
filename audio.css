@@ -6,6 +6,12 @@
   }*/
   @media (max-width: 800px) {
 
+    .timer {
+      word-wrap: break-word;
+      display: block;
+      border: 1px solid red;
+      
+    }
 
     .duration{
       word-wrap: break-word;
@@ -15,7 +21,7 @@
     }
     .title {
 
-      
+      word-wrap: break-word;
       display: block;
       border: 1px solid red;
     }
