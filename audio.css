@@ -31,7 +31,8 @@
     }
 
     .infos-ctn {
-      align-items:flex-end;
+      
+      flex-direction:column; height:100%"
       width:100% !important;
       border: 1px solid red;
     }
