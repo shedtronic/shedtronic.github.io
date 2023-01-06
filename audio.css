@@ -10,13 +10,14 @@
       word-wrap: break-word;
       display: block;
       text-align:left;
+      align-items: start;
     }
 
     .duration{
       word-wrap: break-word;
       display: block;
       text-align:left;
-     
+      align-items: start;
       flex-shrink: 0;
 
       
@@ -28,6 +29,7 @@
       display: block;
       flex-shrink: 1;
       text-align:left;
+      align-items: start;
     }
 
     .infos-ctn {
