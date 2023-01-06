@@ -33,6 +33,7 @@
       text-align:left;
       align-items: start;
       border:1px solid red;
+      width:100%;
     }
 
     .infos-ctn {
