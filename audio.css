@@ -29,7 +29,7 @@
 
       word-wrap: break-word;
       display: block;
-      flex-shrink: 1;
+      /*flex-shrink: 1;*/
       text-align:left;
       align-items: start;
       border:1px solid red;
