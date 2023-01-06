@@ -12,6 +12,7 @@
       text-align:left;
       align-items: start;
       border:1px solid red;
+      width:100%;
     }
 
     .duration{
@@ -21,6 +22,7 @@
       align-items: start;
       flex-shrink: 0;
       border:1px solid red;
+      width:100%;
 
       
       
