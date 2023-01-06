@@ -30,9 +30,9 @@
 
     .infos-ctn {
       
-      flex-direction:column; height:100%;
-      width:100% !important;
-     
+      flex-direction:column; 
+      /*height:100%;*/
+      /*width:100% !important;*/
     }
    
     
