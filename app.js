@@ -97,6 +97,7 @@ function createTrackItem(index,name,duration){
   var interval1;
 
   function toggleAudio() {
+    this.currentAudio.play();
 
     if (this.currentAudio.paused) {
       document.querySelector('#icon-play').style.display = 'none';
