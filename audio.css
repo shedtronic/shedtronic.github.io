@@ -11,6 +11,7 @@
       display: block;
       text-align:left;
       align-items: start;
+      border:1px solid red;
     }
 
     .duration{
@@ -19,6 +20,7 @@
       text-align:left;
       align-items: start;
       flex-shrink: 0;
+      border:1px solid red;
 
       
       
@@ -30,6 +32,7 @@
       flex-shrink: 1;
       text-align:left;
       align-items: start;
+      border:1px solid red;
     }
 
     .infos-ctn {
@@ -37,6 +40,7 @@
       flex-direction:column; 
       /*height:100%;*/
       /*width:100% !important;*/
+      border:1px solid red;
     }
    
     
