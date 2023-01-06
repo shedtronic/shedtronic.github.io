@@ -13,6 +13,8 @@
       align-items: start;
       border:1px solid red;
       width:100%;
+      margin:0px;
+      padding:0px;
     }
 
     .duration{
@@ -23,6 +25,8 @@
       flex-shrink: 0;
       border:1px solid red;
       width:100%;
+      margin:0px;
+      padding:0px;
 
       
       
@@ -36,6 +40,8 @@
       align-items: start;
       border:1px solid red;
       width:100%;
+      margin:0px;
+      padding:0px;
     }
 
     .infos-ctn {
