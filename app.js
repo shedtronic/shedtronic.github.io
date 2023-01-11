@@ -35,12 +35,12 @@ function createTrackItem(index,name,duration){
       duration:"08:47"
     },
     {
-      name:"Artist 2 - audio 2",
+      name:"Shedtronic - Shopping",
       file:"../audio/shopping.mp3",
       duration:"05:53"
     },
     {
-      name:"Artist 3 - audio 3",
+      name:"Shedtronic - Shopping",
       file:"../audio/shopping.mp3",
       duration:"00:27"
     }
