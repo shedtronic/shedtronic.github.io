@@ -28,18 +28,6 @@
   integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo="
   crossorigin="anonymous"></script>
 
-<script>
-
-  //Slow Navigation Enable
-    $(function(){
-      $("a").click(function(evt){
-          var link = $(this).attr("href");
-          setTimeout(function() {
-              window.location.href = link;
-          }, 500);
-      });
-  });
-</script>
 
 
 
@@ -117,6 +105,44 @@
               
               <ul class="sidemenu">
                   <p>For a more authentic experience, try slow navigation</p>
+
+
+                  <a href="#" id="toggle">Turn On</a>
+                  <div id="timer"></div>
+                  
+                  <script>
+                    var delay = false;
+                    var timePassed = 0;
+                  
+                    $('#toggle').click(function(event) {
+                      event.preventDefault();
+                      delay = !delay;
+                      $(this).text(delay ? "Turn Off" : "Turn On");
+                    });
+                  
+                    $(document).ready(function() {
+                      $('a').not('#toggle').click(function(event) {
+                        if (delay) {
+                          event.preventDefault();
+                          var href = $(this).attr('href');
+                          var startTime = Date.now();
+                          var timer = setInterval(function() {
+                            timePassed = Date.now() - startTime;
+                            $('#timer').text(timePassed + 'ms');
+                          }, 10);
+                          setTimeout(function() {
+                            clearInterval(timer);
+                            window.location = href;
+                          }, 2000);
+                        }
+                      });
+                    });
+                  </script>
+
+
+
+
+
                
                   <li>Slow Navigation <br><a href="#">On</a> |  <a href="#">Off</a></li>
                   <li>
