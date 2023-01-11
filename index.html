@@ -20,6 +20,29 @@
 
 
     <title>The home of shedtronic's github</title>
+
+    <!--Jquery-->
+
+    <script
+  src="https://code.jquery.com/jquery-3.6.3.slim.min.js"
+  integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo="
+  crossorigin="anonymous"></script>
+
+<script>
+
+  //Slow Navigation Enable
+    $(function(){
+      $("a").click(function(evt){
+          var link = $(this).attr("href");
+          setTimeout(function() {
+              window.location.href = link;
+          }, 500);
+      });
+  });
+</script>
+
+
+
   </head>
   <body>
     
