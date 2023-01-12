@@ -48,7 +48,7 @@
                 $('#toggle').click(function(event) {
                   event.preventDefault();
                   delay = !delay;
-                  $(this).text(delay ? "Turn Off" : "Turn On");
+                  $(this).text(delay ? "Off" : "On");
                 });
               
                 $(document).ready(function() {
@@ -59,12 +59,12 @@
                       var startTime = Date.now();
                       var timer = setInterval(function() {
                         timePassed = Date.now() - startTime;
-                        $('#timer').text(timePassed + 'ms');
+                        $('#timer').text(timePassed + 'sec');
                       }, 10);
                       setTimeout(function() {
                         clearInterval(timer);
                         window.location = href;
-                      }, 2000);
+                      }, 1000);
                     }
                   });
                 });
