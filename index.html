@@ -59,12 +59,12 @@
                       var startTime = Date.now();
                       var timer = setInterval(function() {
                         timePassed = Date.now() - startTime;
-                        $('#timer').text(timePassed + 'sec');
+                        $('#timer').text(timePassed + 'Page');
                       }, 10);
                       setTimeout(function() {
                         clearInterval(timer);
                         window.location = href;
-                      }, 1000);
+                      }, 10000);
                     }
                   });
                 });
