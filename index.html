@@ -36,6 +36,44 @@
     <div class="row">
       
           <div id='header'>
+            <div class="pagenumber">
+
+              <a href="#" id="toggle">Turn On</a>
+              <div id="timer"></div>
+              
+              <script>
+                var delay = false;
+                var timePassed = 0;
+              
+                $('#toggle').click(function(event) {
+                  event.preventDefault();
+                  delay = !delay;
+                  $(this).text(delay ? "Turn Off" : "Turn On");
+                });
+              
+                $(document).ready(function() {
+                  $('a').not('#toggle').click(function(event) {
+                    if (delay) {
+                      event.preventDefault();
+                      var href = $(this).attr('href');
+                      var startTime = Date.now();
+                      var timer = setInterval(function() {
+                        timePassed = Date.now() - startTime;
+                        $('#timer').text(timePassed + 'ms');
+                      }, 10);
+                      setTimeout(function() {
+                        clearInterval(timer);
+                        window.location = href;
+                      }, 2000);
+                    }
+                  });
+                });
+              </script>
+
+
+
+              
+            </div>
             
           <h1><span class="highlight">Shedfax </span>Home Page</h1>
           
@@ -104,38 +142,7 @@
                   <p>For a more authentic experience, try slow navigation</p>
 
 
-                  <a href="#" id="toggle">Turn On</a>
-                  <div id="timer"></div>
                   
-                  <script>
-                    var delay = false;
-                    var timePassed = 0;
-                  
-                    $('#toggle').click(function(event) {
-                      event.preventDefault();
-                      delay = !delay;
-                      $(this).text(delay ? "Turn Off" : "Turn On");
-                    });
-                  
-                    $(document).ready(function() {
-                      $('a').not('#toggle').click(function(event) {
-                        if (delay) {
-                          event.preventDefault();
-                          var href = $(this).attr('href');
-                          var startTime = Date.now();
-                          var timer = setInterval(function() {
-                            timePassed = Date.now() - startTime;
-                            $('#timer').text(timePassed + 'ms');
-                          }, 10);
-                          setTimeout(function() {
-                            clearInterval(timer);
-                            window.location = href;
-                          }, 2000);
-                        }
-                      });
-                    });
-                  </script>
-
 
 
 
