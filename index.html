@@ -64,10 +64,54 @@
                       setTimeout(function() {
                         clearInterval(timer);
                         window.location = href;
-                      }, 10000);
+                      }, 1000);
                     }
                   });
                 });
+
+
+
+                // function to count to 999 in 30 seconds
+function countTo999() {
+  var count = 0;
+  var interval = setInterval(function() {
+    count++;
+    $("#count-display").text(count);
+    if (count === 999) {
+      clearInterval(interval);
+    }
+  }, 30);
+}
+
+// function to count to a specific number when link is clicked
+function countToNumber() {
+  var targetNumber = $(this).text();
+  var count = 0;
+  var interval = setInterval(function() {
+    count++;
+    $("#count-display").text(count);
+    if (count === targetNumber) {
+      clearInterval(interval);
+    }
+  }, 30);
+}
+
+// start the count on page load
+countTo999();
+
+// bind the countToNumber function to click event of links with class "count-link"
+$(".count-link").on("click", countToNumber);
+
+
+
+
+
+
+
+
+
+
+
               </script>
 
 
