@@ -60,7 +60,7 @@
                       var startTime = Date.now();
                       var timer = setInterval(function() {
                         timePassed = Date.now() - startTime;
-                        $('#timer').text(timePassed + 'Page');
+                        $('#timer').text(timePassed);
                       }, 10);
                       setTimeout(function() {
                         clearInterval(timer);
