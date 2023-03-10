@@ -110,6 +110,14 @@ function createTrackItem(index,name,duration){
       }
     }*/
 
+    if (!this.currentAudio.paused || !this.currentAudio.play)
+
+    {
+
+      this.pauseToPlay(this.indexAudio)
+      this.currentAudio.autoplay = true;
+
+    }
 
 
     if (this.currentAudio.paused) {
