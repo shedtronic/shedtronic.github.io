@@ -140,6 +140,42 @@ function createTrackItem(index,name,duration){
   }
   */
 
+
+  loadAudio() {
+    this.audioPlayer = document.getElementById('audio-player');
+    this.tracks = Array.from(document.querySelectorAll('.track'));
+    this.playBtns = Array.from(document.querySelectorAll('.btn-play'));
+    this.pauseBtns = Array.from(document.querySelectorAll('.btn-pause'));
+  
+    this.tracks.forEach((track, index) => {
+      const audio = new Audio(track.getAttribute('data-src'));
+      audio.addEventListener('ended', () => {
+        this.pauseToPlay(index);
+      });
+      this.audios.push(audio);
+    });
+  
+    this.currentAudio = this.audios[0];
+    this.indexAudio = 0;
+  
+    // Autoplay the first song
+    this.currentAudio.autoplay = true;
+  
+    // ...
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
   function toggleAudio() {
     this.pauseToPlay(this.indexAudio);
     this.currentAudio.autoplay = true;
