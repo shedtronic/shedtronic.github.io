@@ -1,3 +1,8 @@
+window.addEventListener('load', function() {
+  var audio = document.getElementById('myAudio');
+  audio.play();
+});
+
 function createTrackItem(index,name,duration){
     var trackItem = document.createElement('div');
     trackItem.setAttribute("class", "playlist-track-ctn");
