@@ -98,12 +98,27 @@ function createTrackItem(index,name,duration){
 
   function toggleAudio() {
 
+    //Autoplay
+
+    function playSong(index) {
+      audio.src = songs[index].url;
+      audio.play();
+    
+      // Autoplay first song
+      if (index === 0) {
+        audio.autoplay = true;
+      }
+    }
+
+
+
     if (this.currentAudio.paused) {
       document.querySelector('#icon-play').style.display = 'none';
       document.querySelector('#icon-pause').style.display = 'block';
       document.querySelector('#ptc-'+this.indexAudio).classList.add("active-track");
       this.playToPause(this.indexAudio)
       this.currentAudio.play();
+
     }else{
       document.querySelector('#icon-play').style.display = 'block';
       document.querySelector('#icon-pause').style.display = 'none';
