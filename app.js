@@ -100,8 +100,8 @@ function createTrackItem(index,name,duration){
 
     //Autoplay
 
-    function playSong(index) {
-      audio.src = songs[index].url;
+    function playSong(listAudio) {
+      audio.src = songs[listAudio].url;
       audio.play();
     
       // Autoplay first song
