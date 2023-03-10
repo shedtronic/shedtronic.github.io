@@ -60,7 +60,7 @@ function createTrackItem(index,name,duration){
     this.toggleAudio()
     this.updateStylePlaylist(this.indexAudio,index)
     this.indexAudio = index;
-    document.getElementById("footer").innerHTML = "The path to the file is!";
+    document.getElementById("message").innerHTML = "The path to the file is!";
   }
 
   var playListItems = document.querySelectorAll(".playlist-track-ctn");
