@@ -100,7 +100,7 @@ function createTrackItem(index,name,duration){
 
     //Autoplay
 
-    function playSong(listAudio) {
+    /*function playSong(listAudio) {
       audio.src = songs[listAudio].url;
       audio.play();
     
@@ -108,7 +108,7 @@ function createTrackItem(index,name,duration){
       if (index === 0) {
         audio.autoplay = true;
       }
-    }
+    }*/
 
 
 
@@ -118,6 +118,7 @@ function createTrackItem(index,name,duration){
       document.querySelector('#ptc-'+this.indexAudio).classList.add("active-track");
       this.playToPause(this.indexAudio)
       this.currentAudio.play();
+      thiscurrentAudio.autoplay = true;
 
     }else{
       document.querySelector('#icon-play').style.display = 'block';
