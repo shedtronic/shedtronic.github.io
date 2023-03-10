@@ -112,11 +112,6 @@ function createTrackItem(index,name,duration){
 
     
 
-      this.pauseToPlay(this.indexAudio)
-      this.currentAudio.autoplay = true;
-      
-
-    
 
 
     if (this.currentAudio.paused) {
@@ -132,6 +127,10 @@ function createTrackItem(index,name,duration){
       document.querySelector('#icon-pause').style.display = 'none';
       this.pauseToPlay(this.indexAudio)
       this.currentAudio.pause();
+    }
+
+    if (this.indexAudio === 0 && this.currentAudio.paused) {
+      this.currentAudio.autoplay = true;
     }
   }
 
