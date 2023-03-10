@@ -96,11 +96,11 @@ function createTrackItem(index,name,duration){
 
   var interval1;
 
-  function toggleAudio() {
+  /*function toggleAudio() {
 
     //Autoplay
 
-    /*function playSong(listAudio) {
+    function playSong(listAudio) {
       audio.src = songs[listAudio].url;
       audio.play();
     
@@ -108,7 +108,7 @@ function createTrackItem(index,name,duration){
       if (index === 0) {
         audio.autoplay = true;
       }
-    }*/
+    }
 
     
 
@@ -133,6 +133,31 @@ function createTrackItem(index,name,duration){
       this.currentAudio.autoplay = true;
     }
   }
+  */
+
+  function toggleAudio() {
+    this.pauseToPlay(this.indexAudio);
+    this.currentAudio.autoplay = true;
+  
+    if (this.currentAudio.paused) {
+      document.querySelector('#icon-play').style.display = 'none';
+      document.querySelector('#icon-pause').style.display = 'block';
+      document.querySelector('#ptc-' + this.indexAudio).classList.add('active-track');
+      this.playToPause(this.indexAudio);
+      this.currentAudio.play();
+    } else {
+      document.querySelector('#icon-play').style.display = 'block';
+      document.querySelector('#icon-pause').style.display = 'none';
+      this.pauseToPlay(this.indexAudio);
+      this.currentAudio.pause();
+    }
+  
+    // Autoplay the first song on page load
+    if (this.indexAudio === 0 && this.currentAudio.paused) {
+      this.currentAudio.autoplay = true;
+    }
+  }
+  
 
   function pauseAudio() {
     this.currentAudio.pause();
