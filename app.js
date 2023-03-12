@@ -39,7 +39,7 @@ audio.addEventListener("ended", function() {
 });
 
 // Automatically start playing the first track
-playTrack();
+//playTrack();
 
 
 
