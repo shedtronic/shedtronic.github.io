@@ -3,14 +3,14 @@ window.addEventListener('load', function() {
   audio.play();
 });
 
-audio.addEventListener('ended', function() {
+/*audio.addEventListener('ended', function() {
   indexAudio++;
   if (indexAudio >= listAudio.length) {
     indexAudio = 0;
   }
   audio.src = listAudio[indexAudio].file;
   audio.play();
-});
+});*/
 
 function createTrackItem(index,name,duration){
     var trackItem = document.createElement('div');
