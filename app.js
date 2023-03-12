@@ -101,23 +101,13 @@ function createTrackItem(index,name,duration){
 
   var interval1;
 
-  function toggleAudio() {
-
-    //Autoplay
+  
 
     function playSong(listAudio) {
       audio.src = songs[listAudio].url;
       audio.play();
     
-      // Autoplay first song
-      if (index === 0) {
-        audio.autoplay = true;
-      }
-    }
-
-    
-
-
+      
 
     if (this.currentAudio.paused) {
       document.querySelector('#icon-play').style.display = 'none';
@@ -161,7 +151,7 @@ function createTrackItem(index,name,duration){
     // Autoplay the first song
     this.currentAudio.autoplay = true;
   
-    // ...
+  
   }
   
   
