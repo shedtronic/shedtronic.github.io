@@ -101,7 +101,7 @@ function createTrackItem(index,name,duration){
 
   var interval1;
 
-  /*function toggleAudio() {
+  function toggleAudio() {
 
     //Autoplay
 
@@ -138,10 +138,10 @@ function createTrackItem(index,name,duration){
       this.currentAudio.autoplay = true;
     }
   }
-  */
+  
 
 
-  loadAudio() {
+  function loadAudio() {
     this.audioPlayer = document.getElementById('audio-player');
     this.tracks = Array.from(document.querySelectorAll('.track'));
     this.playBtns = Array.from(document.querySelectorAll('.btn-play'));
@@ -163,6 +163,7 @@ function createTrackItem(index,name,duration){
   
     // ...
   }
+  
   
 
 
