@@ -172,12 +172,14 @@ function createTrackItem(index,name,duration){
     this.currentAudio.autoplay = true;
   
     if (this.currentAudio.paused) {
+      console.log("Playlist is currently paused");
       document.querySelector('#icon-play').style.display = 'none';
       document.querySelector('#icon-pause').style.display = 'block';
       document.querySelector('#ptc-' + this.indexAudio).classList.add('active-track');
       this.playToPause(this.indexAudio);
       this.currentAudio.play();
     } else {
+      console.log("Playlist is currently playing");
       document.querySelector('#icon-play').style.display = 'block';
       document.querySelector('#icon-pause').style.display = 'none';
       this.pauseToPlay(this.indexAudio);
@@ -187,6 +189,7 @@ function createTrackItem(index,name,duration){
     // Autoplay the first song on page load
     if (this.indexAudio === 0 && this.currentAudio.paused) {
       this.currentAudio.autoplay = true;
+      console.log("Playlist is currently autoplaying");
     }
   }
   
