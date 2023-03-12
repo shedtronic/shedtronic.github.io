@@ -1,332 +1,42 @@
-window.addEventListener('load', function() {
-  var audio = document.getElementById('myAudio');
+const audio = document.getElementById("my-audio");
+const playBtn = document.getElementById("play-btn");
+const pauseBtn = document.getElementById("pause-btn");
+const trackBtns = document.querySelectorAll(".track-btn");
+
+let currentTrackIndex = 0;
+
+function playTrack() {
+  audio.src = trackBtns[currentTrackIndex].getAttribute("data-src");
   audio.play();
+  playBtn.disabled = true;
+  pauseBtn.disabled = false;
+}
+
+function pauseTrack() {
+  audio.pause();
+  playBtn.disabled = false;
+  pauseBtn.disabled = true;
+}
+
+function selectTrack(index) {
+  currentTrackIndex = index;
+  pauseTrack();
+  playTrack();
+}
+
+playBtn.addEventListener("click", playTrack);
+pauseBtn.addEventListener("click", pauseTrack);
+
+for (let i = 0; i < trackBtns.length; i++) {
+  trackBtns[i].addEventListener("click", function() {
+    selectTrack(i);
+  });
+}
+
+audio.addEventListener("ended", function() {
+  currentTrackIndex = (currentTrackIndex + 1) % trackBtns.length;
+  selectTrack(currentTrackIndex);
 });
 
-
-
-
-
-function createTrackItem(index,name,duration){
-    var trackItem = document.createElement('div');
-    trackItem.setAttribute("class", "playlist-track-ctn");
-    trackItem.setAttribute("id", "ptc-"+index);
-    trackItem.setAttribute("data-index", index);
-    document.querySelector(".playlist-ctn").appendChild(trackItem);
-
-    var playBtnItem = document.createElement('div');
-    playBtnItem.setAttribute("class", "playlist-btn-play");
-    playBtnItem.setAttribute("id", "pbp-"+index);
-    document.querySelector("#ptc-"+index).appendChild(playBtnItem);
-
-    var btnImg = document.createElement('i');
-    btnImg.setAttribute("class", "fas fa-play");
-    btnImg.setAttribute("height", "40");
-    btnImg.setAttribute("width", "40");
-    btnImg.setAttribute("id", "p-img-"+index);
-    document.querySelector("#pbp-"+index).appendChild(btnImg);
-
-    var trackInfoItem = document.createElement('div');
-    trackInfoItem.setAttribute("class", "playlist-info-track");
-    trackInfoItem.innerHTML = name
-    document.querySelector("#ptc-"+index).appendChild(trackInfoItem);
-
-    var trackDurationItem = document.createElement('div');
-    trackDurationItem.setAttribute("class", "playlist-duration");
-    trackDurationItem.innerHTML = duration
-    document.querySelector("#ptc-"+index).appendChild(trackDurationItem);
-  }
-
-  var listAudio = [
-    {
-      name:"Shedtronic - Shopping",
-      file:"../audio/shopping.mp3",
-      duration:"08:47"
-    },
-    {
-      name:"Shedtronic - Shopping",
-      file:"../audio/shopping.mp3",
-      duration:"05:53"
-    },
-    {
-      name:"Shedtronic - Shopping",
-      file:"../audio/shopping.mp3",
-      duration:"00:27"
-    }
-  ]
-
-  for (var i = 0; i < listAudio.length; i++) {
-      createTrackItem(i,listAudio[i].name,listAudio[i].duration);
-  }
-  var indexAudio = 0;
-
-  function loadNewTrack(index){
-    var player = document.querySelector('#source-audio')
-    player.src = listAudio[index].file
-    document.querySelector('.title').innerHTML = listAudio[index].name
-    this.currentAudio = document.getElementById("myAudio");
-    this.currentAudio.load()
-    this.toggleAudio()
-    this.updateStylePlaylist(this.indexAudio,index)
-    this.indexAudio = index;
-    document.getElementById("message").innerHTML = "The path to the file is!";
-  }
-
-  var playListItems = document.querySelectorAll(".playlist-track-ctn");
-
-  for (let i = 0; i < playListItems.length; i++){
-    playListItems[i].addEventListener("click", getClickedElement.bind(this));
-  }
-
-  function getClickedElement(event) {
-    for (let i = 0; i < playListItems.length; i++){
-      if(playListItems[i] == event.target){
-        var clickedIndex = event.target.getAttribute("data-index")
-        if (clickedIndex == this.indexAudio ) { // alert('Same audio');
-            this.toggleAudio()
-        }else{
-            loadNewTrack(clickedIndex);
-        }
-      }
-    }
-  }
-
-  document.querySelector('#source-audio').src = listAudio[indexAudio].file
-  document.querySelector('.title').innerHTML = listAudio[indexAudio].name
-
-
-  var currentAudio = document.getElementById("myAudio");
-
-  currentAudio.load()
-  
-  currentAudio.onloadedmetadata = function() {
-        document.getElementsByClassName('duration')[0].innerHTML = this.getMinutes(this.currentAudio.duration)
-  }.bind(this);
-
-  var interval1;
-
-  
-
-  function playSong(listAudio) {
-    var audio = document.getElementById('myAudio');
-    audio.src = listAudio[0].file;
-  
-    audio.addEventListener('ended', function() {
-      indexAudio++;
-      if (indexAudio >= listAudio.length) {
-        indexAudio = 0;
-      }
-      audio.src = listAudio[indexAudio].file;
-      audio.play();
-    });
-      
-
-    if (this.currentAudio.paused) {
-      document.querySelector('#icon-play').style.display = 'none';
-      document.querySelector('#icon-pause').style.display = 'block';
-      document.querySelector('#ptc-'+this.indexAudio).classList.add("active-track");
-      this.playToPause(this.indexAudio)
-      this.currentAudio.play();
-      
-    }
-    else{
-      document.querySelector('#icon-play').style.display = 'block';
-      document.querySelector('#icon-pause').style.display = 'none';
-      this.pauseToPlay(this.indexAudio)
-      this.currentAudio.pause();
-    }
-
-    if (this.indexAudio === 0 && this.currentAudio.paused) {
-      this.currentAudio.autoplay = true;
-    }
-  }
-  
-
-
-  function loadAudio() {
-    
-    this.audioPlayer = document.getElementById('audio-player');
-    this.tracks = Array.from(document.querySelectorAll('.track'));
-    this.playBtns = Array.from(document.querySelectorAll('.btn-play'));
-    this.pauseBtns = Array.from(document.querySelectorAll('.btn-pause'));
-  
-    this.tracks.forEach((track, index) => {
-      const audio = new Audio(track.getAttribute('data-src'));
-      audio.addEventListener('ended', () => {
-        this.pauseToPlay(index);
-      });
-      this.audios.push(audio);
-    });
-  
-    this.currentAudio = this.audios[0];
-    this.indexAudio = 0;
-  
-    // Autoplay the first song
-    this.currentAudio.autoplay = true;
-
-   
-  
-  
-  }
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  function toggleAudio() {
-    this.pauseToPlay(this.indexAudio);
-    this.currentAudio.autoplay = true;
-  
-    if (this.currentAudio.paused) {
-      console.log("Playlist is currently paused");
-      document.querySelector('#icon-play').style.display = 'none';
-      document.querySelector('#icon-pause').style.display = 'block';
-      document.querySelector('#ptc-' + this.indexAudio).classList.add('active-track');
-      this.playToPause(this.indexAudio);
-      this.currentAudio.play();
-    } else {
-      console.log("Playlist is currently playing");
-      document.querySelector('#icon-play').style.display = 'block';
-      document.querySelector('#icon-pause').style.display = 'none';
-      this.pauseToPlay(this.indexAudio);
-      this.currentAudio.pause();
-    }
-  
-    // Autoplay the first song on page load
-    if (this.indexAudio === 0 && this.currentAudio.paused) {
-      this.currentAudio.autoplay = true;
-      console.log("Playlist is currently autoplaying");
-    }
-  }
-  
-
-  function pauseAudio() {
-    this.currentAudio.pause();
-    clearInterval(interval1);
-  }
-
-  var timer = document.getElementsByClassName('timer')[0]
-
-  var barProgress = document.getElementById("myBar");
-
-
-  var width = 0;
-
-  function onTimeUpdate() {
-    var t = this.currentAudio.currentTime
-    timer.innerHTML = this.getMinutes(t);
-    this.setBarProgress();
-    if (this.currentAudio.ended) {
-      document.querySelector('#icon-play').style.display = 'block';
-      document.querySelector('#icon-pause').style.display = 'none';
-      this.pauseToPlay(this.indexAudio)
-      if (this.indexAudio < listAudio.length-1) {
-          var index = parseInt(this.indexAudio)+1
-          this.loadNewTrack(index)
-      }
-    }
-  }
-
-
-  function setBarProgress(){
-    var progress = (this.currentAudio.currentTime/this.currentAudio.duration)*100;
-    document.getElementById("myBar").style.width = progress + "%";
-  }
-
-
-  function getMinutes(t){
-    var min = parseInt(parseInt(t)/60);
-    var sec = parseInt(t%60);
-    if (sec < 10) {
-      sec = "0"+sec
-    }
-    if (min < 10) {
-      min = "0"+min
-    }
-    return min+":"+sec
-  }
-
-  var progressbar = document.querySelector('#myProgress')
-  progressbar.addEventListener("click", seek.bind(this));
-
-
-  function seek(event) {
-    var percent = event.offsetX / progressbar.offsetWidth;
-    this.currentAudio.currentTime = percent * this.currentAudio.duration;
-    barProgress.style.width = percent*100 + "%";
-  }
-
-  function forward(){
-    this.currentAudio.currentTime = this.currentAudio.currentTime + 5
-    this.setBarProgress();
-  }
-
-  function rewind(){
-    this.currentAudio.currentTime = this.currentAudio.currentTime - 5
-    this.setBarProgress();
-  }
-
-
-  function next(){
-    if (this.indexAudio <listAudio.length-1) {
-        var oldIndex = this.indexAudio
-        this.indexAudio++;
-        updateStylePlaylist(oldIndex,this.indexAudio)
-        this.loadNewTrack(this.indexAudio);
-    }
-  }
-
-  function previous(){
-    if (this.indexAudio>0) {
-        var oldIndex = this.indexAudio
-        this.indexAudio--;
-        updateStylePlaylist(oldIndex,this.indexAudio)
-        this.loadNewTrack(this.indexAudio);
-    }
-  }
-
-  function updateStylePlaylist(oldIndex,newIndex){
-    document.querySelector('#ptc-'+oldIndex).classList.remove("active-track");
-    this.pauseToPlay(oldIndex);
-    document.querySelector('#ptc-'+newIndex).classList.add("active-track");
-    this.playToPause(newIndex)
-  }
-
-  function playToPause(index){
-    var ele = document.querySelector('#p-img-'+index)
-    ele.classList.remove("fa-play");
-    ele.classList.add("fa-pause");
-  }
-
-  function pauseToPlay(index){
-    var ele = document.querySelector('#p-img-'+index)
-    ele.classList.remove("fa-pause");
-    ele.classList.add("fa-play");
-  }
-
-
-  function toggleMute(){
-    var btnMute = document.querySelector('#toggleMute');
-    var volUp = document.querySelector('#icon-vol-up');
-    var volMute = document.querySelector('#icon-vol-mute');
-    if (this.currentAudio.muted == false) {
-       this.currentAudio.muted = true
-       volUp.style.display = "none"
-       volMute.style.display = "block"
-    }else{
-      this.currentAudio.muted = false
-      volMute.style.display = "none"
-      volUp.style.display = "block"
-    }
-  }
-
-  playSong(listAudio);
+// Automatically start playing the first track
+playTrack();
