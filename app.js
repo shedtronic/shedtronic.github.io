@@ -3,6 +3,15 @@ window.addEventListener('load', function() {
   audio.play();
 });
 
+audio.addEventListener('ended', function() {
+  indexAudio++;
+  if (indexAudio >= listAudio.length) {
+    indexAudio = 0;
+  }
+  audio.src = listAudio[indexAudio].file;
+  audio.play();
+});
+
 function createTrackItem(index,name,duration){
     var trackItem = document.createElement('div');
     trackItem.setAttribute("class", "playlist-track-ctn");
@@ -103,9 +112,21 @@ function createTrackItem(index,name,duration){
 
   
 
-    function playSong(listAudio) {
-      audio.src = songs[listAudio].url;
+  function playSong(listAudio) {
+    var audio = document.getElementById('myAudio');
+    audio.src = listAudio[0].file;
+  
+    if (audio.paused) {
       audio.play();
+    }
+  
+  
+
+
+
+
+
+      
     
       
 
@@ -313,3 +334,5 @@ function createTrackItem(index,name,duration){
       volUp.style.display = "block"
     }
   }
+
+  playSong(listAudio);
