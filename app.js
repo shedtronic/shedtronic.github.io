@@ -116,18 +116,9 @@ function createTrackItem(index,name,duration){
     var audio = document.getElementById('myAudio');
     audio.src = listAudio[0].file;
   
-    if (audio.paused) {
+    /*if (audio.paused) {
       audio.play();
-    }
-  
-  
-
-
-
-
-
-      
-    
+    }*/
       
 
     if (this.currentAudio.paused) {
