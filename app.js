@@ -3,14 +3,9 @@ window.addEventListener('load', function() {
   audio.play();
 });
 
-/*audio.addEventListener('ended', function() {
-  indexAudio++;
-  if (indexAudio >= listAudio.length) {
-    indexAudio = 0;
-  }
-  audio.src = listAudio[indexAudio].file;
-  audio.play();
-});*/
+
+
+
 
 function createTrackItem(index,name,duration){
     var trackItem = document.createElement('div');
@@ -116,9 +111,14 @@ function createTrackItem(index,name,duration){
     var audio = document.getElementById('myAudio');
     audio.src = listAudio[0].file;
   
-    /*if (audio.paused) {
+    audio.addEventListener('ended', function() {
+      indexAudio++;
+      if (indexAudio >= listAudio.length) {
+        indexAudio = 0;
+      }
+      audio.src = listAudio[indexAudio].file;
       audio.play();
-    }*/
+    });
       
 
     if (this.currentAudio.paused) {
@@ -144,6 +144,7 @@ function createTrackItem(index,name,duration){
 
 
   function loadAudio() {
+    
     this.audioPlayer = document.getElementById('audio-player');
     this.tracks = Array.from(document.querySelectorAll('.track'));
     this.playBtns = Array.from(document.querySelectorAll('.btn-play'));
@@ -162,6 +163,8 @@ function createTrackItem(index,name,duration){
   
     // Autoplay the first song
     this.currentAudio.autoplay = true;
+
+   
   
   
   }
