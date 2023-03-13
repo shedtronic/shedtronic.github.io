@@ -255,12 +255,12 @@ ul.sidemenu {
 /* CSS for count display positioning */
 .count-display {
   display:block;
-  float:right;
+  float:left;
   width:100%;
 }
 
 .pagetitle {
-  display:inline;
+display:inline;
 float:left;
 color:#ffffff;
 
