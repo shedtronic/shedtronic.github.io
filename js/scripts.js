@@ -49,6 +49,26 @@ var months = [
   var secondCheck = setInterval(tick, 1000);
     
   });
+
+
+
+
+
+
+
+  $(document).ready(function() {
+    setInterval(function() {
+      var now = new Date();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+      var seconds = now.getSeconds();
+  
+      $('.hours').text(hours < 10 ? '0' + hours : hours);
+      $('.minutes').text(minutes < 10 ? '0' + minutes : minutes);
+      $('.seconds').text(seconds < 10 ? '0' + seconds : seconds);
+    }, 1000);
+  });
+  
   
 
   
