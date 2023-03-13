@@ -282,8 +282,6 @@ ul.sidemenu {
 /*display:inline;
 float:left;*/
 color:#ffffff;
-width:300px;
-
 }
 
 #clock {
@@ -291,7 +289,7 @@ width:300px;
   /*display:inline;
   float:right;*/
  font-size:100%;
-  text-align: center;
+  
   color:#ffffff;
   
 }
