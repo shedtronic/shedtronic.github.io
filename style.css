@@ -254,9 +254,9 @@ ul.sidemenu {
 
 /* CSS for count display positioning */
 .count-display {
-  position: absolute;
-  top: 0;
-  right: 0;
+  display:block;
+  float:right;
+  width:100%;
 }
 
 
