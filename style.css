@@ -260,7 +260,8 @@ ul.sidemenu {
 }
 
 .pagetitle {
-
+  display:inline;
+float:left;
 color:#ffffff;
 
 )
