@@ -253,7 +253,7 @@ ul.sidemenu {
 /*Shedfax Text Slow Nav related*/
 
 /* CSS for count display positioning */
-.count-display {
+.count-display .timer {
   display:inline;
   float:left;
   width:100%;
@@ -262,14 +262,14 @@ ul.sidemenu {
 
 .pagetitle {
 display:inline;
-float:left;
+float:right;
 color:#ffffff;
 
 }
 
 #clock {
   display:inline;
-  float:left;
+  float:right;
   font-size: 2em;
   text-align: center;
   color:#ffffff;
