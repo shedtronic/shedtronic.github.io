@@ -260,7 +260,7 @@ ul.sidemenu {
   width:100%;
 }
 .count-display  {
-  border: 1px solid red;
+  border: 1px solid blue;
   /*display:inline;
   float:left;*/
   color:#ffffff;
@@ -268,7 +268,7 @@ ul.sidemenu {
 
 
 .timer {
-  border: 1px solid red;
+  border: 1px solid blue;
   /*display:inline;
   float:left;*/
  
@@ -278,7 +278,7 @@ ul.sidemenu {
 
 
 .pagetitle {
-  border: 1px solid red;
+  border: 1px solid blue;
 /*display:inline;
 float:left;*/
 color:#ffffff;
@@ -287,7 +287,7 @@ width:300px;
 }
 
 #clock {
-  border: 1px solid red;
+  border: 1px solid blue;
   /*display:inline;
   float:right;*/
  font-size:100%;
