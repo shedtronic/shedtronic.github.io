@@ -264,7 +264,13 @@ ul.sidemenu {
 float:left;
 color:#ffffff;
 
-)
+}
+
+#clock {
+  font-size: 2em;
+  text-align: center;
+}
+
 
 
 
