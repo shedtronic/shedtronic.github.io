@@ -261,13 +261,15 @@ ul.sidemenu {
 }
 
 .pagetitle {
-/*display:inline;*/
+display:inline;
 float:left;
 color:#ffffff;
 
 }
 
 #clock {
+  display:inline;
+  float:left;
   font-size: 2em;
   text-align: center;
   color:#ffffff;
