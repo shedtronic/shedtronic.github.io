@@ -30,71 +30,67 @@
 
   </head>
   <body>
-    
-<div class="container-fluid">
 
-    <div class="row">
+
+    <div class="pagenumber">
+
+      <div class="count-display top-right">
+      <a href="#" id="toggle">Turn On</a>
+      <div id="timer"></div>
       
-          <div id='header'>
-            <div class="pagenumber">
-
-              <div class="count-display top-right">
-              <a href="#" id="toggle">Turn On</a>
-              <div id="timer"></div>
-              
-              <script>
-                var delay = false;
-                var timePassed = 0;
-              
-                $('#toggle').click(function(event) {
-                  event.preventDefault();
-                  delay = !delay;
-                  $(this).text(delay ? "Off" : "On");
-                });
-              
-                $(document).ready(function() {
-                  $('a').not('#toggle').click(function(event) {
-                    if (delay) {
-                      event.preventDefault();
-                      var href = $(this).attr('href');
-                      var startTime = Date.now();
-                      var timer = setInterval(function() {
-                        timePassed = Date.now() - startTime;
-                        $('#timer').text(timePassed);
-                      }, 10);
-                      setTimeout(function() {
-                        clearInterval(timer);
-                        window.location = href;
-                      }, 1000);
-                    }
-                  });
-                });
+      <script>
+        var delay = false;
+        var timePassed = 0;
+      
+        $('#toggle').click(function(event) {
+          event.preventDefault();
+          delay = !delay;
+          $(this).text(delay ? "Off" : "On");
+        });
+      
+        $(document).ready(function() {
+          $('a').not('#toggle').click(function(event) {
+            if (delay) {
+              event.preventDefault();
+              var href = $(this).attr('href');
+              var startTime = Date.now();
+              var timer = setInterval(function() {
+                timePassed = Date.now() - startTime;
+                $('#timer').text(timePassed);
+              }, 10);
+              setTimeout(function() {
+                clearInterval(timer);
+                window.location = href;
+              }, 1000);
+            }
+          });
+        });
 
 
 
-                // function to count to 999 in 30 seconds
+        // function to count to 999 in 30 seconds
 function countTo999() {
-  var count = 0;
-  var interval = setInterval(function() {
-    count++;
-    $("#count-display").text(count);
-    if (count === 998) {
-      clearInterval(interval);
-    }
-  }, 30);
+var count = 0;
+var interval = setInterval(function() {
+count++;
+$("#count-display").text(count);
+if (count === 998) {
+clearInterval(interval);
+}
+}, 30);
 }
 
 // function to count to a specific number when link is clicked
 function countToNumber() {
-  var targetNumber = $(this).text();
-  var count = 0;
-  var interval = setInterval(function() {
-    count++;
-    $("#count-display").text(count);
-    if (count === targetNumber) {
-      clearInterval(interval);
-    }
-  }, 30);
+var targetNumber = $(this).text();
+var count = 0;
+var interval = setInterval(function() {
+count++;
+$("#count-display").text(count);
+if (count === targetNumber) {
+clearInterval(interval);
+}
+}, 30);
 }
 
 // start the count on page load
@@ -113,12 +109,19 @@ $(".count-link").on("click", countToNumber);
 
 
 
-              </script>
+      </script>
 
 </div><!--End Count Display-->
 
-              
-            </div><!--End Page Number-->
+      
+    </div><!--End Page Number-->
+    
+<div class="container-fluid">
+
+    <div class="row">
+      
+          <div id='header'>
+            
             
           <h1><span class="highlight">SHEDFAX </span>HOMEPAGE</h1>
           
