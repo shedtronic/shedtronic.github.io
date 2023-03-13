@@ -256,13 +256,13 @@ ul.sidemenu {
 
 .info {
 
-  border: 1px solid red;
-
+  border: 3px solid red;
+  width:100%;
 }
 .count-display .timer {
   display:inline;
   float:left;
-  width:100%;
+ 
   color:#ffffff;
 }
 
@@ -276,7 +276,7 @@ color:#ffffff;
 #clock {
   display:inline;
   float:right;
- 
+ font-size:100%;
   text-align: center;
   color:#ffffff;
   
