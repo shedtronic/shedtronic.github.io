@@ -270,6 +270,7 @@ ul.sidemenu {
 .timer {
   border: 3px solid green;
   color:#ffffff;
+  display:flex;
 
 }
 
