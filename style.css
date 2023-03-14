@@ -281,8 +281,8 @@ ul.sidemenu {
 
 .pagetitle {
   border: 1px solid blue;
-/*display:inline;
-float:left;*/
+display:inline;
+float:left;
 color:#ffffff;
 width:20%;
 }
