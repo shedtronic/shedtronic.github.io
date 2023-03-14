@@ -259,7 +259,7 @@ ul.sidemenu {
   border: 3px solid red;
   width:100%;
 }
-.count-display  {
+#count-display  {
   border: 1px solid blue;
   /*display:inline;
   float:left;*/
