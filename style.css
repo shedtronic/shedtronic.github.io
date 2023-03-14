@@ -261,8 +261,6 @@ ul.sidemenu {
 }
 #count-display  {
   border: 1px solid blue;
-  display:inline;
-  float:left;
   color:#ffffff;
   
 }
@@ -270,10 +268,6 @@ ul.sidemenu {
 
 .timer {
   border: 1px solid blue;
-  display:inline;
-  float:left;
- 
- 
   color:#ffffff;
 
 }
@@ -281,15 +275,14 @@ ul.sidemenu {
 
 .pagetitle {
   border: 1px solid blue;
-display:inline;
-float:left;
+
 color:#ffffff;
 
 }
 
 #clock {
   border: 1px solid blue;
-  /*display:inline;
+  
   float:right;*/
  font-size:100%;
  
