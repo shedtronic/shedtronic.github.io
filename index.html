@@ -41,35 +41,31 @@
       
       <div class="count-display top-right">
       
-      
       <a href="#" id="toggle">Turn On</a>
+      </div>
+    
+    </div>
   </div>
 
   <div class="col">
       
       <div id="timer"></div>
-  
-
-    
-    
-    
-    
-
+      
       <script>
 
 
-$(document).ready(function() {
-    setInterval(function() {
-      var now = new Date();
-      var hours = now.getHours();
-      var minutes = now.getMinutes();
-      var seconds = now.getSeconds();
-  
-      $('.hours').text(hours < 10 ? '0' + hours : hours);
-      $('.minutes').text(minutes < 10 ? '0' + minutes : minutes);
-      $('.seconds').text(seconds < 10 ? '0' + seconds : seconds);
-    }, 1000);
-  });
+          $(document).ready(function() {
+              setInterval(function() {
+                var now = new Date();
+                var hours = now.getHours();
+                var minutes = now.getMinutes();
+                var seconds = now.getSeconds();
+            
+                $('.hours').text(hours < 10 ? '0' + hours : hours);
+                $('.minutes').text(minutes < 10 ? '0' + minutes : minutes);
+                $('.seconds').text(seconds < 10 ? '0' + seconds : seconds);
+              }, 1000);
+            });
 
       </script>
       
@@ -103,47 +99,36 @@ $(document).ready(function() {
 
 
 
-        // function to count to 999 in 30 seconds
-function countTo999() {
-var count = 0;
-var interval = setInterval(function() {
-count++;
-$("#count-display").text(count);
-if (count === 998) {
-clearInterval(interval);
-}
-}, 30);
-}
+                      // function to count to 999 in 30 seconds
+              function countTo999() {
+              var count = 0;
+              var interval = setInterval(function() {
+              count++;
+              $("#count-display").text(count);
+              if (count === 998) {
+              clearInterval(interval);
+              }
+              }, 30);
+              }
 
-// function to count to a specific number when link is clicked
-function countToNumber() {
-var targetNumber = $(this).text();
-var count = 0;
-var interval = setInterval(function() {
-count++;
-$("#count-display").text(count);
-if (count === targetNumber) {
-clearInterval(interval);
-}
-}, 30);
-}
+              // function to count to a specific number when link is clicked
+              function countToNumber() {
+              var targetNumber = $(this).text();
+              var count = 0;
+              var interval = setInterval(function() {
+              count++;
+              $("#count-display").text(count);
+              if (count === targetNumber) {
+              clearInterval(interval);
+              }
+              }, 30);
+              }
 
-// start the count on page load
-countTo999();
+              // start the count on page load
+              countTo999();
 
-// bind the countToNumber function to click event of links with class "count-link"
-$(".count-link").on("click", countToNumber);
-
-
-
-
-
-
-
-
-
-
-
+              // bind the countToNumber function to click event of links with class "count-link"
+              $(".count-link").on("click", countToNumber);
       </script>
 
     </div><!--End Count Display-->
