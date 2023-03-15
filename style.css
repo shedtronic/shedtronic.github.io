@@ -314,7 +314,7 @@ color:#ffffff;
 
 
   .info {
-    display:block;
+    display:box;
     border: 3px solid red;
     height:30px;
     
