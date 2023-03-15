@@ -255,7 +255,7 @@ ul.sidemenu {
 /* CSS for count display positioning */
 
 .info {
-
+  display:flex;
   border: 3px solid red;
   height:30px;
   
@@ -309,6 +309,14 @@ color:#ffffff;
 
     word-wrap: break-word;
 
+    
+  }
+
+
+  .info {
+    display:block;
+    border: 3px solid red;
+    height:30px;
     
   }
   
