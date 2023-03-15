@@ -271,6 +271,7 @@ ul.sidemenu {
   border: 3px solid green;
   color:#ffffff;
   width:200px;
+  display:inline;
 
 }
 
