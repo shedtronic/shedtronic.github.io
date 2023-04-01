@@ -272,10 +272,8 @@ ul.sidemenu {
 #timer {
   border: 3px solid green;
   color:#ffffff;
-  
-  display:inline;
-
   align-items: flex-start;
+  margin:0px;
 }
 
 
@@ -283,7 +281,7 @@ ul.sidemenu {
   border: 1px solid blue;
   display:inline;
 color:#ffffff;
-
+margin:0px;
 align-items: flex-start;
 
 }
@@ -293,7 +291,7 @@ align-items: flex-start;
  font-size:100%;
  color:#ffffff;
  display:inline;
-
+ margin:0px;
  align-items: flex-start;
 }
 
