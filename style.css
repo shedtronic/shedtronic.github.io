@@ -265,7 +265,7 @@ ul.sidemenu {
 #count-display  {
   border: 3px solid blue;
   color:#ffffff;
-  
+  align-items: flex-start;
 }
 
 
@@ -275,6 +275,7 @@ ul.sidemenu {
   
   display:inline;
 
+  align-items: flex-start;
 }
 
 
@@ -283,6 +284,7 @@ ul.sidemenu {
   display:inline;
 color:#ffffff;
 
+align-items: flex-start;
 
 }
 
@@ -291,6 +293,8 @@ color:#ffffff;
  font-size:100%;
  color:#ffffff;
  display:inline;
+
+ align-items: flex-start;
 }
 
 
