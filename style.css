@@ -265,6 +265,11 @@ ul.sidemenu {
   padding: 1rem;
 }
 
+.card-body {
+ 
+  background: black;
+}
+
 .row.align-items-start {
   /* Align items to top of column */
   align-items: flex-start;
