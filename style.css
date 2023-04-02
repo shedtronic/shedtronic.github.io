@@ -261,7 +261,7 @@ ul.sidemenu {
   /* Remove height property */
   background:#000000;
   border:1px solid white;
-  padding: 1rem;
+  padding: 0px;
 }
 
 .card-body {
