@@ -275,7 +275,7 @@ ul.sidemenu {
 
 
 #timer {
-  border: 3px solid green;
+  border: 3px solid rgb(128, 0, 0);
   color:#ffffff;
   align-items: flex-start;
   margin:0px;
