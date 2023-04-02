@@ -259,7 +259,7 @@ ul.sidemenu {
 
 .card {
   /* Remove height property */
-  background:none;
+  background:#000000;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 1rem;
