@@ -289,9 +289,10 @@ ul.sidemenu {
   
 }
 .count-display  {
-  border: 3px solid blue;
+  
   color:#ffffff;
   align-items: flex-start;
+  float:left;
 }
 
 
