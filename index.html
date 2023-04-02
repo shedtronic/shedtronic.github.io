@@ -246,22 +246,28 @@
 
                           // function to count to a specific number when link is clicked
                           function countToNumber() {
-                          var targetNumber = $(this).text();
-                          var count = 0;
-                          var interval = setInterval(function() {
-                          count++;
-                          $("#count-display").text(count);
-                          if (count === targetNumber) {
-                          clearInterval(interval);
-                          }
-                          }, 30);
+                            if (delay) {
+                              var targetNumber = $(this).text();
+                              var count = 0;
+                              var interval = setInterval(function() {
+                                count++;
+                                $("#count-display").text(count);
+                                if (count === targetNumber) {
+                                  clearInterval(interval);
+                                }
+                              }, 30);
+                            }
                           }
 
                           // start the count on page load
                           countTo999();
 
                           // bind the countToNumber function to click event of links with class "count-link"
-                          $(".count-link").on("click", countToNumber);
+                          $(".count-link").on("click", function() {
+                          if (delay) {
+                            countToNumber.call(this);
+                          }
+                        });
                   </script>
 
                 </div><!--End Count Display-->
