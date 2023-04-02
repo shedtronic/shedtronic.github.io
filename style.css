@@ -260,6 +260,9 @@ ul.sidemenu {
 .card {
   /* Remove height property */
   background:none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1rem;
 }
 
 .row.align-items-start {
