@@ -261,7 +261,7 @@ ul.sidemenu {
   /* Remove height property */
   background:#000000;
   border:1px solid white;
-  padding: 0px;
+  
 }
 
 .card-body {
@@ -288,7 +288,7 @@ ul.sidemenu {
   height:30px;
   
 }
-.count-display  {
+#count-display  {
   border: 3px solid blue;
   color:#ffffff;
   align-items: flex-start;
