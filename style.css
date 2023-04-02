@@ -269,7 +269,7 @@ ul.sidemenu {
 }
 #count-dislay a {
 
-  float:left;
+  float:left; display:inline;
 }
 
 
