@@ -288,7 +288,7 @@ ul.sidemenu {
   height:30px;
   
 }
-#count-display  {
+.count-display  {
   border: 3px solid blue;
   color:#ffffff;
   align-items: flex-start;
