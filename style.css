@@ -267,10 +267,7 @@ ul.sidemenu {
   color:#ffffff;
   align-items: flex-start;
 }
-.count-dislay  {
 
-  float:left; display:inline;
-}
 #toggle {
 
   float:left;
@@ -283,7 +280,8 @@ ul.sidemenu {
   align-items: flex-start;
   margin:0px;
   width:120px;
-  clear:left;
+  float:left; 
+  display:inline;
 }
 
 
