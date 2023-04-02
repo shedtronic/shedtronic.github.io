@@ -256,6 +256,15 @@ ul.sidemenu {
 
 /* CSS for count display positioning */
 
+
+#test {
+
+  border:1px solid purple;
+}
+
+
+
+
 .info {
   display:flex;
   /*border: 3px solid red;*/
