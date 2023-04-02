@@ -257,6 +257,15 @@ ul.sidemenu {
 /* CSS for count display positioning */
 
 
+.card {
+  /* Remove height property */
+}
+
+.row.align-items-start {
+  /* Align items to top of column */
+  align-items: flex-start;
+}
+
 #test {
 
   border:1px solid purple;
