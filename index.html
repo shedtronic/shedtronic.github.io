@@ -45,7 +45,6 @@
             
             <a href="#" id="toggle">Turn On</a>
           
-
             <div id="timer">100</div>
             
             <script>
@@ -73,7 +72,7 @@
               $('#toggle').click(function(event) {
                 event.preventDefault();
                 delay = !delay;
-                $(this).text(delay ? "Turn Off" : "Turn On");
+                $(this).text(delay ? "Off |" : " On |");
               });
             
               $(document).ready(function() {
