@@ -356,3 +356,11 @@ align-items: flex-start;
 }
 
 
+
+@media (max-width: 576px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
