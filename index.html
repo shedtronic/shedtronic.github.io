@@ -41,7 +41,7 @@
             <!--<div class="pagetitle">-->
 
                   
-            <div class="count-display">
+            <div id="count-display">
             
             <!---->
             
@@ -132,8 +132,8 @@
                     countTo999();
 
                     // bind the countToNumber function to click event of links with class "count-link"
-                    //$(".count-link").on("click", countToNumber);
-                    $links.on("click", countToNumber);
+                   $(".count-link").on("click", countToNumber);
+                   // $links.on("click", countToNumber);
             </script>
 
           </div><!--End Count Display-->
@@ -187,8 +187,9 @@ dateDiv.id = 'date'; // Set the id attribute to "date"
 dateDiv.innerHTML = todayFormatted;
 document.body.appendChild(dateDiv); // Change `document.body` to the element you want to append the div to
 
-<div id="date"></div>
+
           </script>
+          <div id="date"></div>
 
           </p>
         </div>
