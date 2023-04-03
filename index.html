@@ -48,98 +48,98 @@
           
             <div id="timer">100</div>
             
-            <script>
-
-
-                $(document).ready(function() {
-                    setInterval(function() {
-                      var now = new Date();
-                      var hours = now.getHours();
-                      var minutes = now.getMinutes();
-                      var seconds = now.getSeconds();
-                  
-                      $('.hours').text(hours < 10 ? '0' + hours : hours);
-                      $('.minutes').text(minutes < 10 ? '0' + minutes : minutes);
-                      $('.seconds').text(seconds < 10 ? '0' + seconds : seconds);
-                    }, 1000);
-                  });
-
-            </script>
             
-            <script>
-              var delay = false;
-              var timePassed = 0;
-
-
-              //Added any link location
-              var $toggle = $('#toggle');
-              var $links = $('.count-link');
-            
-              $('#toggle').click(function(event) {
-                event.preventDefault();
-                delay = !delay;
-                $(this).text(delay ? "Off |" : " On |");
-              });
-
-              //End added link location
-            
-              $(document).ready(function() {
-                $('a').not('#toggle').click(function(event) {
-                  if (delay) {
-                    event.preventDefault();
-                    var href = $(this).attr('href');
-                    var startTime = Date.now();
-                    var timer = setInterval(function() {
-                      timePassed = Date.now() - startTime;
-                      $('#count-display').text(timePassed);
-                    }, 10);
-                    setTimeout(function() {
-                      clearInterval(timer);
-                      window.location = href;
-                    }, 1000);
-                  }
-                });
-              });
-
-
-
-                            // function to count to 999 in 30 seconds
-                    function countTo999() {
-                    var count = 0;
-                    var interval = setInterval(function() {
-                    count++;
-                    $("#count-display").text(count);
-                    if (count === 998) {
-                    clearInterval(interval);
-                    }
-                    }, 30);
-                    }
-
-                    // function to count to a specific number when link is clicked
-                    function countToNumber() {
-                    var targetNumber = $(this).text();
-                    var count = 0;
-                    var interval = setInterval(function() {
-                    count++;
-                    $("#count-display").text(count);
-                    if (count === targetNumber) {
-                    clearInterval(interval);
-                    }
-                    }, 30);
-                    }
-
-                    // start the count on page load
-                    countTo999();
-
-                    // bind the countToNumber function to click event of links with class "count-link"
-                   $(".count-link").on("click", countToNumber);
-                   // $links.on("click", countToNumber);
-            </script>
 
           </div><!--End Count Display-->
           
           
+          <script>
+
+
+            $(document).ready(function() {
+                setInterval(function() {
+                  var now = new Date();
+                  var hours = now.getHours();
+                  var minutes = now.getMinutes();
+                  var seconds = now.getSeconds();
+              
+                  $('.hours').text(hours < 10 ? '0' + hours : hours);
+                  $('.minutes').text(minutes < 10 ? '0' + minutes : minutes);
+                  $('.seconds').text(seconds < 10 ? '0' + seconds : seconds);
+                }, 1000);
+              });
+
+        </script>
         
+        <script>
+          var delay = false;
+          var timePassed = 0;
+
+
+          //Added any link location
+          var $toggle = $('#toggle');
+          var $links = $('.count-link');
+        
+          $('#toggle').click(function(event) {
+            event.preventDefault();
+            delay = !delay;
+            $(this).text(delay ? "Off |" : " On |");
+          });
+
+          //End added link location
+        
+          $(document).ready(function() {
+            $('a').not('#toggle').click(function(event) {
+              if (delay) {
+                event.preventDefault();
+                var href = $(this).attr('href');
+                var startTime = Date.now();
+                var timer = setInterval(function() {
+                  timePassed = Date.now() - startTime;
+                  $('#count-display').text(timePassed);
+                }, 10);
+                setTimeout(function() {
+                  clearInterval(timer);
+                  window.location = href;
+                }, 1000);
+              }
+            });
+          });
+
+
+
+                        // function to count to 999 in 30 seconds
+                function countTo999() {
+                var count = 0;
+                var interval = setInterval(function() {
+                count++;
+                $("#count-display").text(count);
+                if (count === 998) {
+                clearInterval(interval);
+                }
+                }, 30);
+                }
+
+                // function to count to a specific number when link is clicked
+                function countToNumber() {
+                var targetNumber = $(this).text();
+                var count = 0;
+                var interval = setInterval(function() {
+                count++;
+                $("#count-display").text(count);
+                if (count === targetNumber) {
+                clearInterval(interval);
+                }
+                }, 30);
+                }
+
+                // start the count on page load
+                countTo999();
+
+                // bind the countToNumber function to click event of links with class "count-link"
+               $(".count-link").on("click", countToNumber);
+               // $links.on("click", countToNumber);
+        </script>
             
 
             
@@ -169,7 +169,7 @@
     <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
       <div class="card">
         <div class="card-body">
-          
+          <div id="date"></div>
           <p class="card-text">
           <script>
         const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -189,7 +189,7 @@ document.body.appendChild(dateDiv); // Change `document.body` to the element you
 
 
           </script>
-          <div id="date"></div>
+         
 
           </p>
         </div>
