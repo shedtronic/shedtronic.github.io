@@ -164,18 +164,22 @@
           
           <p class="card-text">
           <script>
-            const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            
-            const today = new Date();
-            const dayOfWeek = weekdays[today.getDay()];
-            const dayOfMonth = today.getDate();
-            const month = months[today.getMonth()];
-            
-            const todayFormatted = dayOfWeek + ' ' + dayOfMonth + ' ' + month;
-            console.log(todayFormatted); // Output: e.g. "Sun 03 Apr"
-            
+        const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+const today = new Date();
+const dayOfWeek = weekdays[today.getDay()];
+const dayOfMonth = today.getDate();
+const month = months[today.getMonth()];
+
+const todayFormatted = dayOfWeek + ' ' + dayOfMonth + ' ' + month;
+
+const dateDiv = document.createElement('div');
+dateDiv.id = 'date'; // Set the id attribute to "date"
+dateDiv.innerHTML = todayFormatted;
+document.body.appendChild(dateDiv); // Change `document.body` to the element you want to append the div to
+
+<div id="date"></div>
           </script>
 
           </p>
