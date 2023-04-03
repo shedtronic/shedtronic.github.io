@@ -44,14 +44,14 @@
                   
             <div id="count-display">
             
-            <!---->
+            
             
           
             <div id="timer">100</div>
             
             
 
-          </div><!--End Count Display-->
+            </div><!--End Count Display-->
           
           
           <script>
@@ -170,29 +170,31 @@
     <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
       <div class="card">
         <div class="card-body">
-          <div id="date"></div>
+          
           <p class="card-text">
-          <script>
-        const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-const today = new Date();
-const dayOfWeek = weekdays[today.getDay()];
-const dayOfMonth = today.getDate();
-const month = months[today.getMonth()];
-
-const todayFormatted = dayOfWeek + ' ' + dayOfMonth + ' ' + month;
-
-const dateDiv = document.createElement('div');
-dateDiv.id = 'date'; // Set the id attribute to "date"
-dateDiv.innerHTML = todayFormatted;
-document.body.appendChild(dateDiv); // Change `document.body` to the element you want to append the div to
-
-
-          </script>
+            <div id="datediv"></div>
+          
          
 
           </p>
+          <script>
+            const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    
+    const today = new Date();
+    const dayOfWeek = weekdays[today.getDay()];
+    const dayOfMonth = today.getDate();
+    const month = months[today.getMonth()];
+    
+    const todayFormatted = dayOfWeek + ' ' + dayOfMonth + ' ' + month;
+    
+    const dateDiv = document.createElement('div');
+    dateDiv.id = 'datediv'; // Set the id attribute to "date"
+    dateDiv.innerHTML = todayFormatted;
+    document.body.appendChild(dateDiv); // Change `document.body` to the element you want to append the div to
+    
+    
+              </script>
         </div>
       </div>
     </div>
