@@ -70,6 +70,8 @@
               var delay = false;
               var timePassed = 0;
 
+
+              //Added any link location
               var $toggle = $('#toggle');
               var $links = $('.count-link');
             
@@ -78,6 +80,8 @@
                 delay = !delay;
                 $(this).text(delay ? "Off |" : " On |");
               });
+
+              //End added link location
             
               $(document).ready(function() {
                 $('a').not('#toggle').click(function(event) {
