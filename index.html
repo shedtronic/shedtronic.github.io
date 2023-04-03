@@ -27,7 +27,67 @@
     <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
 
 
+<script>
 
+
+// Get the counter element
+const counterElement = document.getElementById('counter');
+
+// Get the count link element
+const countLinkElement = document.getElementById('count-link');
+
+// Define the function to start the counter
+function startCounter(targetNumber) {
+  // Set the duration of the counter in milliseconds
+  const duration = 10000;
+  
+  // Calculate the increment amount per millisecond
+  const incrementAmount = (targetNumber - parseInt(counterElement.innerText)) / duration;
+  
+  // Set the start time of the counter
+  const startTime = Date.now();
+  
+  // Define the function to update the counter
+  function updateCounter() {
+    // Calculate the elapsed time since the start of the counter
+    const elapsedTime = Date.now() - startTime;
+    
+    // Calculate the current number based on the elapsed time and increment amount
+    const currentNumber = parseInt(counterElement.innerText) + (elapsedTime * incrementAmount);
+    
+    // Update the counter element with the current number
+    counterElement.innerText = Math.round(currentNumber);
+    
+    // Check if the current number has reached the target number
+    if (currentNumber >= targetNumber) {
+      // Redirect to the target page
+      window.location.href = `${targetNumber}.html`;
+      
+      // Stop the counter
+      clearInterval(intervalId);
+    }
+  }
+  
+  // Call the updateCounter function every 10 milliseconds
+  const intervalId = setInterval(updateCounter, 10);
+}
+
+// Add a click event listener to the count link element
+countLinkElement.addEventListener('click', function(event) {
+  // Prevent the default link behavior
+  event.preventDefault();
+  
+  // Get the target number from the data attribute of the count link element
+  const targetNumber = parseInt(countLinkElement.dataset.target);
+  
+  // Start the counter with the target number
+  startCounter(targetNumber);
+});
+
+
+
+
+</script>
 
   </head>
   <body>
