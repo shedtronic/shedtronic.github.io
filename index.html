@@ -171,8 +171,8 @@
       <div class="card">
         <div class="card-body">
           
-          <p class="card-text">
-            <div id="datediv"></div>
+          <p id="datediv" class="card-text">
+         
           
          
 
@@ -189,7 +189,7 @@
     const todayFormatted = dayOfWeek + ' ' + dayOfMonth + ' ' + month;
     
     const dateDiv = document.createElement('div');
-    dateDiv.id = 'datediv'; // Set the id attribute to "date"
+    dateDiv.id = 'datediv'; // Set the id attribute to "datediv"
     dateDiv.innerHTML = todayFormatted;
     document.body.appendChild(dateDiv); // Change `document.body` to the element you want to append the div to
     
