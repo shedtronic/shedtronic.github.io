@@ -44,7 +44,7 @@
             <div class="count-display">
             
             <!---->
-            <a href="#" id="toggle"> On |</a>
+            
           
             <div id="timer">100</div>
             
@@ -132,7 +132,8 @@
                     countTo999();
 
                     // bind the countToNumber function to click event of links with class "count-link"
-                    $(".count-link").on("click", countToNumber);
+                    //$(".count-link").on("click", countToNumber);
+                    $links.on("click", countToNumber);
             </script>
 
           </div><!--End Count Display-->
@@ -273,9 +274,9 @@ document.body.appendChild(dateDiv); // Change `document.body` to the element you
                   <p>For a more authentic experience, try slow navigation</p>
 
                   
-
-
-                  
+                  <div class="toggle-container">
+                    <a href="#" id="toggle">Turn On</a>
+                  </div>
 
 
 
