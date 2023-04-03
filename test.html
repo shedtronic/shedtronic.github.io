@@ -39,27 +39,6 @@
         <div class="card-body">
           
          
-            <!--<div class="pagetitle">-->
-
-                  
-            
-
-              <div id="count-display">
-                <div class="count-container">
-                  <p>Count:</p>
-                  <span id="count">0</span>
-                </div>
-              </div>
-            
-            
-              <div id="timer-container">
-                <p>Time:</p>
-                <span class="hours">00</span>
-                <span class="separator">:</span>
-                <span class="minutes">00</span>
-                <span class="separator">:</span>
-                <span class="seconds">00</span>
-              </div>
             
             
 
@@ -69,79 +48,7 @@
           <script>
 
 
-$(document).ready(function() {
-  var delay = false;
-  var timePassed = 0;
 
-  $('#toggle').click(function(event) {
-    event.preventDefault();
-    delay = !delay;
-    $(this).text(delay ? "Off |" : " On |");
-  });
-
-  $('.count-link').click(function(event) {
-    event.preventDefault();
-    if (delay) {
-      var targetNumber = parseInt($(this).text());
-      var count = 0;
-      var interval = setInterval(function() {
-        count++;
-        $("#count").text(count);
-        if (count === targetNumber) {
-          clearInterval(interval);
-        }
-      }, 30);
-    } else {
-      window.location = $(this).attr('href');
-    }
-  });
-
-  setInterval(function() {
-    var now = new Date();
-    var hours = now.getHours();
-    var minutes = now.getMinutes();
-    var seconds = now.getSeconds();
-
-    $('.hours').text(hours < 10 ? '0' + hours : hours);
-    $('.minutes').text(minutes < 10 ? '0' + minutes : minutes);
-    $('.seconds').text(seconds < 10 ? '0' + seconds : seconds);
-  }, 1000);
-});
-
-
-
-
-                        // function to count to 999 in 30 seconds
-                function countTo999() {
-                var count = 0;
-                var interval = setInterval(function() {
-                count++;
-                $("#count-display").text(count);
-                if (count === 998) {
-                clearInterval(interval);
-                }
-                }, 30);
-                }
-
-                // function to count to a specific number when link is clicked
-                function countToNumber() {
-                var targetNumber = $(this).text();
-                var count = 0;
-                var interval = setInterval(function() {
-                count++;
-                $("#count-display").text(count);
-                if (count === targetNumber) {
-                clearInterval(interval);
-                }
-                }, 30);
-                }
-
-                // start the count on page load
-                countTo999();
-
-                // bind the countToNumber function to click event of links with class "count-link"
-               $(".count-link").on("click", countToNumber);
-               // $links.on("click", countToNumber);
         </script>
             
 
@@ -273,16 +180,7 @@ $(document).ready(function() {
               <ul class="sidemenu">
                 <p>For a more authentic experience, try slow navigation</p>
 
-                <div class="toggle-container">
-                  <a href="#" id="toggle">Turn On</a>
-                </div>
-
-                <li><a href="#" class="count-link">50</a></li>
-                <li><a href="#" class="count-link">100</a></li>
-                <li><a href="#" class="count-link">200</a></li>
-                <li><a href="#" class="count-link">500</a></li>
-               
-                  <li>Slow Navigation <br>
+                
                   
                     
                   
