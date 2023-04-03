@@ -34,6 +34,9 @@ const counterElement = document.getElementById('counter');
 // Get the count link element
 const countLinkElement = document.getElementById('count-link');
 
+// Get the toggle counter element
+const toggleCounterElement = document.getElementById('toggle-counter');
+
 // Define the function to start the counter
 function startCounter(targetNumber) {
   // Set the duration of the counter in milliseconds
@@ -82,6 +85,21 @@ countLinkElement.addEventListener('click', function(event) {
   startCounter(targetNumber);
 });
 
+// Add a change event listener to the toggle counter element
+toggleCounterElement.addEventListener('change', function(event) {
+  // Get the checked state of the toggle counter element
+  const isChecked = toggleCounterElement.checked;
+  
+  // If the toggle is checked, enable the counter
+  if (isChecked) {
+    countLinkElement.style.display = 'inline';
+  } else {
+    countLinkElement.style.display = 'none';
+  }
+});
+
+// Hide the count link element by default
+countLinkElement.style.display = 'none';
 
 
 
