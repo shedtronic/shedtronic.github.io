@@ -28,8 +28,6 @@
 
 
 <script>
-
-
 // Get the counter element
 const counterElement = document.getElementById('counter');
 
@@ -42,7 +40,7 @@ function startCounter(targetNumber) {
   const duration = 10000;
   
   // Calculate the increment amount per millisecond
-  const incrementAmount = (targetNumber - parseInt(counterElement.innerText)) / duration;
+  const incrementAmount = (targetNumber - 100) / duration;
   
   // Set the start time of the counter
   const startTime = Date.now();
@@ -53,7 +51,7 @@ function startCounter(targetNumber) {
     const elapsedTime = Date.now() - startTime;
     
     // Calculate the current number based on the elapsed time and increment amount
-    const currentNumber = parseInt(counterElement.innerText) + (elapsedTime * incrementAmount);
+    const currentNumber = 100 + (elapsedTime * incrementAmount);
     
     // Update the counter element with the current number
     counterElement.innerText = Math.round(currentNumber);
