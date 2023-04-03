@@ -73,39 +73,46 @@
         </script>
         
         <script>
-          var delay = false;
-          var timePassed = 0;
-
-
-          //Added any link location
-          var $toggle = $('#toggle');
-          var $links = $('.count-link');
-        
-          $('#toggle').click(function(event) {
-            event.preventDefault();
-            delay = !delay;
-            $(this).text(delay ? "Off |" : " On |");
-          });
-
-          //End added link location
-        
           $(document).ready(function() {
-            $('a').not('#toggle').click(function(event) {
-              if (delay) {
-                event.preventDefault();
-                var href = $(this).attr('href');
-                var startTime = Date.now();
-                var timer = setInterval(function() {
-                  timePassed = Date.now() - startTime;
-                  $('#count-display').text(timePassed);
-                }, 10);
-                setTimeout(function() {
-                  clearInterval(timer);
-                  window.location = href;
-                }, 1000);
-              }
-            });
-          });
+  var delay = false;
+  var timePassed = 0;
+
+  $('#toggle').click(function(event) {
+    event.preventDefault();
+    delay = !delay;
+    $(this).text(delay ? "Off |" : " On |");
+  });
+
+  $('.count-link').click(function(event) {
+    event.preventDefault();
+    if (delay) {
+      var targetNumber = parseInt($(this).text());
+      var count = 0;
+      var interval = setInterval(function() {
+        count++;
+        $("#count-display").text(count);
+        if (count === targetNumber) {
+          clearInterval(interval);
+        }
+      }, 30);
+    } else {
+      window.location = $(this).attr('href');
+    }
+  });
+
+  setInterval(function() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+
+    $('#timer').text(hours < 10 ? '0' + hours : hours);
+    $('#timer').append(':');
+    $('#timer').append(minutes < 10 ? '0' + minutes : minutes);
+    $('#timer').append(':');
+    $('#timer').append(seconds < 10 ? '0' + seconds : seconds);
+  }, 1000);
+});
 
 
 
@@ -275,12 +282,10 @@
             <img class="sidebarlogo" src="images/SHedtronic-Teletext-Logo.png" alt="Shedtronic logo teletext version">
               
               <ul class="sidemenu">
-                  <p>For a more authentic experience, try slow navigation</p>
-
-                  
-                  <div id="toggle">
-                    <button id="toggle">Toggle</button>
-                  </div>
+                <p>For a more authentic experience, try slow navigation</p>
+                <div class="toggle-container">
+                  <a href="#" id="toggle">Turn On</a>
+                </div>
 
 
 
