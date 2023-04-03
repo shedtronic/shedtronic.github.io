@@ -43,7 +43,7 @@
                   
             <div class="count-display">
             
-            
+            <!---->
           
             <div id="timer">100</div>
             
@@ -161,7 +161,23 @@
       <div class="card">
         <div class="card-body">
           
-          <p class="card-text">Test </p>
+          <p class="card-text">
+          <script>
+            const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            
+            const today = new Date();
+            const dayOfWeek = weekdays[today.getDay()];
+            const dayOfMonth = today.getDate();
+            const month = months[today.getMonth()];
+            
+            const todayFormatted = dayOfWeek + ' ' + dayOfMonth + ' ' + month;
+            console.log(todayFormatted); // Output: e.g. "Sun 03 Apr"
+            
+
+          </script>
+
+          </p>
         </div>
       </div>
     </div>
