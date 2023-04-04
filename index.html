@@ -29,102 +29,38 @@
 
 <script>
 
+// Define variables
+var counter = 0;
+var toggle = true;
 
-
-document.addEventListener('DOMContentLoaded', function() {
-  // Get the counter element
-  const counterElement = document.getElementById('counter');
-
-  // Get the count link element
-  const countLinkElement = document.getElementById('count-link');
-
-  // Get the toggle counter element
-  const toggleCounterElement = document.getElementById('toggle-counter');
-
-  // Define the function to set the initial state of the toggle
-  function setToggleState() {
-    if (toggleCounterElement.checked) {
-      countLinkElement.style.display = 'inline';
-      counterElement.innerText = '100';
-    } else {
-      countLinkElement.style.display = 'none';
-    }
-  }
-
-  // Call the setToggleState function to set the initial state of the toggle
-  setToggleState();
-
-  // Add a click event listener to the count link element
-  countLinkElement.addEventListener('click', function(event) {
-    // Prevent the default link behavior
-    event.preventDefault();
-
-    // Get the target number from the data attribute of the count link element
-    const targetNumber = parseInt(countLinkElement.dataset.target);
-
-    // Start the counter with the target number
-    startCounter(targetNumber);
-  });
-
-  // Add a change event listener to the toggle counter element
-  toggleCounterElement.addEventListener('change', function(event) {
-    // Get the checked state of the toggle counter element
-    const isChecked = toggleCounterElement.checked;
-
-    // If the toggle is checked, enable the counter
-    if (isChecked) {
-      countLinkElement.style.display = 'inline';
-
-      // Reset the counter to 100
-      counterElement.innerText = '100';
-    } else {
-      countLinkElement.style.display = 'none';
-    }
-  });
-
-  // Trigger the change event to update the state of the toggle
-  toggleCounterElement.dispatchEvent(new Event('change'));
-
-});
-
-// Define the function to start the counter
-function startCounter(targetNumber) {
-  // Set the duration of the counter in milliseconds
-  const duration = 10000;
-
-  // Calculate the increment amount per millisecond
-  const incrementAmount = (targetNumber - 100) / duration;
-
-  // Set the start time of the counter
-  const startTime = Date.now();
-
-  // Define the function to update the counter
-  function updateCounter() {
-    // Calculate the elapsed time since the start of the counter
-    const elapsedTime = Date.now() - startTime;
-
-    // Calculate the current number based on the elapsed time and increment amount
-    const currentNumber = 100 + (elapsedTime * incrementAmount);
-
-    // Update the counter element with the current number
-    counterElement.innerText = Math.round(currentNumber);
-
-    // Check if the current number has reached the target number
-    if (currentNumber >= targetNumber) {
-      // Redirect to the target page
-      window.location.href = `${targetNumber}.html`;
-
-      // Stop the counter
-      clearInterval(intervalId);
-    }
-  }
-
-  // Call the updateCounter function every 10 milliseconds
-  const intervalId = setInterval(updateCounter, 10);
+// Function to increment counter
+function incrementCounter() {
+  counter++;
+  document.getElementById("count").innerHTML = "Count: " + counter;
 }
 
-</script>
+// Add event listener to all links
+var links = document.getElementsByTagName("a");
+for (var i = 0; i < links.length; i++) {
+  var link = links[i];
+  link.addEventListener("click", function(event) {
+    // Only increment counter if toggle is on and link has data-target="304"
+    if (toggle && this.getAttribute("data-target") === "304") {
+      incrementCounter();
+    }
+  });
+}
 
+// Add event listener to toggle button
+var toggleBtn = document.getElementById("toggleBtn");
+toggleBtn.addEventListener("click", function(event) {
+  toggle = !toggle;
+  if (toggle) {
+    document.getElementById("count").style.display = "block";
+  } else {
+    document.getElementById("count").style.display = "none";
+  }
+});
 
 
 </script>
