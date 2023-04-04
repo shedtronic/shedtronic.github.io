@@ -30,98 +30,81 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Your JavaScript code goes here
+  // Get the counter element
+  const counterElement = document.getElementById('counter');
 
+  // Get the count link element
+  const countLinkElement = document.getElementById('count-link');
 
+  // Get the toggle counter element
+  const toggleCounterElement = document.getElementById('toggle-counter');
 
-// Get the counter element
-const counterElement = document.getElementById('counter');
+  // Define the function to start the counter
+  function startCounter(targetNumber) {
+    // Set the duration of the counter in milliseconds
+    const duration = 10000;
+    
+    // Calculate the increment amount per millisecond
+    const incrementAmount = (targetNumber - 100) / duration;
+    
+    // Set the start time of the counter
+    const startTime = Date.now();
+    
+    // Define the function to update the counter
+    function updateCounter() {
+      // Calculate the elapsed time since the start of the counter
+      const elapsedTime = Date.now() - startTime;
+      
+      // Calculate the current number based on the elapsed time and increment amount
+      const currentNumber = 100 + (elapsedTime * incrementAmount);
+      
+      // Update the counter element with the current number
+      counterElement.innerText = Math.round(currentNumber);
+      
+      // Check if the current number has reached the target number
+      if (currentNumber >= targetNumber) {
+        // Redirect to the target page
+        window.location.href = `${targetNumber}.html`;
+        
+        // Stop the counter
+        clearInterval(intervalId);
+      }
+    }
+    
+    // Call the updateCounter function every 10 milliseconds
+    const intervalId = setInterval(updateCounter, 10);
+  }
 
-// Get the count link element
-const countLinkElement = document.getElementById('count-link');
-
-
-if (countLinkElement) {
+  // Add a click event listener to the count link element
   countLinkElement.addEventListener('click', function(event) {
-    // ...
+    // Prevent the default link behavior
+    event.preventDefault();
+    
+    // Get the target number from the data attribute of the count link element
+    const targetNumber = parseInt(countLinkElement.dataset.target);
+    
+    // Start the counter with the target number
+    startCounter(targetNumber);
   });
 
-}
-
-if (countLinkElement) {
-  countLinkElement.style.display = 'none';
-}
-
-
-// Get the toggle counter element
-const toggleCounterElement = document.getElementById('toggle-counter');
-
-// Define the function to start the counter
-function startCounter(targetNumber) {
-  // Set the duration of the counter in milliseconds
-  const duration = 10000;
-  
-  // Calculate the increment amount per millisecond
-  const incrementAmount = (targetNumber - 100) / duration;
-  
-  // Set the start time of the counter
-  const startTime = Date.now();
-  
-  // Define the function to update the counter
-  function updateCounter() {
-    // Calculate the elapsed time since the start of the counter
-    const elapsedTime = Date.now() - startTime;
+  // Add a change event listener to the toggle counter element
+  toggleCounterElement.addEventListener('change', function(event) {
+    // Get the checked state of the toggle counter element
+    const isChecked = toggleCounterElement.checked;
     
-    // Calculate the current number based on the elapsed time and increment amount
-    const currentNumber = 100 + (elapsedTime * incrementAmount);
-    
-    // Update the counter element with the current number
-    counterElement.innerText = Math.round(currentNumber);
-    
-    // Check if the current number has reached the target number
-    if (currentNumber >= targetNumber) {
-      // Redirect to the target page
-      window.location.href = `${targetNumber}.html`;
-      
-      // Stop the counter
-      clearInterval(intervalId);
+    // If the toggle is checked, enable the counter
+    if (isChecked) {
+      countLinkElement.style.display = 'inline';
+
+      // Reset the counter to 100
+      counterElement.innerText = '100';
+    } else {
+      countLinkElement.style.display = 'none';
     }
-  }
-  
-  // Call the updateCounter function every 10 milliseconds
-  const intervalId = setInterval(updateCounter, 10);
-}
+  });
 
-// Delay the appearance of the link and counter by 10 seconds
-setTimeout(function() {
-  // Show the count link element
-  countLinkElement.style.display = 'inline';
-
-  // Start the counter with the target number
-  startCounter(304);
-}, 10000);
-
-// Add a change event listener to the toggle counter element
-toggleCounterElement.addEventListener('change', function(event) {
-  // Get the checked state of the toggle counter element
-  const isChecked = toggleCounterElement.checked;
-  
-  // If the toggle is checked, enable the counter
-  if (isChecked) {
-    countLinkElement.style.display = 'inline';
-
-    // Reset the counter to 100
-    counterElement.innerText = '100';
-  } else {
-    countLinkElement.style.display = 'none';
-  }
-});
-
-// Hide the count link element by default
-countLinkElement.style.display = 'none';
-
-
-
+  // Hide the count link element by default
+  countLinkElement.style.display = 'none';
 });
 
 
