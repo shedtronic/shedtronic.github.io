@@ -54,14 +54,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Add a click event listener to the count link element
   countLinkElement.addEventListener('click', function(event) {
-    // Only start the counter if the data-target attribute of the link is "304"
-    if (countLinkElement.dataset.target === "304") {
-      // Prevent the default link behavior
-      event.preventDefault();
+    // Prevent the default link behavior
+    event.preventDefault();
 
-      // Start the counter from 100 to 304
-      startCounter(100, 304);
-    }
+    // Get the target number from the data attribute of the count link element
+    const targetNumber = parseInt(countLinkElement.dataset.target);
+
+    // Start the counter with the target number
+    startCounter(targetNumber);
   });
 
   // Add a change event listener to the toggle counter element
@@ -80,42 +80,47 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Define the function to start the counter
-  function startCounter(startNumber, targetNumber) {
-    // Set the duration of the counter in milliseconds
-    const duration = 10000;
+  // Trigger the change event to update the state of the toggle
+  toggleCounterElement.dispatchEvent(new Event('change'));
 
-    // Calculate the increment amount per millisecond
-    const incrementAmount = (targetNumber - startNumber) / duration;
-
-    // Set the start time of the counter
-    const startTime = Date.now();
-
-    // Define the function to update the counter
-    function updateCounter() {
-      // Calculate the elapsed time since the start of the counter
-      const elapsedTime = Date.now() - startTime;
-
-      // Calculate the current number based on the elapsed time and increment amount
-      const currentNumber = startNumber + (elapsedTime * incrementAmount);
-
-      // Update the counter element with the current number
-      counterElement.innerText = Math.round(currentNumber);
-
-      // Check if the current number has reached the target number
-      if (currentNumber >= targetNumber) {
-        // Redirect to the target page
-        window.location.href = `${targetNumber}.html`;
-
-        // Stop the counter
-        clearInterval(intervalId);
-      }
-    }
-
-    // Call the updateCounter function every 10 milliseconds
-    const intervalId = setInterval(updateCounter, 10);
-  }
 });
+
+// Define the function to start the counter
+function startCounter(targetNumber) {
+  // Set the duration of the counter in milliseconds
+  const duration = 10000;
+
+  // Calculate the increment amount per millisecond
+  const incrementAmount = (targetNumber - 100) / duration;
+
+  // Set the start time of the counter
+  const startTime = Date.now();
+
+  // Define the function to update the counter
+  function updateCounter() {
+    // Calculate the elapsed time since the start of the counter
+    const elapsedTime = Date.now() - startTime;
+
+    // Calculate the current number based on the elapsed time and increment amount
+    const currentNumber = 100 + (elapsedTime * incrementAmount);
+
+    // Update the counter element with the current number
+    counterElement.innerText = Math.round(currentNumber);
+
+    // Check if the current number has reached the target number
+    if (currentNumber >= targetNumber) {
+      // Redirect to the target page
+      window.location.href = `${targetNumber}.html`;
+
+      // Stop the counter
+      clearInterval(intervalId);
+    }
+  }
+
+  // Call the updateCounter function every 10 milliseconds
+  const intervalId = setInterval(updateCounter, 10);
+}
+
 
 
 
@@ -226,8 +231,8 @@ document.addEventListener('DOMContentLoaded', function() {
                       <div class='listleft'>
                         <!--<a href="pyscripttest.html">Experiments with pyscript</a>-->
                       </div>
-                      <div class='listright count-link'>
-                        <a  href="#" id="count-link" data-target="304">304</a>
+                      <div class='listright'>
+                        <a  href="304.html" id="count-link" data-target="304">304</a>
                       </div>
             </div> 
    </div>  
