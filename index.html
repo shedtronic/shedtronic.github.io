@@ -93,6 +93,9 @@ toggleCounterElement.addEventListener('change', function(event) {
   // If the toggle is checked, enable the counter
   if (isChecked) {
     countLinkElement.style.display = 'inline';
+
+    // Reset the counter to 100
+    counterElement.innerText = '100';
   } else {
     countLinkElement.style.display = 'none';
   }
