@@ -39,11 +39,6 @@ const toggleCounterElement = document.getElementById('toggle-counter');
 
 // Define the function to start the counter
 function startCounter(targetNumber) {
-  // Check if the counter is already at the target number
-  if (parseInt(counterElement.innerText) === targetNumber) {
-    return;
-  }
-  
   // Set the duration of the counter in milliseconds
   const duration = 10000;
   
@@ -78,17 +73,14 @@ function startCounter(targetNumber) {
   const intervalId = setInterval(updateCounter, 10);
 }
 
-// Add a click event listener to the count link element
-countLinkElement.addEventListener('click', function(event) {
-  // Prevent the default link behavior
-  event.preventDefault();
-  
-  // Get the target number from the data attribute of the count link element
-  const targetNumber = parseInt(countLinkElement.dataset.target);
-  
+// Delay the appearance of the link and counter by 10 seconds
+setTimeout(function() {
+  // Show the count link element
+  countLinkElement.style.display = 'inline';
+
   // Start the counter with the target number
-  startCounter(targetNumber);
-});
+  startCounter(304);
+}, 10000);
 
 // Add a change event listener to the toggle counter element
 toggleCounterElement.addEventListener('change', function(event) {
@@ -108,7 +100,6 @@ toggleCounterElement.addEventListener('change', function(event) {
 
 // Hide the count link element by default
 countLinkElement.style.display = 'none';
-
 
 
 </script>
