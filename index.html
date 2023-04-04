@@ -39,6 +39,11 @@ const toggleCounterElement = document.getElementById('toggle-counter');
 
 // Define the function to start the counter
 function startCounter(targetNumber) {
+  // Check if the counter is already at the target number
+  if (parseInt(counterElement.innerText) === targetNumber) {
+    return;
+  }
+  
   // Set the duration of the counter in milliseconds
   const duration = 10000;
   
