@@ -28,6 +28,7 @@
 
 
 <script>
+
 document.addEventListener('DOMContentLoaded', function() {
   // Get the counter element
   const counterElement = document.getElementById('counter');
@@ -50,10 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Call the setToggleState function to set the initial state of the toggle
   setToggleState();
-
-  // Move the count link element to the desired location
-  const listRightElement = document.querySelector('.listright');
-  listRightElement.appendChild(countLinkElement);
 
   // Add a click event listener to the count link element
   countLinkElement.addEventListener('click', function(event) {
