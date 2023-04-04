@@ -36,6 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Get the count link element
   const countLinkElement = document.getElementById('count-link');
 
+
+
+
+
+
+
+
   // Get the toggle counter element
   const toggleCounterElement = document.getElementById('toggle-counter');
 
@@ -50,19 +57,29 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Call the setToggleState function to set the initial state of the toggle
-  setToggleState();
+ function setToggleState() {
+  if (toggleCounterElement.checked) {
+    countLinkElement.style.display = 'inline';
+    counterElement.innerText = '100';
 
-  // Add a click event listener to the count link element
-  countLinkElement.addEventListener('click', function(event) {
-    // Prevent the default link behavior
-    event.preventDefault();
+    // Get the count link element in the listright div
+    const countLinkElementListRight = document.querySelector('.listright #count-link');
 
-    // Get the target number from the data attribute of the count link element
-    const targetNumber = parseInt(countLinkElement.dataset.target);
+    // Add a click event listener to the count link element in the listright div
+    countLinkElementListRight.addEventListener('click', function(event) {
+      // Prevent the default link behavior
+      event.preventDefault();
 
-    // Start the counter with the target number
-    startCounter(targetNumber);
-  });
+      // Get the target number from the data attribute of the count link element
+      const targetNumber = parseInt(countLinkElementListRight.dataset.target);
+
+      // Start the counter with the target number
+      startCounter(targetNumber);
+    });
+  } else {
+    countLinkElement.style.display = 'none';
+  }
+}
 
   // Add a change event listener to the toggle counter element
   toggleCounterElement.addEventListener('change', function(event) {
