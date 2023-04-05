@@ -28,111 +28,41 @@
 
 
 <script>
+ // get the counter div and the initial count value
+ const counter = document.getElementById('counter');
+  const count = parseInt(counter.getAttribute('data-count'));
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Get the counter element
-  const counterElement = document.getElementById('counter');
+  // get all links with data-target attribute
+  const links = document.querySelectorAll('[data-target]');
 
-  // Get the count link element
-  const countLinkElement = document.getElementById('count-link');
-
-
-
-
-
-
-
-
-  // Get the toggle counter element
-  const toggleCounterElement = document.getElementById('toggle-counter');
-
-  
-
-  // Call the setToggleState function to set the initial state of the toggle
- function setToggleState() {
-  if (toggleCounterElement.checked) {
-    countLinkElement.style.display = 'inline';
-    counterElement.innerText = '100';
-
-    // Get the count link element in the listright div
-    const countLinkElementListRight = document.querySelector('.listright #count-link');
-
-
-
-
-    // Add a click event listener to the count link element in the listright div
-    countLinkElementListRight.addEventListener('click', function(event) {
-      // Prevent the default link behavior
+  // loop through each link and add a click event listener
+  links.forEach(link => {
+    link.addEventListener('click', (event) => {
+      // prevent default link behavior
       event.preventDefault();
 
-      // Get the target number from the data attribute of the count link element
-      const targetNumber = parseInt(countLinkElementListRight.dataset.target);
+      // get the target count value
+      const targetCount = parseInt(link.getAttribute('data-target'));
 
-      // Start the counter with the target number
-      startCounter(targetNumber);
+      // start counting up to the target value
+      let currentCount = count;
+      const countInterval = setInterval(() => {
+        // update the counter display
+        counter.textContent = currentCount;
+
+        // check if we've reached the target count
+        if (currentCount >= targetCount) {
+          clearInterval(countInterval);
+
+          // redirect to the link href
+          window.location.href = link.href;
+        }
+
+        // increment the current count
+        currentCount++;
+      }, 10);
     });
-  } else {
-    countLinkElement.style.display = 'none';
-  }
-}
-
-  // Add a change event listener to the toggle counter element
-  toggleCounterElement.addEventListener('change', function(event) {
-    // Get the checked state of the toggle counter element
-    const isChecked = toggleCounterElement.checked;
-
-    // If the toggle is checked, enable the counter
-    if (isChecked) {
-      countLinkElement.style.display = 'inline';
-
-      // Reset the counter to 100
-      counterElement.innerText = '100';
-    } else {
-      countLinkElement.style.display = 'none';
-    }
   });
-
-  // Trigger the change event to update the state of the toggle
-  toggleCounterElement.dispatchEvent(new Event('change'));
-
-});
-
-// Define the function to start the counter
-function startCounter(targetNumber) {
-  // Set the duration of the counter in milliseconds
-  const duration = 10000;
-
-  // Calculate the increment amount per millisecond
-  const incrementAmount = (targetNumber - 100) / duration;
-
-  // Set the start time of the counter
-  const startTime = Date.now();
-
-  // Define the function to update the counter
-  function updateCounter() {
-    // Calculate the elapsed time since the start of the counter
-    const elapsedTime = Date.now() - startTime;
-
-    // Calculate the current number based on the elapsed time and increment amount
-    const currentNumber = 100 + (elapsedTime * incrementAmount);
-
-    // Update the counter element with the current number
-    counterElement.innerText = Math.round(currentNumber);
-
-    // Check if the current number has reached the target number
-    if (currentNumber >= targetNumber) {
-      // Redirect to the target page
-      window.location.href = `${targetNumber}.html`;
-
-      // Stop the counter
-      clearInterval(intervalId);
-    }
-  }
-
-  // Call the updateCounter function every 10 milliseconds
-  const intervalId = setInterval(updateCounter, 10);
-}
-
 
 </script>
 
