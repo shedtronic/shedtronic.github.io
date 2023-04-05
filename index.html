@@ -28,39 +28,35 @@
 
 
 <script>
- // get the counter div and the initial count value
- const counter = document.getElementById('counter');
-  const count = parseInt(counter.getAttribute('data-count'));
-
-  // get all links with data-target attribute
-  const links = document.querySelectorAll('[data-target]');
-
-  // loop through each link and add a click event listener
-  links.forEach(link => {
-    link.addEventListener('click', (event) => {
-      // prevent default link behavior
-      event.preventDefault();
-
-      // get the target count value
-      const targetCount = parseInt(link.getAttribute('data-target'));
-
-      // start counting up to the target value
-      let currentCount = count;
-      const countInterval = setInterval(() => {
-        // update the counter display
-        counter.textContent = currentCount;
-
-        // check if we've reached the target count
-        if (currentCount >= targetCount) {
-          clearInterval(countInterval);
-
-          // redirect to the link href
-          window.location.href = link.href;
-        }
-
-        // increment the current count
-        currentCount++;
-      }, 10);
+  $(document).ready(function() {
+    $('#toggle').on('click', function() {
+      if($(this).is(':checked')) {
+        $('a#count-link').each(function() {
+          var target = $(this).data('target');
+          $(this).html('<div class="counter" data-target="' + target + '">100</div>');
+          $(this).addClass('counting');
+        });
+        $('.counter.counting').each(function() {
+          var $this = $(this),
+              countTo = $this.data('target'),
+              countNum = $this.text(),
+              step = Math.ceil(countTo / 50),
+              interval = setInterval(function() {
+                countNum = countNum + step;
+                if(countNum >= countTo) {
+                  countNum = countTo;
+                  clearInterval(interval);
+                  window.location.href = $this.parent().attr('href');
+                }
+                $this.text(countNum);
+              }, 50);
+        });
+      } else {
+        $('.counter').each(function() {
+          $(this).text('100');
+        });
+        $('a#count-link').removeClass('counting');
+      }
     });
   });
 
