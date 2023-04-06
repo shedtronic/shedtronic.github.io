@@ -28,38 +28,44 @@
 
 
 <script>
-  $(document).ready(function() {
-    $('#toggle').on('click', function() {
-      if($(this).is(':checked')) {
-        $('a#count-link').each(function() {
-          var target = $(this).data('target');
-          $(this).html('<div class="counter" data-target="' + target + '">100</div>');
-          $(this).addClass('counting');
-        });
-        $('.counter.counting').each(function() {
-          var $this = $(this),
-              countTo = $this.data('target'),
-              countNum = $this.text(),
-              step = Math.ceil(countTo / 50),
-              interval = setInterval(function() {
-                countNum = countNum + step;
-                if(countNum >= countTo) {
-                  countNum = countTo;
-                  clearInterval(interval);
-                  window.location.href = $this.parent().attr('href');
-                }
-                $this.text(countNum);
-              }, 50);
-        });
-      } else {
-        $('.counter').each(function() {
-          $(this).text('100');
-        });
-        $('a#count-link').removeClass('counting');
+ // Define variables
+ const counter = document.querySelector("#counter");
+  const links = document.querySelectorAll("#list-right .count-link");
+  const toggle = document.querySelector("#toggle-counter");
+  
+  // Set initial counter value
+  let count = 100;
+  
+  // Function to count up to target number
+  function countToTarget(target) {
+    // Calculate increment based on target number
+    const increment = Math.ceil((target - count) / 50);
+    // Set interval to count up
+    const interval = setInterval(() => {
+      count += increment;
+      counter.textContent = count;
+      // Stop interval when target is reached
+      if (count >= target) {
+        clearInterval(interval);
+        window.location.href = `http://example.com/${target}.html`;
+      }
+    }, 20);
+  }
+  
+  // Add click event listener to links
+  links.forEach(link => {
+    link.addEventListener("click", event => {
+      // Check if toggle is on
+      if (toggle.checked) {
+        // Prevent link from going to destination immediately
+        event.preventDefault();
+        // Get target number from data-target attribute
+        const target = Number(link.dataset.target);
+        // Start counting to target number
+        countToTarget(target);
       }
     });
   });
-
 </script>
 
   </head>
