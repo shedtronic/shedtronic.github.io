@@ -111,7 +111,8 @@
                         <a href="#" title="Coming Soon">3D Collaborative Game Design System</a>
                       </div>
                       <div class='listright'>
-                        <a href="300.html" id="counter" class="dynamic-counter-link">300</a>
+                        <a href="300.html" class="counter dynamic-counter-link">300</a>
+
                         
                       </div>
                       <div class='listleft'>
@@ -313,54 +314,31 @@
    
    
    document.addEventListener('DOMContentLoaded', function() {
-       let links = document.querySelectorAll('.counter-link');
-       
-       links.forEach(function(link) {
-           link.addEventListener('click', function(e) {
-               e.preventDefault();  // Prevents the default action, which is navigating to the link immediately
-               
-               let startNumber = parseInt(link.innerText, 10);
-               let endNumber = parseInt(link.getAttribute('href').replace('.html', ''), 10);
-   
-               if (isNaN(endNumber)) return;  // Exit if the number isn't valid
-               
-               // This is where the counting happens
-               let interval = setInterval(function() {
-                   if (startNumber < endNumber) {
-                       startNumber += 1;
-                       link.innerText = startNumber;
-                   } else {
-                       clearInterval(interval);  // Stop the counting
-                       window.location.href = link.getAttribute('href');  // Navigate to the desired page
-                   }
-               }, 100);
-           });
-       });
-   });
-   
+    let links = document.querySelectorAll('.dynamic-counter-link');
 
+    links.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
 
+            let startNumber = parseInt(link.innerText, 10);
+            let endNumber = parseInt(link.getAttribute('href').replace('.html', ''), 10);
 
-   // Get all links with the class "dynamic-counter-link"
-let links = document.querySelectorAll('.dynamic-counter-link');
+            if (isNaN(endNumber)) return;
 
-// Attach an event listener to each link
-links.forEach(function(link) {
-    link.addEventListener('click', function(e) {
-        // Prevent the default behavior of the link
-        e.preventDefault();
-
-        // Extract the desired number from the link's href attribute
-        let number = e.target.getAttribute('href').replace('.html', '');
-
-        // Update the counter's innerHTML with the extracted number
-        document.getElementById('counter').innerHTML = number;
-
-        // Redirect to the clicked link's href
-        window.location.href = e.target.getAttribute('href');
+            let interval = setInterval(function() {
+                if (startNumber < endNumber) {
+                    startNumber += 1;
+                    link.innerText = startNumber;
+                } else {
+                    clearInterval(interval);
+                    document.querySelector('.counter').innerHTML = endNumber;
+                    window.location.href = link.getAttribute('href');
+                }
+            }, 100);
+        });
     });
 });
-   
+
    
    
    
