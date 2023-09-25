@@ -111,7 +111,8 @@
                         <a href="#" title="Coming Soon">3D Collaborative Game Design System</a>
                       </div>
                       <div class='listright'>
-                        <a href="300.html" id="counter" class="counter-link">300</a>
+                        <a href="300.html" id="counter" class="dynamic-counter-link">300</a>
+                        
                       </div>
                       <div class='listleft'>
                         SDR Sensing APC Device
@@ -337,6 +338,28 @@
        });
    });
    
+
+
+
+   // Get all links with the class "dynamic-counter-link"
+let links = document.querySelectorAll('.dynamic-counter-link');
+
+// Attach an event listener to each link
+links.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+        // Prevent the default behavior of the link
+        e.preventDefault();
+
+        // Extract the desired number from the link's href attribute
+        let number = e.target.getAttribute('href').replace('.html', '');
+
+        // Update the counter's innerHTML with the extracted number
+        document.getElementById('counter').innerHTML = number;
+
+        // Redirect to the clicked link's href
+        window.location.href = e.target.getAttribute('href');
+    });
+});
    
    
    
