@@ -27,101 +27,7 @@
     <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
 
 
-<script>
- // Define variables
-const counter = document.querySelector("#counter");
-const links = document.querySelectorAll("#list-right .count-link");
-const toggle = document.querySelector("#toggle-counter");
 
-// Set initial counter value
-let count = 100;
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    let links = document.querySelectorAll('.counter-link');
-    
-    links.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();  // Prevents the default action, which is navigating to the link immediately
-            
-            let startNumber = parseInt(link.innerText, 10);
-            let endNumber = parseInt(link.getAttribute('href').replace('.html', ''), 10);
-
-            if (isNaN(endNumber)) return;  // Exit if the number isn't valid
-            
-            // This is where the counting happens
-            let interval = setInterval(function() {
-                if (startNumber < endNumber) {
-                    startNumber += 1;
-                    link.innerText = startNumber;
-                } else {
-                    clearInterval(interval);  // Stop the counting
-                    window.location.href = link.getAttribute('href');  // Navigate to the desired page
-                }
-            }, 100);
-        });
-    });
-});
-
-
-
-
-
-
-// Function to count up to target number
-function countToTarget(target) {
-  // Calculate increment based on target number
-  const increment = Math.ceil((target - count) / 50);
-  // Set interval to count up
-  const interval = setInterval(() => {
-    count += increment;
-    counter.textContent = count;
-    // Stop interval when target is reached
-    if (count >= target) {
-      clearInterval(interval);
-      window.location.href = `http://example.com/${target}.html`;
-    }
-  }, 20);
-}
-
-// Add click event listener to links
-links.forEach(link => {
-  link.addEventListener("click", event => {
-    // Check if toggle is on
-    if (toggle.checked) {
-      // Prevent link from going to destination immediately
-      event.preventDefault();
-      // Get target number from data-target attribute
-      const target = Number(link.dataset.target);
-      // Start counting to target number
-      countToTarget(target);
-    }
-  });
-});
-
-// Function to count up to 1000 with delay on click
-function countTo1000() {
-  // Set interval to count up
-  const interval = setInterval(() => {
-    count++;
-    counter.textContent = count;
-    // Stop interval when 1000 is reached
-    if (count >= 1000) {
-      clearInterval(interval);
-    }
-  }, 10);
-}
-
-// Add click event listener to counter
-counter.addEventListener("click", () => {
-  // Check if toggle is on
-  if (toggle.checked) {
-    // Start counting to 1000
-    countTo1000();
-  }
-});
-
-</script>
 
   </head>
   <body>
@@ -394,6 +300,102 @@ counter.addEventListener("click", () => {
   <!--Audioplayer Script-->
 
   <script src="app.js"></script>
+
+  <script>
+    // Define variables
+   const counter = document.querySelector("#counter");
+   const links = document.querySelectorAll("#list-right .count-link");
+   const toggle = document.querySelector("#toggle-counter");
+   
+   // Set initial counter value
+   let count = 100;
+   
+   
+   document.addEventListener('DOMContentLoaded', function() {
+       let links = document.querySelectorAll('.counter-link');
+       
+       links.forEach(function(link) {
+           link.addEventListener('click', function(e) {
+               e.preventDefault();  // Prevents the default action, which is navigating to the link immediately
+               
+               let startNumber = parseInt(link.innerText, 10);
+               let endNumber = parseInt(link.getAttribute('href').replace('.html', ''), 10);
+   
+               if (isNaN(endNumber)) return;  // Exit if the number isn't valid
+               
+               // This is where the counting happens
+               let interval = setInterval(function() {
+                   if (startNumber < endNumber) {
+                       startNumber += 1;
+                       link.innerText = startNumber;
+                   } else {
+                       clearInterval(interval);  // Stop the counting
+                       window.location.href = link.getAttribute('href');  // Navigate to the desired page
+                   }
+               }, 100);
+           });
+       });
+   });
+   
+   
+   
+   
+   
+   
+   // Function to count up to target number
+   function countToTarget(target) {
+     // Calculate increment based on target number
+     const increment = Math.ceil((target - count) / 50);
+     // Set interval to count up
+     const interval = setInterval(() => {
+       count += increment;
+       counter.textContent = count;
+       // Stop interval when target is reached
+       if (count >= target) {
+         clearInterval(interval);
+         window.location.href = `http://example.com/${target}.html`;
+       }
+     }, 20);
+   }
+   
+   // Add click event listener to links
+   links.forEach(link => {
+     link.addEventListener("click", event => {
+       // Check if toggle is on
+       if (toggle.checked) {
+         // Prevent link from going to destination immediately
+         event.preventDefault();
+         // Get target number from data-target attribute
+         const target = Number(link.dataset.target);
+         // Start counting to target number
+         countToTarget(target);
+       }
+     });
+   });
+   
+   // Function to count up to 1000 with delay on click
+   function countTo1000() {
+     // Set interval to count up
+     const interval = setInterval(() => {
+       count++;
+       counter.textContent = count;
+       // Stop interval when 1000 is reached
+       if (count >= 1000) {
+         clearInterval(interval);
+       }
+     }, 10);
+   }
+   
+   // Add click event listener to counter
+   counter.addEventListener("click", () => {
+     // Check if toggle is on
+     if (toggle.checked) {
+       // Start counting to 1000
+       countTo1000();
+     }
+   });
+   
+   </script>
   
 </body>
 </html>
