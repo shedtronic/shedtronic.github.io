@@ -314,27 +314,31 @@
    
    
    document.addEventListener('DOMContentLoaded', function() {
-    let links = document.querySelectorAll('.dynamic-counter-link');
-
-    links.forEach(function(link) {
+    // Define variables
+    const toggle = document.querySelector("#toggle-counter");
+    
+    // Click event listener for links
+    const links = document.querySelectorAll('.dynamic-counter-link');
+    links.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
+            if (toggle.checked) {
+                e.preventDefault(); // Prevent the link from redirecting immediately
 
-            let startNumber = parseInt(link.innerText, 10);
-            let endNumber = parseInt(link.getAttribute('href').replace('.html', ''), 10);
+                let startNumber = parseInt(link.innerText, 10);
+                let endNumber = parseInt(link.getAttribute('href').replace('.html', ''), 10);
 
-            if (isNaN(endNumber)) return;
+                if (isNaN(endNumber)) return;
 
-            let interval = setInterval(function() {
-                if (startNumber < endNumber) {
-                    startNumber += 1;
-                    link.innerText = startNumber;
-                } else {
-                    clearInterval(interval);
-                    document.querySelector('.counter').innerHTML = endNumber;
-                    window.location.href = link.getAttribute('href');
-                }
-            }, 100);
+                let interval = setInterval(function() {
+                    if (startNumber < endNumber) {
+                        startNumber += 1;
+                        link.innerText = startNumber;
+                    } else {
+                        clearInterval(interval);
+                        window.location.href = link.getAttribute('href');
+                    }
+                }, 100);
+            }
         });
     });
 });
