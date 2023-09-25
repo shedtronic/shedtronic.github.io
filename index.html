@@ -36,6 +36,38 @@ const toggle = document.querySelector("#toggle-counter");
 // Set initial counter value
 let count = 100;
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    let links = document.querySelectorAll('.counter-link');
+    
+    links.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();  // Prevents the default action, which is navigating to the link immediately
+            
+            let startNumber = parseInt(link.innerText, 10);
+            let endNumber = parseInt(link.getAttribute('href').replace('.html', ''), 10);
+
+            if (isNaN(endNumber)) return;  // Exit if the number isn't valid
+            
+            // This is where the counting happens
+            let interval = setInterval(function() {
+                if (startNumber < endNumber) {
+                    startNumber += 1;
+                    link.innerText = startNumber;
+                } else {
+                    clearInterval(interval);  // Stop the counting
+                    window.location.href = link.getAttribute('href');  // Navigate to the desired page
+                }
+            }, 100);
+        });
+    });
+});
+
+
+
+
+
+
 // Function to count up to target number
 function countToTarget(target) {
   // Calculate increment based on target number
@@ -100,8 +132,8 @@ counter.addEventListener("click", () => {
       <div class="card">
         <div class="card-body">
           <p class="card-text">
-            <div id="counter">100</div>
-            <a href="304.html" data-target="304">304.html</a>
+            <div id="counter"><a href="304.html" class="counter-link" id="counter">100</a></div>
+            
 
 
           </p>
