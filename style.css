@@ -267,7 +267,7 @@ ul.sidemenu {
 .card-body {
  
   background: black;
-  padding: 0rem 0rem;
+  padding: 0rem 0rem !important;
 }
 
 .row.align-items-start {
