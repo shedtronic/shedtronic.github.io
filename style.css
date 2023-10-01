@@ -322,7 +322,7 @@ align-items: flex-start;
 }
 
 #clock {
-  border: 1px solid blue; 
+  /*border: 1px solid blue; */
  font-size:100%;
  color:#ffffff;
 
