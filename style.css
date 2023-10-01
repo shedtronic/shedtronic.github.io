@@ -288,6 +288,13 @@ ul.sidemenu {
   height:30px;
   
 }
+
+.counter {
+
+  padding:0px !important;
+}
+
+
 .count-display  {
   
   color:#ffffff;
