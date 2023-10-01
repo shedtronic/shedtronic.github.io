@@ -260,7 +260,7 @@ ul.sidemenu {
 .card {
   /* Remove height property */
   background:#000000;
- 
+ border: 0px;
   
 }
 
