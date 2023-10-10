@@ -280,7 +280,7 @@ ul.sidemenu {
   border:1px solid purple;
 }
 
-.countercolor 
+.countercolor, a.countercolor 
 {
 
 color:green !important;
