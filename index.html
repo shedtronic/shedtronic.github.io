@@ -12,19 +12,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <!--<script language="javascript" type="text/javascript" src="p5/addons/p5.sound.js"></script> -->
 
-    <!--AudioPlayer Related-->
+    <!--AudioPlayer scripts and styles links-->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a062562745.js" crossorigin="anonymous"></script>    
     <link rel=stylesheet href="audio.css" media=all> 
-    <!--End AudioPlayer Related-->
+    <!--End AudioPlayer scripts and style links-->
 
 
     <title>The home of shedtronic's github</title>
 
+    
     <!--Jquery-->
-
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+    
 
 
 
@@ -60,7 +60,7 @@
             
               <!--Date-->
                 Date
-                <!--Change this format of the date-->
+                
 
               
             </div>
@@ -182,10 +182,7 @@
             </div>
 
             <div class="container">
-              
                   <div class="row">
-                    
-
                     <div class="audio-player">
                       <audio id="my-audio">
                         <source src="../audio/shopping.mp3" type="audio/mpeg">
@@ -203,11 +200,7 @@
                         <button class="track-btn" data-src="track3.mp3">Track 3</button>
                       </div>
                     </div>
-
-
-
-
-                    </div><!--end audio player row-->
+              </div><!--end audio player row-->
                       
                
 
@@ -269,26 +262,13 @@
 
 
 
-    <!-- Optional JavaScript; choose one of the two! -->
+    
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
       
     </script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-  
-    <!--<script src="js/scripts.js"></script>-->
-    <!--<script src="p5/p5.js"></script>-->
-    <!-- <script src="p5/addons/p5.sound.js"></script>-->
-    <!--<script src="p5/addons/p5.sound.min.js"></script>-->
-    <!---<script src="p5/sketch.js"></script>-->
-
-    <!--Audioplayer Script-->
 
     <script src="app.js"></script>
 
@@ -306,7 +286,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       // Reference to the specific counter link where the visible count will happen
       const targetCounter = document.querySelector('.dynamic-counter-link.counter');
-      const links = document.querySelectorAll('.dynamic-counter-link'); // All links with dynamic-counter-link class
+      const links = document.querySelectorAll('.dynamic-counter-link'); //All links with dynamic-counter-link class
       const toggle = document.querySelector("#toggle-counter");
 
       // Click event listener for links
@@ -315,7 +295,7 @@
               if (toggle.checked) {
                   e.preventDefault(); // Prevent the link from redirecting immediately
 
-                  let startNumber = 100; // Always start from 100
+                  let startNumber = 100; 
                   let endNumber = parseInt(link.getAttribute('href').replace('.html', ''), 10);
 
                   if (isNaN(endNumber)) return;
@@ -341,7 +321,7 @@
 
 
 
-  //Clock code
+  //Clock functionality
 
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -379,7 +359,6 @@
 
   //Date code
 
-
   document.addEventListener('DOMContentLoaded', function() {
       // Get the date element
       const dateElem = document.querySelector("#date");
@@ -402,9 +381,6 @@
   });
 
 
-    
-    
-    
     
     // Function to count up to target number
     function countToTarget(target) {
