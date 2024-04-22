@@ -444,50 +444,48 @@
   // Get the modal
   var modal = document.getElementById("audioModal");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on a track button, open the modal
-var trackButtons = document.querySelectorAll(".track-btn");
-trackButtons.forEach(function(button) {
-  button.addEventListener("click", function() {
-    var trackUrl = this.getAttribute("data-src");
-    document.getElementById("audioPlayer").innerHTML = ""; // Clear previous content
-    if (trackUrl.includes("soundcloud.com")) {
-      // If the track is from SoundCloud
-      var iframe = document.createElement("iframe");
-      iframe.width = "100%";
-      iframe.height = "300";
-      iframe.scrolling = "no";
-      iframe.frameBorder = "no";
-      iframe.allow = "autoplay";
-      iframe.src = "https://w.soundcloud.com/player/?url=" + encodeURIComponent(trackUrl) + "&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true";
-      // Handle error if track is not found
-      iframe.onerror = function() {
-        document.getElementById("audioPlayer").innerHTML = "Error: Track not found.";
-      };
-      document.getElementById("audioPlayer").appendChild(iframe);
-    } else if (trackUrl.includes("bandlab.com")) {
-      // If the track is from BandLab (placeholder for now)
-      var paragraph = document.createElement("p");
-      paragraph.textContent = "BandLab track will be embedded here.";
-      document.getElementById("audioPlayer").appendChild(paragraph);
-    }
-    modal.style.display = "block";
+  // When the user clicks on a track button, open the modal
+  var trackButtons = document.querySelectorAll(".track-btn");
+  trackButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+      var trackUrl = this.getAttribute("data-src");
+      document.getElementById("audioPlayer").innerHTML = ""; // Clear previous content
+      if (trackUrl.includes("soundcloud.com")) {
+        // If the track is from SoundCloud
+        var iframe = document.createElement("iframe");
+        iframe.width = "100%";
+        iframe.height = "300";
+        iframe.scrolling = "no";
+        iframe.frameBorder = "no";
+        iframe.allow = "autoplay";
+        iframe.src = "https://w.soundcloud.com/player/?url=" + encodeURIComponent(trackUrl) + "&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true";
+        // Handle error if track is not found
+        iframe.onerror = function() {
+          document.getElementById("audioPlayer").innerHTML = "Error: Track not found.";
+        };
+        document.getElementById("audioPlayer").appendChild(iframe);
+      } else if (trackUrl.includes("bandlab.com")) {
+        // If the track is from BandLab (placeholder)
+        document.getElementById("audioPlayer").innerHTML = "BandLab track cannot be embedded at the moment.";
+      }
+      modal.style.display = "block";
+    });
   });
-});
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
     modal.style.display = "none";
   }
-}
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
     
     </script>
   
