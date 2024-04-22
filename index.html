@@ -212,7 +212,7 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <iframe id="audioPlayer" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"></iframe>
+    <div id="audioPlayer"></div>
   </div>
 </div>
 
@@ -256,22 +256,7 @@
             </div>   
               
           </div>     
-     
-      
-      
-      
-          
-        
-        
-  
-
-
-  
-  
-
-
-
-
+    
 
 
     </div><!--End Container fluid--> 
@@ -455,9 +440,7 @@
 
 
 
-    //Modal
-
-     // Get the modal
+    // Get the modal
   var modal = document.getElementById("audioModal");
 
 // Get the <span> element that closes the modal
@@ -468,7 +451,23 @@ var trackButtons = document.querySelectorAll(".track-btn");
 trackButtons.forEach(function(button) {
   button.addEventListener("click", function() {
     var trackUrl = this.getAttribute("data-src");
-    document.getElementById("audioPlayer").src = trackUrl;
+    document.getElementById("audioPlayer").innerHTML = ""; // Clear previous content
+    if (trackUrl.includes("soundcloud.com")) {
+      // If the track is from SoundCloud
+      var iframe = document.createElement("iframe");
+      iframe.width = "100%";
+      iframe.height = "300";
+      iframe.scrolling = "no";
+      iframe.frameBorder = "no";
+      iframe.allow = "autoplay";
+      iframe.src = "https://w.soundcloud.com/player/?url=" + encodeURIComponent(trackUrl) + "&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true";
+      document.getElementById("audioPlayer").appendChild(iframe);
+    } else if (trackUrl.includes("bandlab.com")) {
+      // If the track is from BandLab (placeholder for now)
+      var paragraph = document.createElement("p");
+      paragraph.textContent = "BandLab track will be embedded here.";
+      document.getElementById("audioPlayer").appendChild(paragraph);
+    }
     modal.style.display = "block";
   });
 });
@@ -484,10 +483,6 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-
-
-
-
     
     </script>
   
