@@ -14,9 +14,12 @@
 
     <!--AudioPlayer scripts and styles links-->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a062562745.js" crossorigin="anonymous"></script>    
+    <script src="https://kit.fontawesome.com/a062562745.js" crossorigin="anonymous"></script>  
+
     <link rel=stylesheet href="audio.css" media=all> 
     <!--End AudioPlayer scripts and style links-->
+    <!-- SoundCloud widget API -->
+    <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
 
 
     <title>The home of shedtronic's github</title>
@@ -189,6 +192,8 @@
                         <source src="./audio/funk.mp3" type="audio/mpeg">
                         <source src="track3.mp3" type="audio/mpeg">
                       </audio>
+
+                      <iframe allowtransparency="true" scrolling="no" frameborder="no" src="https://soundcloud.com/undesignuk/regicide-hanks-nightmare?si=5b358d8306be45e4ba6d1ba562b2b373&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" style="width: 32px; height: 32px;"></iframe>
                       <div class="controls">
                         <p>Player</p>
                         <button id="play-btn">Play</button>
@@ -204,7 +209,7 @@
   <!-- BandLab track -->
   <button class="track-btn" data-src="https://www.bandlab.com/audio-player?feed=fdd858ef-b9df-eb11-a607-00155d0e00b5">Track from BandLab</button>
                       </div>
-                    </div>
+                </div>
 
 
               <!-- Modal -->
@@ -488,6 +493,34 @@ trackButtons.forEach(function(button) {
   }
     
     </script>
+
+
+
+
+<script>
+  // Create a widget object to store SoundCloud widgets
+  const widget = {};
+
+  // Play function for SoundCloud tracks
+  function playSoundCloudTrack(target, id) {
+      if (!widget[id]) {
+          widget[id] = new SC.Widget(target);
+          widget[id].bind(SC.Widget.Events.READY, function () {
+              // Widget is ready
+          });
+      }
+      widget[id].play();
+  }
+
+  $(document).ready(function () {
+      $(".soundcloud-track-btn").click(function (e) {
+          e.preventDefault();
+          const trackUrl = $(this).data("src");
+          const iframeId = $(this).attr("id");
+          playSoundCloudTrack(iframeId, trackUrl);
+      });
+  });
+</script>
   
 </body>
 </html>
