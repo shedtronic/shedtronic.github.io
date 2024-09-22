@@ -185,36 +185,29 @@
             </div>
 
             <div class="container">
-                  <div class="row">
-                    <div class="audio-player">
-                      <audio id="my-audio">
-                        <source src="../audio/shopping.mp3" type="audio/mpeg">
-                        <source src="./audio/funk.mp3" type="audio/mpeg">
-                        <source src="track3.mp3" type="audio/mpeg">
-                      </audio>
-
-                     
-                        <p>Player</p>
-                        <button id="play-btn">Play</button>
-                        <button id="pause-btn">Pause</button>
-                      </div>
-                      <div class="track-list">
-                        <button class="track-btn" data-src="../audio/shopping.mp3">Song 1</button>
-                        <button class="track-btn" data-src="./audio/funk.mp3">Song 2</button>
-                        <!--<button class="track-btn" data-src="https://soundcloud.com/undesignuk/regicide-hanks-nightmare">Track 3</button>-->
-                        <!-- SoundCloud track -->
-  <button class="track-btn" data-src="https://soundcloud.com/undesignuk/regicide-hanks-nightmare?si=5b358d8306be45e4ba6d1ba562b2b373&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing">Song 3</button>
-  
-  <!-- BandLab track -->
-  <button class="track-btn" data-src="https://www.bandlab.com/audio-player?feed=fdd858ef-b9df-eb11-a607-00155d0e00b5">Song 4</button>
-                      </div>
+              <div class="row">
+                <!-- Audio player section -->
+                <div class="audio-player">
+                  <!-- MP3 Audio Player -->
+                  <audio id="myAudioPlayer" controls>
+                    <source src="" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                  </audio>
+    
+                  <!-- Play and Pause Buttons -->
+                  <button id="play-btn">Play</button>
+                  <button id="pause-btn">Pause</button>
                 </div>
-
-
-
-
-
-              </div><!--end audio player row-->
+    
+                <!-- Track List -->
+                <div class="track-list">
+                  <button class="track-btn" data-src="shopping.mp3">Song 1</button>
+                  <button class="track-btn" data-src="funk.mp3">Song 2</button>
+                  <button class="track-btn" data-src="track3.mp3">Song 3</button>
+                </div>
+              </div>
+            </div>
+          </div><!--end audio player row-->
                       
                
 
