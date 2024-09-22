@@ -435,47 +435,6 @@
     </script>
 
 
-<script>
-  // Audio player elements
-  const audioPlayer = document.getElementById('myAudioPlayer');
-  const playBtn = document.getElementById('play-btn');
-  const pauseBtn = document.getElementById('pause-btn');
-
-  // Track buttons
-  const trackButtons = document.querySelectorAll('.track-btn');
-
-  // Tracks array (hidden URLs)
-  const tracks = {
-    'Song 1': 'shopping.mp3',
-    'Song 2': 'funk.mp3',
-    'Song 3': 'track3.mp3'
-  };
-
-  // Function to play the selected track
-  function loadTrack(trackSrc) {
-    audioPlayer.querySelector('source').src = 'audio/' + trackSrc; // Hide full path
-    audioPlayer.load();
-    audioPlayer.play();
-  }
-
-  // Add click event listener to each track button
-  trackButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const trackSrc = tracks[button.textContent]; // Get track by name
-      loadTrack(trackSrc); // Play the track
-    });
-  });
-
-  // Play and pause controls
-  playBtn.addEventListener('click', function() {
-    audioPlayer.play();
-  });
-
-  pauseBtn.addEventListener('click', function() {
-    audioPlayer.pause();
-  });
-</script>
-
 
 
 
