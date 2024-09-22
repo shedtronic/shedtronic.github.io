@@ -427,21 +427,21 @@
 //Code for the audio player
 document.addEventListener('DOMContentLoaded', function() {
   const tracks = [
-  {
-    title: "Track 1",
-    src: "https://shedtronic.github.io/audio/shopping.mp3",  // Absolute path
-    image: "images/track1.jpg"  // Assuming image path is correct
-  },
-  {
-    title: "Track 2",
-    src: "https://shedtronic.github.io/audio/funk.mp3",  // Absolute path
-    image: "images/track2.jpg"
-  },
-  {
-    title: "Track 3",
-    src: "",  // Placeholder, no link for this track
-    image: "images/track3.jpg"
-  }
+    {
+      title: "Track 1",
+      src: "https://shedtronic.github.io/audio/shopping.mp3",  // Absolute path to the audio
+      image: "images/track1.jpg" // Assuming images are correct
+    },
+    {
+      title: "Track 2",
+      src: "https://shedtronic.github.io/audio/funk.mp3",  // Absolute path to the audio
+      image: "images/track2.jpg"
+    },
+    {
+      title: "Track 3",
+      src: "",  // Placeholder, no link for this track
+      image: "images/track3.jpg"
+    }
   ];
 
   let currentTrackIndex = 0;
@@ -455,19 +455,22 @@ document.addEventListener('DOMContentLoaded', function() {
   // Function to load the track
   function loadTrack(index) {
     const track = tracks[index];
+    console.log(`Loading: ${track.title}, ${track.src}`); // Log to check track details
     trackTitle.innerText = track.title;
     trackImage.style.backgroundImage = `url(${track.image})`;
     audioSource.src = track.src;
 
-    // Disable play button if there's no audio source
+    // If no audio source, disable the play button
     if (track.src === "") {
       playTrackButton.disabled = true;
       playTrackButton.innerText = "No Track Available";
       audioPlayer.pause();
+      console.log("No track available.");
     } else {
       playTrackButton.disabled = false;
       playTrackButton.innerText = "Play Track";
-      audioPlayer.load();
+      audioPlayer.load();  // Load the new audio source
+      console.log("Track loaded successfully.");
     }
   }
 
@@ -487,9 +490,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (audioPlayer.paused) {
       audioPlayer.play();
       playTrackButton.innerText = "Pause Track";
+      console.log("Playing track...");
     } else {
       audioPlayer.pause();
       playTrackButton.innerText = "Play Track";
+      console.log("Paused track.");
     }
   });
 
