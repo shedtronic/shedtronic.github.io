@@ -429,28 +429,21 @@
 
 
 
-   
     document.addEventListener('DOMContentLoaded', function() {
   // Audio player elements
   const audioPlayer = document.getElementById('myAudioPlayer');
   const audioSource = document.getElementById('audioSource'); // Correctly referenced <source>
 
-  // Check if elements exist
-  if (!audioPlayer || !audioSource) {
-    console.error('Audio player or source element not found!');
-    return;
-  }
-
   // Play and Pause Buttons
-  const playBtn = document.getElementById('play-btn');
-  const pauseBtn = document.getElementById('pause-btn');
+  let playBtn = document.getElementById('play-btn');
+  let pauseBtn = document.getElementById('pause-btn');
 
   // Track buttons
   const trackButtons = document.querySelectorAll('.track-btn');
 
-  // Check if buttons exist
-  if (!playBtn || !pauseBtn || !trackButtons) {
-    console.error('Play/Pause buttons or track buttons not found!');
+  // Check if buttons and elements exist
+  if (!audioPlayer || !audioSource || !playBtn || !pauseBtn || !trackButtons) {
+    console.error('One or more elements not found in the DOM!');
     return;
   }
 
@@ -475,15 +468,11 @@
 
   // Play and pause controls
   playBtn.addEventListener('click', function() {
-    if (audioPlayer) {
-      audioPlayer.play();
-    }
+    audioPlayer.play();
   });
 
   pauseBtn.addEventListener('click', function() {
-    if (audioPlayer) {
-      audioPlayer.pause();
-    }
+    audioPlayer.pause();
   });
 });
 </script>
