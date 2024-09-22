@@ -195,6 +195,11 @@
                   Your browser does not support the audio element.
                 </audio>
               </div>
+
+              <div id="debug-messages" style="background-color: #f0f0f0; padding: 10px; margin-top: 10px; border: 1px solid #ccc;">
+                <h4>Debug Messages</h4>
+                <p id="debug-log"></p>
+              </div>
           
             </div>
 
@@ -430,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       title: "Track 1",
       src: "https://shedtronic.github.io/audio/shopping.mp3",  // Absolute path to the audio
-      image: "images/track1.jpg" // Assuming images are correct
+      image: "images/track1.jpg"  // Assuming images are correct
     },
     {
       title: "Track 2",
@@ -451,26 +456,32 @@ document.addEventListener('DOMContentLoaded', function() {
   const playTrackButton = document.getElementById('play-track');
   const audioPlayer = document.getElementById('audio-player');
   const audioSource = document.getElementById('audio-source');
+  const debugLog = document.getElementById('debug-log');  // To display log messages
+
+  // Function to print messages to the page
+  function printMessage(message) {
+    debugLog.innerText += message + '\n';
+  }
 
   // Function to load the track
   function loadTrack(index) {
     const track = tracks[index];
-    console.log(`Loading: ${track.title}, ${track.src}`); // Log to check track details
+    printMessage(`Loading: ${track.title}, ${track.src}`); // Print to page
     trackTitle.innerText = track.title;
     trackImage.style.backgroundImage = `url(${track.image})`;
     audioSource.src = track.src;
 
-    // If no audio source, disable the play button
+    // Disable play button if there's no audio source
     if (track.src === "") {
       playTrackButton.disabled = true;
       playTrackButton.innerText = "No Track Available";
       audioPlayer.pause();
-      console.log("No track available.");
+      printMessage("No track available.");
     } else {
       playTrackButton.disabled = false;
       playTrackButton.innerText = "Play Track";
       audioPlayer.load();  // Load the new audio source
-      console.log("Track loaded successfully.");
+      printMessage("Track loaded successfully.");
     }
   }
 
@@ -490,18 +501,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (audioPlayer.paused) {
       audioPlayer.play();
       playTrackButton.innerText = "Pause Track";
-      console.log("Playing track...");
+      printMessage("Playing track...");
     } else {
       audioPlayer.pause();
       playTrackButton.innerText = "Play Track";
-      console.log("Paused track.");
+      printMessage("Paused track.");
     }
   });
 
   // Load the first track when the page loads
   loadTrack(currentTrackIndex);
 });
-
 </script>
 
 
