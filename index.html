@@ -190,20 +190,20 @@
                 <div class="audio-player">
                   <!-- MP3 Audio Player -->
                   <audio id="myAudioPlayer" controls>
-                    <source src="" type="audio/mpeg">
+                    <source id="audioSource" src="" type="audio/mpeg">
                     Your browser does not support the audio element.
                   </audio>
-    
+        
                   <!-- Play and Pause Buttons -->
                   <button id="play-btn">Play</button>
                   <button id="pause-btn">Pause</button>
                 </div>
-    
+        
                 <!-- Track List -->
                 <div class="track-list">
-                  <button class="track-btn" data-src="shopping.mp3">Song 1</button>
-                  <button class="track-btn" data-src="funk.mp3">Song 2</button>
-                  <button class="track-btn" data-src="track3.mp3">Song 3</button>
+                  <button class="track-btn" data-src="audio/shopping.mp3">Song 1</button>
+                  <button class="track-btn" data-src="audio/funk.mp3">Song 2</button>
+                  <button class="track-btn" data-src="audio/track3.mp3">Song 3</button>
                 </div>
               </div>
             </div>
@@ -245,7 +245,7 @@
               </div>
             </div>   
               
-          </div>     
+          </div>    
     
 
 
@@ -433,38 +433,38 @@
   
     
    
-  // Audio player elements
-  const audioPlayer = document.getElementById('myAudioPlayer');
-  const playBtn = document.getElementById('play-btn');
-  const pauseBtn = document.getElementById('pause-btn');
-  const audioSource = document.getElementById('audioSource'); // Added for loading sources
+   // Audio player elements
+   const audioPlayer = document.getElementById('myAudioPlayer');
+      const playBtn = document.getElementById('play-btn');
+      const pauseBtn = document.getElementById('pause-btn');
+      const audioSource = document.getElementById('audioSource'); // Correctly referenced <source>
 
-  // Track buttons
-  const trackButtons = document.querySelectorAll('.track-btn');
+      // Track buttons
+      const trackButtons = document.querySelectorAll('.track-btn');
 
-  // Function to load and play a track
-  function loadTrack(trackSrc) {
-    audioSource.src = trackSrc; // Set the audio source
-    audioPlayer.load(); // Reload the audio element
-    audioPlayer.play(); // Play the new track
-  }
+      // Function to load and play a track
+      function loadTrack(trackSrc) {
+        audioSource.src = trackSrc; // Set the audio source
+        audioPlayer.load(); // Reload the audio element
+        audioPlayer.play(); // Play the new track
+      }
 
-  // Add click event listener to each track button
-  trackButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const trackSrc = button.getAttribute('data-src');
-      loadTrack(trackSrc); // Play the track
-    });
-  });
+      // Add click event listener to each track button
+      trackButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const trackSrc = button.getAttribute('data-src');
+          loadTrack(trackSrc); // Play the track
+        });
+      });
 
-  // Play and pause controls
-  playBtn.addEventListener('click', function() {
-    audioPlayer.play();
-  });
+      // Play and pause controls
+      playBtn.addEventListener('click', function() {
+        audioPlayer.play();
+      });
 
-  pauseBtn.addEventListener('click', function() {
-    audioPlayer.pause();
-  });
+      pauseBtn.addEventListener('click', function() {
+        audioPlayer.pause();
+      });
 </script>
 
 
