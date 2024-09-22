@@ -103,21 +103,6 @@ audio {
   border-radius: 1px;
   background:blue;
 
-/*  audio::-webkit-media-controls-panel       */
-/*  audio::-webkit-media-controls-mute-button   */
-/*  audio::-webkit-media-controls-play-button     */  
-/*  audio::-webkit-media-controls-timeline-container: border-radius:0px; 
-/*  audio::-webkit-media-controls-current-time-display   */
-/*  audio::-webkit-media-controls-time-remaining-display    */
-/*  audio::-webkit-media-controls-timeline    */
-/*  audio::-webkit-media-controls-volume-slider-container    */
-/*  audio::-webkit-media-controls-volume-slider    */
-/*  audio::-webkit-media-controls-seek-back-button     */
-/*  audio::-webkit-media-controls-seek-forward-button     */
-/*  audio::-webkit-media-controls-fullscreen-button       */
-/*  audio::-webkit-media-controls-rewind-button          */
-/*  audio::-webkit-media-controls-return-to-realtime-button         */
-/*  audio::-webkit-media-controls-toggle-closed-captions-button         */
 
 
 
@@ -125,7 +110,60 @@ audio {
 
 
 
+/*Audio Player CSS*/
 
+
+.audio-player-container {
+  text-align: center;
+  width: 300px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.track-image {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.track-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.track-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+audio {
+  width: 100%;
+  margin-top: 15px;
 
 
 
