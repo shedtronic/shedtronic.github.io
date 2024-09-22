@@ -431,11 +431,21 @@
 
 //Code for the audio player
 document.addEventListener('DOMContentLoaded', function() {
+  const debugLog = document.getElementById('debug-log');  // To display log messages
+
+  // Function to print messages to the page
+  function printMessage(message) {
+    debugLog.innerText += message + '\n';  // Append messages to the debug log
+  }
+
+  // Test message to see if JavaScript is running
+  printMessage("JavaScript is running and DOM is loaded.");
+
   const tracks = [
     {
       title: "Track 1",
       src: "https://shedtronic.github.io/audio/shopping.mp3",  // Absolute path to the audio
-      image: "images/track1.jpg"  // Assuming images are correct
+      image: "images/track1.jpg"
     },
     {
       title: "Track 2",
@@ -456,17 +466,19 @@ document.addEventListener('DOMContentLoaded', function() {
   const playTrackButton = document.getElementById('play-track');
   const audioPlayer = document.getElementById('audio-player');
   const audioSource = document.getElementById('audio-source');
-  const debugLog = document.getElementById('debug-log');  // To display log messages
 
-  // Function to print messages to the page
-  function printMessage(message) {
-    debugLog.innerText += message + '\n';
+  // Check if elements exist and print a message
+  if (trackImage && trackTitle && playTrackButton && audioPlayer && audioSource) {
+    printMessage("Audio player elements found.");
+  } else {
+    printMessage("Some audio player elements are missing.");
+    return;  // Stop execution if elements are missing
   }
 
   // Function to load the track
   function loadTrack(index) {
     const track = tracks[index];
-    printMessage(`Loading: ${track.title}, ${track.src}`); // Print to page
+    printMessage(`Loading: ${track.title}, ${track.src}`);
     trackTitle.innerText = track.title;
     trackImage.style.backgroundImage = `url(${track.image})`;
     audioSource.src = track.src;
