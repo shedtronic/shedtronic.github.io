@@ -427,21 +427,21 @@
 //Code for the audio player
 document.addEventListener('DOMContentLoaded', function() {
   const tracks = [
-    {
-      title: "Track 1",
-      src: "audio/shopping.mp3",  // Replace with your actual path
-      image: "images/track1.jpg" // Replace with your actual image path
-    },
-    {
-      title: "Track 2",
-      src: "audio/funk.mp3",  // Replace with your actual path
-      image: "images/track2.jpg" // Replace with your actual image path
-    },
-    {
-      title: "Track 3",
-      src: "",  // Placeholder, no link for this track
-      image: "images/track3.jpg" // Replace with your actual image path
-    }
+  {
+    title: "Track 1",
+    src: "https://shedtronic.github.io/audio/shopping.mp3",  // Absolute path
+    image: "images/track1.jpg"  // Assuming image path is correct
+  },
+  {
+    title: "Track 2",
+    src: "https://shedtronic.github.io/audio/funk.mp3",  // Absolute path
+    image: "images/track2.jpg"
+  },
+  {
+    title: "Track 3",
+    src: "",  // Placeholder, no link for this track
+    image: "images/track3.jpg"
+  }
   ];
 
   let currentTrackIndex = 0;
