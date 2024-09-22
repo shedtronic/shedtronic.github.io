@@ -434,9 +434,40 @@
     
     </script>
 
+<script>
+  // Audio player elements
+  const audioPlayer = document.getElementById('myAudioPlayer');
+  const playBtn = document.getElementById('play-btn');
+  const pauseBtn = document.getElementById('pause-btn');
+  const audioSource = document.getElementById('audioSource'); // Added for loading sources
 
+  // Track buttons
+  const trackButtons = document.querySelectorAll('.track-btn');
 
+  // Function to load and play a track
+  function loadTrack(trackSrc) {
+    audioSource.src = trackSrc; // Set the audio source
+    audioPlayer.load(); // Reload the audio element
+    audioPlayer.play(); // Play the new track
+  }
 
+  // Add click event listener to each track button
+  trackButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const trackSrc = button.getAttribute('data-src');
+      loadTrack(trackSrc); // Play the track
+    });
+  });
+
+  // Play and pause controls
+  playBtn.addEventListener('click', function() {
+    audioPlayer.play();
+  });
+
+  pauseBtn.addEventListener('click', function() {
+    audioPlayer.pause();
+  });
+</script>
 
 
   
