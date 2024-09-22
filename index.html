@@ -430,41 +430,62 @@
 
 
    
-  
-    
-   
-   // Audio player elements
-   const audioPlayer = document.getElementById('myAudioPlayer');
-      const playBtn = document.getElementById('play-btn');
-      const pauseBtn = document.getElementById('pause-btn');
-      const audioSource = document.getElementById('audioSource'); // Correctly referenced <source>
+    document.addEventListener('DOMContentLoaded', function() {
+  // Audio player elements
+  const audioPlayer = document.getElementById('myAudioPlayer');
+  const audioSource = document.getElementById('audioSource'); // Correctly referenced <source>
 
-      // Track buttons
-      const trackButtons = document.querySelectorAll('.track-btn');
+  // Check if elements exist
+  if (!audioPlayer || !audioSource) {
+    console.error('Audio player or source element not found!');
+    return;
+  }
 
-      // Function to load and play a track
-      function loadTrack(trackSrc) {
-        audioSource.src = trackSrc; // Set the audio source
-        audioPlayer.load(); // Reload the audio element
-        audioPlayer.play(); // Play the new track
+  // Play and Pause Buttons
+  const playBtn = document.getElementById('play-btn');
+  const pauseBtn = document.getElementById('pause-btn');
+
+  // Track buttons
+  const trackButtons = document.querySelectorAll('.track-btn');
+
+  // Check if buttons exist
+  if (!playBtn || !pauseBtn || !trackButtons) {
+    console.error('Play/Pause buttons or track buttons not found!');
+    return;
+  }
+
+  // Function to load and play a track
+  function loadTrack(trackSrc) {
+    audioSource.src = trackSrc; // Set the audio source
+    audioPlayer.load(); // Reload the audio element
+    audioPlayer.play(); // Play the new track
+  }
+
+  // Add click event listener to each track button
+  trackButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const trackSrc = button.getAttribute('data-src');
+      if (trackSrc) {
+        loadTrack(trackSrc); // Play the track
+      } else {
+        console.error('Track source not found for button', button);
       }
+    });
+  });
 
-      // Add click event listener to each track button
-      trackButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const trackSrc = button.getAttribute('data-src');
-          loadTrack(trackSrc); // Play the track
-        });
-      });
+  // Play and pause controls
+  playBtn.addEventListener('click', function() {
+    if (audioPlayer) {
+      audioPlayer.play();
+    }
+  });
 
-      // Play and pause controls
-      playBtn.addEventListener('click', function() {
-        audioPlayer.play();
-      });
-
-      pauseBtn.addEventListener('click', function() {
-        audioPlayer.pause();
-      });
+  pauseBtn.addEventListener('click', function() {
+    if (audioPlayer) {
+      audioPlayer.pause();
+    }
+  });
+});
 </script>
 
 
