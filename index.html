@@ -186,24 +186,21 @@
 
             <div class="container">
               <div class="row">
-                <!-- Audio player section -->
-                <div class="audio-player">
-                  <!-- MP3 Audio Player -->
-                  <audio id="myAudioPlayer" controls>
-                    <source id="audioSource" src="" type="audio/mpeg">
+                <div class="audio-player-container">
+                  <div id="track-image" class="track-image"></div>
+                  <div class="track-title" id="track-title">Track Title</div>
+                  
+                  <div class="track-controls">
+                    <span id="prev-track" class="arrow">&larr;</span>
+                    <button id="play-track">Play Track</button>
+                    <span id="next-track" class="arrow">&rarr;</span>
+                  </div>
+                
+                  <audio id="audio-player" controls>
+                    <source id="audio-source" src="" type="audio/mpeg">
                     Your browser does not support the audio element.
                   </audio>
-        
-                  <!-- Play and Pause Buttons -->
-                  <button id="play-btn">Play</button>
-                  <button id="pause-btn">Pause</button>
                 </div>
-        
-                <!-- Track List -->
-                <div class="track-list">
-                  <button class="track-btn" data-src="audio/shopping.mp3">Song 1</button>
-                  <button class="track-btn" data-src="audio/funk.mp3">Song 2</button>
-                  <button class="track-btn" data-src="#">Song 3</button>
                 </div>
               </div>
             </div>
@@ -427,54 +424,77 @@
     });
 
 
+//Code for the audio player
 
 
-    document.addEventListener('DOMContentLoaded', function() {
-  // Audio player elements
-  const audioPlayer = document.getElementById('myAudioPlayer');
-  const audioSource = document.getElementById('audioSource'); // Correctly referenced <source>
+const tracks = [
+    {
+      title: "Track 1",
+      src: "audio/track1.mp3",  // Replace with your actual path
+      image: "images/track1.jpg" // Replace with your actual image path
+    },
+    {
+      title: "Track 2",
+      src: "audio/track2.mp3",  // Replace with your actual path
+      image: "images/track2.jpg" // Replace with your actual image path
+    },
+    {
+      title: "Track 3",
+      src: "",  // Placeholder, no link for this track
+      image: "images/track3.jpg" // Replace with your actual image path
+    }
+  ];
 
-  // Play and Pause Buttons
-  let playBtn = document.getElementById('play-btn');
-  let pauseBtn = document.getElementById('pause-btn');
+  let currentTrackIndex = 0;
 
-  // Track buttons
-  const trackButtons = document.querySelectorAll('.track-btn');
+  const trackImage = document.getElementById('track-image');
+  const trackTitle = document.getElementById('track-title');
+  const playTrackButton = document.getElementById('play-track');
+  const audioPlayer = document.getElementById('audio-player');
+  const audioSource = document.getElementById('audio-source');
 
-  // Check if buttons and elements exist
-  if (!audioPlayer || !audioSource || !playBtn || !pauseBtn || !trackButtons) {
-    console.error('One or more elements not found in the DOM!');
-    return;
+  function loadTrack(index) {
+    const track = tracks[index];
+    trackTitle.innerText = track.title;
+    trackImage.style.backgroundImage = `url(${track.image})`;
+    audioSource.src = track.src;
+
+    // Disable play button if there's no audio source
+    if (track.src === "") {
+      playTrackButton.disabled = true;
+      playTrackButton.innerText = "No Track Available";
+      audioPlayer.pause();
+    } else {
+      playTrackButton.disabled = false;
+      playTrackButton.innerText = "Play Track";
+      audioPlayer.load();
+    }
   }
 
-  // Function to load and play a track
-  function loadTrack(trackSrc) {
-    audioSource.src = trackSrc; // Set the audio source
-    audioPlayer.load(); // Reload the audio element
-    audioPlayer.play(); // Play the new track
-  }
-
-  // Add click event listener to each track button
-  trackButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const trackSrc = button.getAttribute('data-src');
-      if (trackSrc) {
-        loadTrack(trackSrc); // Play the track
-      } else {
-        console.error('Track source not found for button', button);
-      }
-    });
+  document.getElementById('prev-track').addEventListener('click', () => {
+    currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+    loadTrack(currentTrackIndex);
   });
 
-  // Play and pause controls
-  playBtn.addEventListener('click', function() {
-    audioPlayer.play();
+  document.getElementById('next-track').addEventListener('click', () => {
+    currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+    loadTrack(currentTrackIndex);
   });
 
-  pauseBtn.addEventListener('click', function() {
-    audioPlayer.pause();
+  playTrackButton.addEventListener('click', () => {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+      playTrackButton.innerText = "Pause Track";
+    } else {
+      audioPlayer.pause();
+      playTrackButton.innerText = "Play Track";
+    }
   });
-});
+
+  // Load the first track when the page loads
+  loadTrack(currentTrackIndex);
+
+
 </script>
 
 
