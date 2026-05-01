@@ -12,21 +12,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <!--<script language="javascript" type="text/javascript" src="p5/addons/p5.sound.js"></script> -->
 
-    <!--AudioPlayer scripts and styles links-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a062562745.js" crossorigin="anonymous"></script>  
 
-    <link rel=stylesheet href="audio.css" media=all> 
-    <!--End AudioPlayer scripts and style links-->
-    <!-- SoundCloud widget API -->
-    <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
 
 
     <title>The home of shedtronic's github</title>
 
     
-    <!--Jquery-->
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  
     
 
 
@@ -180,26 +172,7 @@
 
 
               </ul>
-              <div class="audio-player-container">
-                <div id="track-image" class="track-image"></div>
-                <div class="track-title" id="track-title">Track Title</div>
-                
-                <div class="track-controls">
-                  <span id="prev-track" class="arrow">&larr;</span>
-                  <button id="play-track">Play Track</button>
-                  <span id="next-track" class="arrow">&rarr;</span>
-                </div>
               
-                <audio id="audio-player" controls>
-                  <source id="audio-source" src="" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </div>
-
-              <div id="debug-messages" style="background-color: transparent; padding: 10px; margin-top: 10px; border: 1px solid #ccc;">
-                <h4>Debug Messages</h4>
-                <p id="debug-log"></p>
-              </div>
           
             </div>
 
@@ -267,285 +240,87 @@
     <!--<script src="app.js"></script>-->
 
     <script>
-      // Define variables
-
-      
-    //const counter = document.querySelector("#counter");
-    //const links = document.querySelectorAll("#list-right .count-link");
-    //const toggle = document.querySelector("#toggle-counter");
-    
-
-
-
-
-
 // ======================================
 // SHEDFAX : COUNTER SYSTEM
 // Simulates Ceefax page navigation delay
 // ======================================
 
+document.addEventListener("DOMContentLoaded", function () {
+  const targetCounter = document.querySelector(".dynamic-counter-link.counter");
+  const links = document.querySelectorAll(".dynamic-counter-link");
+  const toggle = document.querySelector("#toggle-counter");
 
-    // Set initial counter value
-    let count = 100;
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      // Reference to the specific counter link where the visible count will happen
-      const targetCounter = document.querySelector('.dynamic-counter-link.counter');
-      const links = document.querySelectorAll('.dynamic-counter-link'); //All links with dynamic-counter-link class
-      const toggle = document.querySelector("#toggle-counter");
+  if (!targetCounter || !links.length || !toggle) return;
 
-      // Click event listener for links
-      links.forEach(link => {
-          link.addEventListener('click', function(e) {
-              if (toggle.checked) {
-                  e.preventDefault(); // Prevent the link from redirecting immediately
+  links.forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      const href = link.getAttribute("href");
+      const endNumber = parseInt(href.replace(".html", ""), 10);
 
-                  let startNumber = 100; 
-                  let endNumber = parseInt(link.getAttribute('href').replace('.html', ''), 10);
+      if (!toggle.checked || isNaN(endNumber)) return;
 
-                  if (isNaN(endNumber)) return;
+      e.preventDefault();
 
-                  let interval = setInterval(function() {
-                      if (startNumber < endNumber) {
-                          startNumber += 1;
-                          targetCounter.innerText = startNumber;
-                      } else {
-                          clearInterval(interval);
-                          window.location.href = link.getAttribute('href');
-                      }
-                  }, 100);
-              }
-          });
-      });
-  });
+      let startNumber = 100;
 
-
-
-
-
-
-// ======================================
-// SHEDFAX : Clock SYSTEM
-// Simulates Ceefax style clock format
-//// ======================================
-
-  document.addEventListener('DOMContentLoaded', function() {
-      // Get elements
-      const hoursElem = document.querySelector("#clock .hours");
-      const minutesElem = document.querySelector("#clock .minutes");
-      const secondsElem = document.querySelector("#clock .seconds");
-
-      // Function to update the clock
-      function updateClock() {
-          const now = new Date();
-
-          let hours = now.getHours();
-          let minutes = now.getMinutes();
-          let seconds = now.getSeconds();
-
-          // Add leading 0 if needed
-          hours = (hours < 10) ? "0" + hours : hours;
-          minutes = (minutes < 10) ? "0" + minutes : minutes;
-          seconds = (seconds < 10) ? "0" + seconds : seconds;
-
-          hoursElem.textContent = hours;
-          minutesElem.textContent = minutes;
-          secondsElem.textContent = seconds;
-      }
-
-      // Call once to initialize and then set an interval to update every second
-      updateClock();
-      setInterval(updateClock, 1000);
-  });
-
-
-
-
-
-  // ======================================
-// SHEDFAX : COUNTER SYSTEM
-// Simulates Ceefax page today's date format
-// ======================================
-
-  document.addEventListener('DOMContentLoaded', function() {
-      // Get the date element
-      const dateElem = document.querySelector("#date");
-
-      // Function to get the formatted date
-      function getFormattedDate() {
-          const now = new Date();
-
-          const options = {
-              weekday: 'long', // Long representation for day, e.g., 'Friday'
-              day: 'numeric',  // Numeric representation for day, e.g., '14'
-              month: 'short'   // Short representation for month, e.g., 'Feb'
-          };
-
-          return now.toLocaleDateString('en-US', options);
-      }
-
-      // Set the date
-      dateElem.textContent = getFormattedDate();
-  });
-
-
-
-
-
-
-// ======================================
-// SHEDFAX : COUNTER SYSTEM
-// Counts to target number
-// ======================================
-    
-    // Function to count up to target number
-    function countToTarget(target) {
-      // Calculate increment based on target number
-      const increment = Math.ceil((target - count) / 50);
-      // Set interval to count up
-      const interval = setInterval(() => {
-        count += increment;
-        counter.textContent = count;
-        // Stop interval when target is reached
-        if (count >= target) {
+      const interval = setInterval(function () {
+        if (startNumber < endNumber) {
+          startNumber += 1;
+          targetCounter.innerText = startNumber;
+        } else {
           clearInterval(interval);
-          window.location.href = `http://example.com/${target}.html`;
+          window.location.href = href;
         }
-      }, 20);
-    }
-    
-    // Add click event listener to links
-    links.forEach(link => {
-      link.addEventListener("click", event => {
-        // Check if toggle is on
-        if (toggle.checked) {
-          // Prevent link from going to destination immediately
-          event.preventDefault();
-          // Get target number from data-target attribute
-          const target = Number(link.dataset.target);
-          // Start counting to target number
-          countToTarget(target);
-        }
-      });
+      }, 100);
     });
-    
-    // Function to count up to 1000 with delay on click
-    function countTo1000() {
-      // Set interval to count up
-      const interval = setInterval(() => {
-        count++;
-        counter.textContent = count;
-        // Stop interval when 1000 is reached
-        if (count >= 1000) {
-          clearInterval(interval);
-        }
-      }, 10);
-    }
-    
-    // Add click event listener to counter
-    counter.addEventListener("click", () => {
-      // Check if toggle is on
-      if (toggle.checked) {
-        // Start counting to 1000
-        countTo1000();
-      }
-    });
+  });
+});
 
 
-//Code for the audio player
-document.addEventListener('DOMContentLoaded', function() {
-  const debugLog = document.getElementById('debug-log');  // To display log messages
+// ======================================
+// SHEDFAX : CLOCK SYSTEM
+// Displays current time in SHEDFAX header
+// ======================================
 
-  // Function to print messages to the page
-  function printMessage(message) {
-    debugLog.innerText += message + '\n';  // Append messages to the debug log
+document.addEventListener("DOMContentLoaded", function () {
+  const hoursElem = document.querySelector("#clock .hours");
+  const minutesElem = document.querySelector("#clock .minutes");
+  const secondsElem = document.querySelector("#clock .seconds");
+
+  if (!hoursElem || !minutesElem || !secondsElem) return;
+
+  function updateClock() {
+    const now = new Date();
+
+    hoursElem.textContent = String(now.getHours()).padStart(2, "0");
+    minutesElem.textContent = String(now.getMinutes()).padStart(2, "0");
+    secondsElem.textContent = String(now.getSeconds()).padStart(2, "0");
   }
 
-  // Test message to see if JavaScript is running
-  printMessage("JavaScript is running and DOM is loaded.");
+  updateClock();
+  setInterval(updateClock, 1000);
+});
 
-  const tracks = [
-    {
-      title: "Track 1",
-      src: "https://shedtronic.github.io/audio/shopping.mp3",  // Absolute path to the audio
-      image: "images/track1.jpg"
-    },
-    {
-      title: "Track 2",
-      src: "https://shedtronic.github.io/audio/funk.mp3",  // Absolute path to the audio
-      image: "images/track2.jpg"
-    },
-    {
-      title: "Track 3",
-      src: "",  // Placeholder, no link for this track
-      image: "images/track3.jpg"
-    }
-  ];
 
-  let currentTrackIndex = 0;
+// ======================================
+// SHEDFAX : DATE SYSTEM
+// Displays today's date in SHEDFAX header
+// ======================================
 
-  const trackImage = document.getElementById('track-image');
-  const trackTitle = document.getElementById('track-title');
-  const playTrackButton = document.getElementById('play-track');
-  const audioPlayer = document.getElementById('audio-player');
-  const audioSource = document.getElementById('audio-source');
+document.addEventListener("DOMContentLoaded", function () {
+  const dateElem = document.querySelector("#date");
 
-  // Check if elements exist and print a message
-  if (trackImage && trackTitle && playTrackButton && audioPlayer && audioSource) {
-    printMessage("Audio player elements found.");
-  } else {
-    printMessage("Some audio player elements are missing.");
-    return;  // Stop execution if elements are missing
-  }
+  if (!dateElem) return;
 
-  // Function to load the track
-  function loadTrack(index) {
-    const track = tracks[index];
-    printMessage(`Loading: ${track.title}, ${track.src}`);
-    trackTitle.innerText = track.title;
-    trackImage.style.backgroundImage = `url(${track.image})`;
-    audioSource.src = track.src;
+  const now = new Date();
 
-    // Disable play button if there's no audio source
-    if (track.src === "") {
-      playTrackButton.disabled = true;
-      playTrackButton.innerText = "No Track Available";
-      audioPlayer.pause();
-      printMessage("No track available.");
-    } else {
-      playTrackButton.disabled = false;
-      playTrackButton.innerText = "Play Track";
-      audioPlayer.load();  // Load the new audio source
-      printMessage("Track loaded successfully.");
-    }
-  }
+  const options = {
+    weekday: "long",
+    day: "numeric",
+    month: "short"
+  };
 
-  // Add click event listeners for previous and next buttons
-  document.getElementById('prev-track').addEventListener('click', () => {
-    currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
-    loadTrack(currentTrackIndex);
-  });
-
-  document.getElementById('next-track').addEventListener('click', () => {
-    currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-    loadTrack(currentTrackIndex);
-  });
-
-  // Play button control
-  playTrackButton.addEventListener('click', () => {
-    if (audioPlayer.paused) {
-      audioPlayer.play();
-      playTrackButton.innerText = "Pause Track";
-      printMessage("Playing track...");
-    } else {
-      audioPlayer.pause();
-      playTrackButton.innerText = "Play Track";
-      printMessage("Paused track.");
-    }
-  });
-
-  // Load the first track when the page loads
-  loadTrack(currentTrackIndex);
+  dateElem.textContent = now.toLocaleDateString("en-GB", options);
 });
 </script>
 
