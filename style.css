@@ -186,7 +186,7 @@ hr {
   margin:20px 0px;
 }
 
-#red, #green, #yellow, #blue {
+.footer-block {
   width:25%;
   display:inline;
   border:0px;
@@ -194,22 +194,21 @@ hr {
   text-align:center;
 }
 
-#red {
-  color:#ff0000;
+.red {
+  color: #ff0000;
 }
 
-#green {
-  color:hsl(120, 100%, 50%);
+.green {
+  color: hsl(120, 100%, 50%);
 }
 
-#yellow {
-  color:#ffff00;
+.yellow {
+  color: #ffff00;
 }
 
-#blue {
-  color:#00ffff;
+.blue {
+  color: #00ffff;
 }
-
 
 
 .col-sm-8 {
