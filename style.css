@@ -37,11 +37,7 @@
 
 */
   
-@media (max-width: 980px) {
 
- 
-  
-}
 
 
 /* Bootstrap Styles */
@@ -54,22 +50,13 @@
 
   
 
-  /*General styles*/
 
-body {
-border: solid #0000ff;
-border-width: 25px 15px 0px 15px;
-
-
-}
 
 .p5 {
-
-
   background-color:#000000; 
 }
 
-.highlight :first-letter {
+.highlight::first-letter {
 
   color:red !important;
 }
@@ -98,21 +85,6 @@ figure {
   margin: 0;
 }
 
-audio {
-
-  border-radius: 1px;
-  background:blue;
-
-
-
-
-}
-
-
-
-/*Audio Player CSS*/
-
-
 
 
 
@@ -123,7 +95,11 @@ body {
   background-color:#000000 !important;
   color:#ffffff;
   font-family: 'Press Start 2P', monospace !important;
+
+  border: solid #0000ff;
+border-width: 25px 15px 0px 15px;
 }
+
 
 #main, #header, #footer {
   width:auto;
@@ -187,10 +163,7 @@ hr {
 }
 
 .footer-block {
-  width:25%;
-  display:inline;
-  border:0px;
-  float:left;
+  
   text-align:center;
 }
 
@@ -269,10 +242,11 @@ color:green !important;
 
 .info {
   display:flex;
-  /*border: 3px solid red;*/
-  height:30px;
+ border: 3px solid red;
+    height:30px;
   
 }
+
 
 .counter {
   margin:0px !important;
@@ -338,12 +312,7 @@ align-items: flex-start;
   }
 
 
-  .info {
-    display:box;
-    border: 3px solid red;
-    height:30px;
-    
-  }
+
   
   /*audio {
     width:100%;
