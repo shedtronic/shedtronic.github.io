@@ -4,13 +4,20 @@
 // ======================================
 
 document.addEventListener("DOMContentLoaded", function () {
-  const targetCounter = document.querySelector(".dynamic-counter-link.counter");
+  const targetCounter = document.querySelector("#page-counter");
   const links = document.querySelectorAll(".dynamic-counter-link");
   const toggle = document.querySelector("#toggle-counter");
 
-  if (!targetCounter || !links.length || !toggle) {
-    console.log("SHEDFAX counter could not start");
-    return;
+  if (!targetCounter || !links.length || !toggle) return;
+
+  // Show current page number in top counter
+  const currentFile = window.location.pathname.split("/").pop();
+  const currentPage = parseInt(currentFile.replace(".html", ""), 10);
+
+  if (!isNaN(currentPage)) {
+    targetCounter.innerText = currentPage;
+  } else {
+    targetCounter.innerText = "100";
   }
 
   links.forEach(function (link) {
