@@ -121,7 +121,19 @@ border-width: 25px 15px 0px 15px;
 ============================== */
 
 
+.col-sm-4 .sidemenu,
+.col-sm-4 .shedfax-audio {
+  margin-left: 20px;
+}
 
+.col-sm-4 .shedfax-audio {
+  max-width: calc(100% - 20px);
+}
+
+.col-sm-4 h3 {
+
+  margin-left: 40px;
+}
 
 .sidemenu a {
   
@@ -290,21 +302,6 @@ figure {
  margin:0px;
  align-items: flex-start;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

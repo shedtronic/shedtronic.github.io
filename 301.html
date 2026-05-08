@@ -72,7 +72,7 @@
     <div class="row">
    
             <div id='main'>
-                    <h2>Game Design Learning System</h2>
+                    <h2>Ghost Radio Project</h2>
                     <h2>SDR Sensing APC Device</h2>
                     
                       <div class="listleft">
@@ -195,16 +195,8 @@
                 </div>
               </div>   
               
-         
-    
-
 
     </div><!--End Container fluid--> 
-
-
-
-
-    
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
@@ -214,146 +206,12 @@
   
 
     <script>
-// ======================================
-// SHEDFAX : COUNTER SYSTEM
-// Simulates Ceefax page navigation delay
-// ======================================
-
-document.addEventListener("DOMContentLoaded", function () {
-  const targetCounter = document.querySelector(".dynamic-counter-link.counter");
-  const links = document.querySelectorAll(".dynamic-counter-link");
-  const toggle = document.querySelector("#toggle-counter");
-
-  if (!targetCounter || !links.length || !toggle) return;
-
-  links.forEach(function (link) {
-    link.addEventListener("click", function (e) {
-      const href = link.getAttribute("href");
-      const endNumber = parseInt(href.replace(".html", ""), 10);
-
-      if (!toggle.checked || isNaN(endNumber)) return;
-
-      e.preventDefault();
-
-      let startNumber = 100;
-
-      const interval = setInterval(function () {
-        if (startNumber < endNumber) {
-          startNumber += 1;
-          targetCounter.innerText = startNumber;
-        } else {
-          clearInterval(interval);
-          window.location.href = href;
-        }
-      }, 100);
-    });
-  });
-});
+        <script src="js/shedfax-counter.js"></script>
+        <script src="js/shedfax-clock.js"></script>
+        <script src="js/shedfax-date.js"></script>
+        <script src="js/shedfax-audio.js"></script>
+    </script>
 
 
-// ======================================
-// SHEDFAX : CLOCK SYSTEM
-// Displays current time in SHEDFAX header
-// ======================================
-
-document.addEventListener("DOMContentLoaded", function () {
-  const hoursElem = document.querySelector("#clock .hours");
-  const minutesElem = document.querySelector("#clock .minutes");
-  const secondsElem = document.querySelector("#clock .seconds");
-
-  if (!hoursElem || !minutesElem || !secondsElem) return;
-
-  function updateClock() {
-    const now = new Date();
-
-    hoursElem.textContent = String(now.getHours()).padStart(2, "0");
-    minutesElem.textContent = String(now.getMinutes()).padStart(2, "0");
-    secondsElem.textContent = String(now.getSeconds()).padStart(2, "0");
-  }
-
-  updateClock();
-  setInterval(updateClock, 1000);
-});
-
-
-// ======================================
-// SHEDFAX : DATE SYSTEM
-// Displays today's date in SHEDFAX header
-// ======================================
-
-document.addEventListener("DOMContentLoaded", function () {
-  const dateElem = document.querySelector("#date");
-
-  if (!dateElem) return;
-
-  const now = new Date();
-
-  const options = {
-    weekday: "long",
-    day: "numeric",
-    month: "short"
-  };
-
-  dateElem.textContent = now.toLocaleDateString("en-GB", options);
-});
-
-// ======================================
-// SHEDFAX : Audio Player
-// Plays muzak, light jazz and experimental noise soundtracks in a Ceefax style
-// ======================================
-
-// ======================================
-// SHEDFAX : AUDIO SYSTEM
-// Plays a list of background musak files
-// ======================================
-
-document.addEventListener("DOMContentLoaded", function () {
-  const audioPlayer = document.querySelector("#shedfax-audio-player");
-  const toggleButton = document.querySelector("#toggle-audio");
-  const audioStatus = document.querySelector(".audio-status");
-
-  if (!audioPlayer || !toggleButton || !audioStatus) return;
-
-  const tracks = [
-    "audio/shopping.mp3",
-    "audio/funk.mp3",
-    "audio/the_chalk_circle.mp3"
-  ];
-
-  let currentTrack = 0;
-
-  audioPlayer.volume = 0.35;
-  audioPlayer.src = tracks[currentTrack];
-
-  function playTrack() {
-    audioPlayer.src = tracks[currentTrack];
-    audioPlayer.play();
-    audioStatus.textContent = "AUDIO SIGNAL: ACTIVE";
-    toggleButton.textContent = "MUTE MUSAK";
-  }
-
-  audioPlayer.addEventListener("ended", function () {
-    currentTrack = (currentTrack + 1) % tracks.length;
-    playTrack();
-  });
-
-  toggleButton.addEventListener("click", function () {
-    if (audioPlayer.paused) {
-      playTrack();
-    } else {
-      audioPlayer.pause();
-      audioStatus.textContent = "AUDIO SIGNAL: MUTED";
-      toggleButton.textContent = "RESTORE MUSAK";
-    }
-  });
-});
-
-
-</script>
-
-
-  
   </body>
 </html>
-
- 
