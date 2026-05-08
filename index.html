@@ -130,19 +130,34 @@
 
                 <label>
                   <input type="checkbox" id="toggle-counter"  checked>
-                  Toggle Counter
+                  Toggle Slow Nav
                 </label>
-                  
-                    <h4><strong>Github Repositories</strong></h4>
-                  
-                  <li><a href="#">Project AI Assistant</a></li>
-                  <li><!--page links to go here--></li>
-                  
-                  <li><!--page links to go here--></li>
-                  <li><!--page links to go here--></li>
-                  <li><!--page links to go here--></li>
 
-              </ul>
+
+                <div class="shedfax-audio">
+                    <div class="audio-status">
+                      DO YOU WANT TO TURN ON AUDIO SOUNDTRACKS FOR THIS PAGE?
+                      <br>
+                      YOU HAVE BEEN WARNED.
+                    </div>
+                      <br>
+                    <button id="toggle-audio" class="shedfax-button">
+                      TURN ON MUSAK
+                    </button>
+
+                    <audio id="shedfax-audio-player"></audio>
+                </div>
+                  
+                  <h4><strong>Github Repositories</strong></h4>
+                  
+                    <li><a href="#">Project AI Assistant</a></li>
+                    <li><!--page links to go here--></li>
+                    
+                    <li><!--page links to go here--></li>
+                    <li><!--page links to go here--></li>
+                    <li><!--page links to go here--></li>
+
+                </ul>
               
           
             </div>
@@ -278,6 +293,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
   dateElem.textContent = now.toLocaleDateString("en-GB", options);
 });
+
+// ======================================
+// SHEDFAX : Audio Player
+// Plays muzak, light jazz and experimental noise soundtracks in a Ceefax style
+// ======================================
+
+// ======================================
+// SHEDFAX : AUDIO SYSTEM
+// Plays a list of background musak files
+// ======================================
+
+document.addEventListener("DOMContentLoaded", function () {
+  const audioPlayer = document.querySelector("#shedfax-audio-player");
+  const toggleButton = document.querySelector("#toggle-audio");
+  const audioStatus = document.querySelector(".audio-status");
+
+  if (!audioPlayer || !toggleButton || !audioStatus) return;
+
+  const tracks = [
+    "audio/shopping.mp3",
+    "audio/funk.mp3",
+    "audio/the_chalk_circle.mp3"
+  ];
+
+  let currentTrack = 0;
+
+  audioPlayer.volume = 0.35;
+  audioPlayer.src = tracks[currentTrack];
+
+  function playTrack() {
+    audioPlayer.src = tracks[currentTrack];
+    audioPlayer.play();
+    audioStatus.textContent = "AUDIO SIGNAL: ACTIVE";
+    toggleButton.textContent = "MUTE MUSAK";
+  }
+
+  audioPlayer.addEventListener("ended", function () {
+    currentTrack = (currentTrack + 1) % tracks.length;
+    playTrack();
+  });
+
+  toggleButton.addEventListener("click", function () {
+    if (audioPlayer.paused) {
+      playTrack();
+    } else {
+      audioPlayer.pause();
+      audioStatus.textContent = "AUDIO SIGNAL: MUTED";
+      toggleButton.textContent = "RESTORE MUSAK";
+    }
+  });
+});
+
+
 </script>
 
 
