@@ -1,0 +1,18 @@
+{
+  "name": "Sound Controller",
+  "short_name": "Sound Pad",
+  "description": "A button based sound controller for Android browsers.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101418",
+  "theme_color": "#17202a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

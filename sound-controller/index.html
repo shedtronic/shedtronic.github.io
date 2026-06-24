@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#121820">
+    <title>Sound Controller</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0e1116;
+        --surface: #161d25;
+        --surface-2: #202a34;
+        --line: rgba(255, 255, 255, 0.12);
+        --text: #f6f8fb;
+        --muted: #9faab6;
+        --cyan: #2dd4bf;
+        --pink: #fb7185;
+        --amber: #f59e0b;
+        --blue: #60a5fa;
+        --green: #34d399;
+        --violet: #a78bfa;
+        --shadow: 0 16px 36px rgba(0, 0, 0, 0.34);
+        --glow: 0 0 26px rgba(45, 212, 191, 0.42);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        min-height: 100%;
+        background: var(--bg);
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        font-family: Arial, Helvetica, sans-serif;
+        background:
+          linear-gradient(145deg, #0e1116 0%, #18232d 52%, #0b0e13 100%);
+        color: var(--text);
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .phone-shell {
+        width: min(100vw, calc(100dvh * 9 / 16));
+        height: min(100dvh, calc(100vw * 16 / 9));
+        padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
+      }
+
+      .app {
+        width: 100%;
+        height: 100%;
+        min-height: 560px;
+        display: grid;
+        grid-template-rows: auto auto 1fr auto;
+        gap: 10px;
+      }
+
+      header {
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.45rem, 8.5vw, 2.5rem);
+        line-height: 0.9;
+        letter-spacing: 0;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .status {
+        min-width: 104px;
+        min-height: 44px;
+        padding: 8px 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.07);
+        color: var(--muted);
+        font-size: 0.82rem;
+        text-align: center;
+      }
+
+      .status.ready {
+        color: #071311;
+        background: var(--cyan);
+        border-color: transparent;
+        font-weight: 800;
+      }
+
+      .midi {
+        min-width: 58px;
+        min-height: 50px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        font-size: 0.78rem;
+        font-weight: 900;
+      }
+
+      .midi.ready {
+        color: #071311;
+        background: var(--green);
+        border-color: transparent;
+        box-shadow: 0 0 18px rgba(52, 211, 153, 0.42);
+      }
+
+      .top-controls {
+        display: grid;
+        grid-template-columns: 1fr 74px;
+        gap: 10px;
+      }
+
+      .slider-block {
+        min-height: 58px;
+        padding: 9px 11px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.075);
+        display: grid;
+        align-content: center;
+        gap: 5px;
+      }
+
+      .slider-block label {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        min-height: 26px;
+        accent-color: var(--cyan);
+      }
+
+      .stop {
+        min-height: 58px;
+        border: 0;
+        border-radius: 8px;
+        background: var(--pink);
+        color: #24070d;
+        font-weight: 900;
+        box-shadow: var(--shadow);
+      }
+
+      .instrument {
+        min-height: 0;
+        display: grid;
+        grid-template-rows: 1fr auto auto;
+        gap: 10px;
+      }
+
+      .pads {
+        min-height: 0;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .pad {
+        position: relative;
+        isolation: isolate;
+        min-height: 0;
+        border: 2px solid rgba(255, 255, 255, 0.14);
+        border-radius: 8px;
+        padding: 12px;
+        display: grid;
+        align-content: end;
+        justify-items: start;
+        overflow: hidden;
+        background: var(--surface);
+        color: var(--text);
+        box-shadow: var(--shadow);
+        transition: transform 90ms ease, border-color 90ms ease, box-shadow 90ms ease, background 90ms ease;
+      }
+
+      .pad::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, var(--pad-color), transparent 70%);
+        opacity: 0.48;
+      }
+
+      .pad::after {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        border-radius: 8px;
+        background: radial-gradient(circle at 50% 45%, var(--pad-color), transparent 68%);
+        filter: blur(18px);
+        opacity: 0;
+        transform: scale(0.72);
+        transition: opacity 90ms ease, transform 90ms ease;
+        z-index: 0;
+      }
+
+      .pad:active,
+      .pad.active,
+      .action:active,
+      .pitch:active {
+        transform: translateY(2px) scale(0.99);
+      }
+
+      .pad:active,
+      .pad.active {
+        border-color: color-mix(in srgb, var(--pad-color) 72%, white 28%);
+        box-shadow: 0 0 0 1px var(--pad-color), 0 0 24px var(--pad-color), var(--shadow);
+      }
+
+      .pad:active::after,
+      .pad.active::after {
+        opacity: 0.86;
+        transform: scale(1);
+      }
+
+      .pad strong,
+      .pad span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .pad strong {
+        font-size: clamp(1rem, 4vw, 1.32rem);
+      }
+
+      .pad span {
+        margin-top: 3px;
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 0.74rem;
+      }
+
+      kbd {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1;
+        min-width: 22px;
+        padding: 3px 6px;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 6px;
+        background: rgba(0, 0, 0, 0.28);
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.68rem;
+        font-weight: 800;
+        text-align: center;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.065);
+      }
+
+      .panel-title {
+        margin: 0 0 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .panel-title output {
+        color: var(--text);
+      }
+
+      .action-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .action {
+        position: relative;
+        min-height: 58px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 0 12px;
+        background: var(--surface-2);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-weight: 800;
+        transition: transform 90ms ease, box-shadow 90ms ease, background 90ms ease;
+      }
+
+      .action span {
+        color: inherit;
+        opacity: 0.72;
+        font-size: 0.76rem;
+        font-weight: 500;
+      }
+
+      .action[aria-pressed="true"] {
+        color: #11110a;
+        background: var(--amber);
+        border-color: transparent;
+        box-shadow: 0 0 24px rgba(245, 158, 11, 0.46), var(--shadow);
+      }
+
+      .drone-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .pitch {
+        position: relative;
+        min-height: 50px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        color: var(--text);
+        font-weight: 900;
+      }
+
+      .pitch[aria-pressed="true"] {
+        color: #071311;
+        background: var(--cyan);
+        border-color: transparent;
+        box-shadow: var(--glow);
+      }
+
+      .mod-grid {
+        margin-top: 8px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .tempo-readout {
+        margin-top: 8px;
+        min-height: 34px;
+        padding: 7px 10px;
+        border: 1px solid rgba(45, 212, 191, 0.24);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        background: rgba(45, 212, 191, 0.08);
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 700;
+      }
+
+      .tempo-readout output {
+        color: var(--cyan);
+        font-weight: 900;
+      }
+
+      @media (max-height: 650px) {
+        .app {
+          gap: 8px;
+        }
+
+        header {
+          min-height: 50px;
+        }
+
+        .slider-block,
+        .stop,
+        .action {
+          min-height: 50px;
+        }
+
+        .pad {
+          padding: 10px;
+        }
+
+        .pad strong {
+          font-size: 1.05rem;
+        }
+
+        .pad span {
+          font-size: 0.72rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="phone-shell">
+      <div class="app">
+        <header>
+          <h1>Sound<br>Controller</h1>
+          <div class="header-actions">
+            <button class="midi" id="midiButton" type="button">MIDI</button>
+            <div class="status" id="status">Tap a pad</div>
+          </div>
+        </header>
+
+        <section class="top-controls" aria-label="Master controls">
+          <div class="slider-block">
+            <label for="volume">
+              <span>Master</span>
+              <output id="volumeValue" for="volume">70%</output>
+            </label>
+            <input id="volume" type="range" min="0" max="100" value="70">
+          </div>
+          <button class="stop" id="stopButton" type="button">STOP</button>
+        </section>
+
+        <section class="instrument" aria-label="Sound controller">
+          <section class="pads" aria-label="Sound pads">
+            <button class="pad" type="button" data-sound="kick" data-key="1" style="--pad-color: #2dd4bf">
+              <kbd>1</kbd>
+              <strong>Kick</strong>
+              <span>Deep pulse</span>
+            </button>
+            <button class="pad" type="button" data-sound="snare" data-key="2" style="--pad-color: #fb7185">
+              <kbd>2</kbd>
+              <strong>Snare</strong>
+              <span>Sharp hit</span>
+            </button>
+            <button class="pad" type="button" data-sound="hat" data-key="3" style="--pad-color: #facc15">
+              <kbd>3</kbd>
+              <strong>Hat</strong>
+              <span>Crisp tick</span>
+            </button>
+            <button class="pad" type="button" data-sound="tone" data-key="4" style="--pad-color: #60a5fa">
+              <kbd>4</kbd>
+              <strong>Tone</strong>
+              <span>Clean note</span>
+            </button>
+            <button class="pad" type="button" data-sound="zap" data-key="5" style="--pad-color: #a78bfa">
+              <kbd>5</kbd>
+              <strong>Zap</strong>
+              <span>Sweep down</span>
+            </button>
+            <button class="pad" type="button" data-sound="rise" data-key="6" style="--pad-color: #34d399">
+              <kbd>6</kbd>
+              <strong>Rise</strong>
+              <span>Sweep up</span>
+            </button>
+          </section>
+
+          <section class="panel" aria-label="Pulse controls">
+            <p class="panel-title">
+              <span>Pulse</span>
+              <output id="pulseBpmValue" for="pulseBpm">115 BPM</output>
+            </p>
+            <div class="slider-block">
+              <label for="pulseBpm">
+                <span>Speed</span>
+                <span>60-180</span>
+              </label>
+              <input id="pulseBpm" type="range" min="60" max="180" value="115">
+            </div>
+            <div class="action-row" style="margin-top: 8px">
+              <button class="action" type="button" data-loop="pulse" data-key=" " aria-pressed="false">
+                Pulse <span>Space</span>
+              </button>
+              <button class="action" type="button" data-loop="drone" data-key="d" aria-pressed="false">
+                Drone <span>D</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="panel" aria-label="Drone controls">
+            <p class="panel-title">
+              <span>Drone Pitch</span>
+              <output id="dronePitchValue">A2</output>
+            </p>
+            <div class="drone-grid">
+              <button class="pitch" type="button" data-pitch="82.41" data-label="E2" data-key="q" aria-pressed="false">E2<kbd>Q</kbd></button>
+              <button class="pitch" type="button" data-pitch="98" data-label="G2" data-key="w" aria-pressed="false">G2<kbd>W</kbd></button>
+              <button class="pitch" type="button" data-pitch="110" data-label="A2" data-key="e" aria-pressed="true">A2<kbd>E</kbd></button>
+              <button class="pitch" type="button" data-pitch="146.83" data-label="D3" data-key="r" aria-pressed="false">D3<kbd>R</kbd></button>
+            </div>
+            <div class="mod-grid">
+              <div class="slider-block">
+                <label for="modDepth">
+                  <span>Mod Depth</span>
+                  <output id="modDepthValue" for="modDepth">35%</output>
+                </label>
+                <input id="modDepth" type="range" min="0" max="90" value="35">
+              </div>
+              <div class="slider-block">
+                <label for="modRate">
+                  <span>Mod Rate</span>
+                  <output id="modRateValue" for="modRate">1/4</output>
+                </label>
+                <input id="modRate" type="range" min="1" max="4" value="2">
+              </div>
+            </div>
+            <div class="tempo-readout">
+              <span>Mod Tempo</span>
+              <output id="modTempoValue">115 cycles/min</output>
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const statusEl = document.querySelector("#status");
+      const midiButton = document.querySelector("#midiButton");
+      const volumeEl = document.querySelector("#volume");
+      const volumeValueEl = document.querySelector("#volumeValue");
+      const stopButton = document.querySelector("#stopButton");
+      const pulseBpmEl = document.querySelector("#pulseBpm");
+      const pulseBpmValueEl = document.querySelector("#pulseBpmValue");
+      const dronePitchValueEl = document.querySelector("#dronePitchValue");
+      const modDepthEl = document.querySelector("#modDepth");
+      const modDepthValueEl = document.querySelector("#modDepthValue");
+      const modRateEl = document.querySelector("#modRate");
+      const modRateValueEl = document.querySelector("#modRateValue");
+      const modTempoValueEl = document.querySelector("#modTempoValue");
+      const pads = [...document.querySelectorAll(".pad")];
+      const loopButtons = [...document.querySelectorAll("[data-loop]")];
+      const pitchButtons = [...document.querySelectorAll(".pitch")];
+
+      let audioContext;
+      let masterGain;
+      let midiAccess;
+      let dronePitch = 110;
+      let droneLabel = "A2";
+      const activeLoops = new Map();
+      const pressedKeys = new Set();
+      const modRateLabels = {
+        1: "1/2",
+        2: "1/4",
+        3: "1/8",
+        4: "1/16"
+      };
+      const midiNoteMap = {
+        36: "kick",
+        38: "snare",
+        42: "hat",
+        45: "tone",
+        48: "zap",
+        50: "rise"
+      };
+      const midiPitchMap = {
+        60: "E2",
+        62: "G2",
+        64: "A2",
+        65: "D3"
+      };
+
+      const soundMap = {
+        kick: () => drumHit(120, 42, 0.42, "sine"),
+        snare: () => noiseHit(0.18, 850),
+        hat: () => noiseHit(0.07, 6000),
+        tone: () => toneHit(dronePitch * 2, 0.32, "triangle"),
+        zap: () => sweepHit(760, 90, 0.24),
+        rise: () => sweepHit(180, 960, 0.34)
+      };
+
+      function ensureAudio() {
+        if (!audioContext) {
+          audioContext = new AudioContext();
+          masterGain = audioContext.createGain();
+          masterGain.gain.value = Number(volumeEl.value) / 100;
+          masterGain.connect(audioContext.destination);
+        }
+
+        if (audioContext.state === "suspended") {
+          audioContext.resume();
+        }
+
+        statusEl.textContent = "Ready";
+        statusEl.classList.add("ready");
+      }
+
+      function now() {
+        return audioContext.currentTime;
+      }
+
+      function beatSeconds() {
+        return 60 / Number(pulseBpmEl.value);
+      }
+
+      function modulationSeconds() {
+        const beat = beatSeconds();
+        const division = Number(modRateEl.value);
+        return beat * Math.pow(2, 2 - division);
+      }
+
+      function updateReadouts() {
+        const modCyclesPerMinute = 60 / modulationSeconds();
+
+        volumeValueEl.textContent = `${volumeEl.value}%`;
+        pulseBpmValueEl.textContent = `${pulseBpmEl.value} BPM`;
+        dronePitchValueEl.textContent = droneLabel;
+        modDepthValueEl.textContent = `${modDepthEl.value}%`;
+        modRateValueEl.textContent = modRateLabels[modRateEl.value];
+        modTempoValueEl.textContent = `${Math.round(modCyclesPerMinute)} cycles/min`;
+      }
+
+      function flashPad(pad) {
+        pad.classList.add("active");
+        window.setTimeout(() => pad.classList.remove("active"), 110);
+      }
+
+      function envelope(gain, start, peak, duration) {
+        gain.gain.cancelScheduledValues(start);
+        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.exponentialRampToValueAtTime(peak, start + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+      }
+
+      function playSound(name) {
+        ensureAudio();
+        soundMap[name]?.();
+      }
+
+      function triggerPad(pad) {
+        flashPad(pad);
+        playSound(pad.dataset.sound);
+      }
+
+      function triggerPadBySound(sound) {
+        const pad = pads.find((item) => item.dataset.sound === sound);
+        if (pad) {
+          triggerPad(pad);
+        }
+      }
+
+      function toneHit(frequency, duration, type) {
+        const start = now();
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        osc.type = type;
+        osc.frequency.value = frequency;
+        envelope(gain, start, 0.42, duration);
+
+        osc.connect(gain);
+        gain.connect(masterGain);
+        osc.start(start);
+        osc.stop(start + duration + 0.03);
+      }
+
+      function drumHit(startFrequency, endFrequency, duration, type) {
+        const start = now();
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(startFrequency, start);
+        osc.frequency.exponentialRampToValueAtTime(endFrequency, start + duration);
+        envelope(gain, start, 0.82, duration);
+
+        osc.connect(gain);
+        gain.connect(masterGain);
+        osc.start(start);
+        osc.stop(start + duration + 0.04);
+      }
+
+      function sweepHit(from, to, duration) {
+        const start = now();
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        osc.type = "sawtooth";
+        osc.frequency.setValueAtTime(from, start);
+        osc.frequency.exponentialRampToValueAtTime(to, start + duration);
+        envelope(gain, start, 0.26, duration);
+
+        osc.connect(gain);
+        gain.connect(masterGain);
+        osc.start(start);
+        osc.stop(start + duration + 0.04);
+      }
+
+      function noiseHit(duration, filterFrequency) {
+        const start = now();
+        const bufferSize = audioContext.sampleRate * duration;
+        const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+        const data = buffer.getChannelData(0);
+
+        for (let i = 0; i < bufferSize; i += 1) {
+          data[i] = Math.random() * 2 - 1;
+        }
+
+        const source = audioContext.createBufferSource();
+        const filter = audioContext.createBiquadFilter();
+        const gain = audioContext.createGain();
+
+        filter.type = "highpass";
+        filter.frequency.value = filterFrequency;
+        envelope(gain, start, 0.36, duration);
+
+        source.buffer = buffer;
+        source.connect(filter);
+        filter.connect(gain);
+        gain.connect(masterGain);
+        source.start(start);
+      }
+
+      function toggleLoop(button) {
+        ensureAudio();
+
+        const name = button.dataset.loop;
+        const existing = activeLoops.get(name);
+
+        if (existing) {
+          existing.stop();
+          activeLoops.delete(name);
+          button.setAttribute("aria-pressed", "false");
+          return;
+        }
+
+        const loop = name === "pulse" ? createPulseLoop() : createDroneLoop();
+        activeLoops.set(name, loop);
+        button.setAttribute("aria-pressed", "true");
+      }
+
+      function toggleLoopByName(name) {
+        const button = loopButtons.find((item) => item.dataset.loop === name);
+        if (button) {
+          toggleLoop(button);
+        }
+      }
+
+      function selectPitch(button) {
+        dronePitch = Number(button.dataset.pitch);
+        droneLabel = button.dataset.label;
+        pitchButtons.forEach((pitchButton) => pitchButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        updateReadouts();
+
+        const drone = activeLoops.get("drone");
+        if (drone) {
+          drone.setPitch(dronePitch);
+        }
+      }
+
+      function selectPitchByLabel(label) {
+        const button = pitchButtons.find((item) => item.dataset.label === label);
+        if (button) {
+          selectPitch(button);
+        }
+      }
+
+      function setRangeFromMidi(input, value) {
+        const min = Number(input.min);
+        const max = Number(input.max);
+        input.value = Math.round(min + (max - min) * (value / 127));
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+
+      function handleMidiMessage(event) {
+        const [status, note, value] = event.data;
+        const command = status & 0xf0;
+
+        if (command === 0x90 && value > 0) {
+          if (midiNoteMap[note]) {
+            triggerPadBySound(midiNoteMap[note]);
+          }
+
+          if (midiPitchMap[note]) {
+            selectPitchByLabel(midiPitchMap[note]);
+          }
+
+          if (note === 67) {
+            toggleLoopByName("pulse");
+          }
+
+          if (note === 69) {
+            toggleLoopByName("drone");
+          }
+        }
+
+        if (command === 0xb0) {
+          if (note === 1) {
+            setRangeFromMidi(modDepthEl, value);
+          }
+
+          if (note === 7) {
+            setRangeFromMidi(volumeEl, value);
+          }
+
+          if (note === 74) {
+            setRangeFromMidi(pulseBpmEl, value);
+          }
+
+          if (note === 71) {
+            setRangeFromMidi(modRateEl, value);
+          }
+        }
+      }
+
+      function attachMidiInputs() {
+        midiAccess.inputs.forEach((input) => {
+          input.onmidimessage = handleMidiMessage;
+        });
+      }
+
+      async function enableMidi() {
+        if (!navigator.requestMIDIAccess) {
+          statusEl.textContent = "No Web MIDI";
+          midiButton.classList.remove("ready");
+          console.warn("Web MIDI is not available in this browser.");
+          return;
+        }
+
+        if (!window.isSecureContext) {
+          statusEl.textContent = "Use HTTPS";
+          midiButton.classList.remove("ready");
+          console.warn("Web MIDI requires a secure context such as HTTPS or localhost.");
+          return;
+        }
+
+        try {
+          midiAccess = await navigator.requestMIDIAccess({ sysex: false });
+          attachMidiInputs();
+          midiAccess.onstatechange = attachMidiInputs;
+          midiButton.classList.add("ready");
+          statusEl.textContent = "MIDI ready";
+          statusEl.classList.add("ready");
+        } catch (error) {
+          midiButton.classList.remove("ready");
+
+          if (error.name === "NotAllowedError") {
+            statusEl.textContent = "MIDI denied";
+          } else if (error.name === "SecurityError") {
+            statusEl.textContent = "Open Chrome";
+          } else {
+            statusEl.textContent = "MIDI blocked";
+          }
+
+          console.warn("MIDI access failed:", error.name, error.message);
+        }
+      }
+
+      function createPulseLoop() {
+        let timer;
+        let stopped = false;
+
+        function tick() {
+          if (stopped) {
+            return;
+          }
+
+          drumHit(95, 48, Math.min(0.28, beatSeconds() * 0.52), "sine");
+          timer = window.setTimeout(tick, beatSeconds() * 1000);
+        }
+
+        tick();
+
+        return {
+          stop() {
+            stopped = true;
+            window.clearTimeout(timer);
+          }
+        };
+      }
+
+      function createDroneLoop() {
+        const start = now();
+        const osc = audioContext.createOscillator();
+        const sub = audioContext.createOscillator();
+        const filter = audioContext.createBiquadFilter();
+        const droneGain = audioContext.createGain();
+        let modTimer;
+        let stopped = false;
+
+        osc.type = "sawtooth";
+        sub.type = "sine";
+        filter.type = "lowpass";
+        filter.frequency.value = 620;
+        filter.Q.value = 6;
+
+        osc.frequency.setValueAtTime(dronePitch, start);
+        sub.frequency.setValueAtTime(dronePitch / 2, start);
+        droneGain.gain.setValueAtTime(0.0001, start);
+        droneGain.gain.exponentialRampToValueAtTime(0.16, start + 0.25);
+
+        osc.connect(filter);
+        sub.connect(filter);
+        filter.connect(droneGain);
+        droneGain.connect(masterGain);
+        osc.start(start);
+        sub.start(start);
+
+        function modTick() {
+          if (stopped) {
+            return;
+          }
+
+          const t = now();
+          const depth = Number(modDepthEl.value) / 100;
+          const cycle = modulationSeconds();
+          const low = 0.07;
+          const high = 0.12 + depth * 0.28;
+          const filterLow = 240 + depth * 160;
+          const filterHigh = 520 + depth * 1600;
+
+          droneGain.gain.cancelScheduledValues(t);
+          droneGain.gain.setValueAtTime(low, t);
+          droneGain.gain.linearRampToValueAtTime(high, t + cycle * 0.25);
+          droneGain.gain.linearRampToValueAtTime(low, t + cycle * 0.92);
+
+          filter.frequency.cancelScheduledValues(t);
+          filter.frequency.setValueAtTime(filterLow, t);
+          filter.frequency.exponentialRampToValueAtTime(filterHigh, t + cycle * 0.25);
+          filter.frequency.exponentialRampToValueAtTime(filterLow, t + cycle * 0.92);
+
+          modTimer = window.setTimeout(modTick, cycle * 1000);
+        }
+
+        modTick();
+
+        return {
+          setPitch(frequency) {
+            const t = now();
+            osc.frequency.setTargetAtTime(frequency, t, 0.045);
+            sub.frequency.setTargetAtTime(frequency / 2, t, 0.045);
+          },
+          stop() {
+            stopped = true;
+            window.clearTimeout(modTimer);
+            const t = now();
+            const stopAt = t + 0.18;
+            droneGain.gain.cancelScheduledValues(t);
+            droneGain.gain.exponentialRampToValueAtTime(0.0001, stopAt);
+            osc.stop(stopAt + 0.03);
+            sub.stop(stopAt + 0.03);
+          }
+        };
+      }
+
+      function stopAll() {
+        activeLoops.forEach((loop) => loop.stop());
+        activeLoops.clear();
+        loopButtons.forEach((button) => button.setAttribute("aria-pressed", "false"));
+      }
+
+      pads.forEach((pad) => {
+        pad.addEventListener("pointerdown", () => {
+          triggerPad(pad);
+        });
+      });
+
+      loopButtons.forEach((button) => {
+        button.addEventListener("click", () => toggleLoop(button));
+      });
+
+      pitchButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          selectPitch(button);
+        });
+      });
+
+      volumeEl.addEventListener("input", () => {
+        updateReadouts();
+
+        if (masterGain) {
+          masterGain.gain.setTargetAtTime(Number(volumeEl.value) / 100, audioContext.currentTime, 0.02);
+        }
+      });
+
+      pulseBpmEl.addEventListener("input", updateReadouts);
+      modDepthEl.addEventListener("input", updateReadouts);
+      modRateEl.addEventListener("input", updateReadouts);
+
+      stopButton.addEventListener("click", () => {
+        ensureAudio();
+        stopAll();
+      });
+
+      midiButton.addEventListener("click", enableMidi);
+
+      window.addEventListener("keydown", (event) => {
+        const key = event.key.toLowerCase();
+
+        if (pressedKeys.has(event.code)) {
+          return;
+        }
+
+        if (event.target instanceof HTMLInputElement) {
+          return;
+        }
+
+        const pad = pads.find((item) => item.dataset.key === key);
+        const loop = loopButtons.find((item) => item.dataset.key === key || (item.dataset.key === " " && event.code === "Space"));
+        const pitch = pitchButtons.find((item) => item.dataset.key === key);
+
+        if (pad || loop || pitch || event.code === "Escape") {
+          event.preventDefault();
+          pressedKeys.add(event.code);
+        }
+
+        if (pad) {
+          triggerPad(pad);
+        }
+
+        if (loop) {
+          toggleLoop(loop);
+        }
+
+        if (pitch) {
+          selectPitch(pitch);
+        }
+
+        if (event.code === "Escape") {
+          stopAll();
+        }
+      });
+
+      window.addEventListener("keyup", (event) => {
+        pressedKeys.delete(event.code);
+      });
+
+      updateReadouts();
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js").catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>
