@@ -39,8 +39,9 @@
         min-height: 100vh;
         min-height: 100dvh;
         display: grid;
-        place-items: center;
-        overflow: hidden;
+        place-items: start center;
+        overflow-x: hidden;
+        overflow-y: auto;
         font-family: Arial, Helvetica, sans-serif;
         background:
           linear-gradient(145deg, #0e1116 0%, #18232d 52%, #0b0e13 100%);
@@ -60,17 +61,18 @@
       }
 
       .phone-shell {
-        width: min(100vw, calc(100dvh * 9 / 16));
-        height: min(100dvh, calc(100vw * 16 / 9));
+        width: min(100vw, 720px);
+        min-height: 100vh;
+        min-height: 100dvh;
         padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
       }
 
       .app {
         width: 100%;
-        height: 100%;
-        min-height: 560px;
+        min-height: calc(100vh - 24px);
+        min-height: calc(100dvh - 24px);
         display: grid;
-        grid-template-rows: auto auto 1fr auto;
+        grid-template-rows: auto auto minmax(0, 1fr);
         gap: 10px;
       }
 
@@ -177,7 +179,7 @@
       .instrument {
         min-height: 0;
         display: grid;
-        grid-template-rows: 1fr auto auto;
+        grid-template-rows: auto auto auto;
         gap: 10px;
       }
 
@@ -185,14 +187,14 @@
         min-height: 0;
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        grid-template-rows: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(88px, 118px));
         gap: 12px;
       }
 
       .pad {
         position: relative;
         isolation: isolate;
-        min-height: 0;
+        min-height: 88px;
         border: 2px solid rgba(255, 255, 255, 0.14);
         border-radius: 8px;
         padding: 12px;
@@ -403,6 +405,7 @@
         }
 
         .pad {
+          min-height: 76px;
           padding: 10px;
         }
 
@@ -412,6 +415,16 @@
 
         .pad span {
           font-size: 0.72rem;
+        }
+      }
+
+      @media (min-width: 760px) {
+        body {
+          place-items: center;
+        }
+
+        .phone-shell {
+          width: min(100vw, calc(100dvh * 9 / 16));
         }
       }
     </style>

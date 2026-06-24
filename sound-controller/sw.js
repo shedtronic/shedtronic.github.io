@@ -1,4 +1,4 @@
-const CACHE_NAME = "sound-controller-v9";
+const CACHE_NAME = "sound-controller-v11";
 const ASSETS = [
   "./",
   "./index.html",
