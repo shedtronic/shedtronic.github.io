@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Drone Looper horse skull icon</title>
+  <desc id="desc">Black and white folk horror horse skull front view.</desc>
+  <rect width="512" height="512" fill="#050505"/>
+  <circle cx="256" cy="256" r="228" fill="none" stroke="#f5f0e5" stroke-width="8"/>
+  <path d="M142 58 205 171l-66-44-24-65c0-13 7-14 27-4Z" fill="#f5f0e5"/>
+  <path d="M370 58 307 171l66-44 24-65c0-13-7-14-27-4Z" fill="#f5f0e5"/>
+  <path d="M165 129 211 94l45-10 45 10 46 35 26 101-28 96-40 126h-98l-40-126-28-96 26-101Z" fill="#f5f0e5"/>
+  <path d="m185 176 57 32-11 87-60-8-18-61 32-50Z" fill="#050505"/>
+  <path d="m327 176-57 32 11 87 60-8 18-61-32-50Z" fill="#050505"/>
+  <path d="M236 306h40l-20 65-20-65Z" fill="#050505"/>
+  <path d="M214 369h84l-11 83h-62l-11-83Z" fill="#050505"/>
+  <path d="M226 387v59M256 376v76M286 387v59" stroke="#f5f0e5" stroke-width="10" stroke-linecap="round"/>
+  <path d="M94 418c37-34 75-52 114-54M418 418c-37-34-75-52-114-54M82 116c32 33 61 57 88 72M430 116c-32 33-61 57-88 72" fill="none" stroke="#f5f0e5" stroke-width="7" stroke-linecap="round"/>
+  <path d="M256 40v63M256 452v28M52 256h51M409 256h51" stroke="#f5f0e5" stroke-width="7" stroke-linecap="round"/>
+</svg>
